@@ -40,13 +40,15 @@
 			type="number"
 		/>
 
-		<Skill {character} {ability} skill="athletics" isSaveThrow={true} />
+		<Skill {character} {ability} skill="" isSaveThrow={true} />
 
-		<hr />
+		{#if ALL_SKILLS[ability].length > 0}
+			<hr />
 
-		{#each ALL_SKILLS[ability] as skill}
-			<Skill {character} {ability} {skill} />
-		{/each}
+			{#each ALL_SKILLS[ability] as skill}
+				<Skill {character} {ability} {skill} />
+			{/each}
+		{/if}
 	</div>
 </div>
 
@@ -56,7 +58,9 @@
 	@import "$lib/theme.css";
 
 	.ability-container {
-		@apply flex flex-col items-center justify-center bg-z1 p-3 gap-3 rounded-xl;
+		@apply bg-z1 w-full flex p-3
+		flex-col items-center justify-center gap-3
+		rounded-xl;
 	}
 
 	.ability-info {

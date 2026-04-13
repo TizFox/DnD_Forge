@@ -37,14 +37,14 @@
 
 <!------------------------------------------>
 
-<div class="w-full flex flex-row items-center gap-2">
-	<div class="w-fit">
+<div class="skill-container">
+	<div class="skill-checks">
 		<input
 			checked={getSkillExpertise(skillSelector)}
 			onchange={(e) =>
 				setSkillExpertise(skillSelector, e.currentTarget.checked)}
 			type="checkbox"
-			class={isSaveThrow ? "invisible" : ""}
+			class={"w-1/2 h-5 std-check " + (isSaveThrow ? "invisible" : "")}
 		/>
 		<input
 			checked={isSaveThrow
@@ -61,12 +61,15 @@
 							e.currentTarget.checked,
 						)}
 			type="checkbox"
+			class="w-1/2 h-5 std-check"
 		/>
 	</div>
-	<h3 class="bg-z2 px-2 rounded-lg">
+
+	<h3 class="skill-value">
 		{value > 0 ? "+" : ""}{value}
 	</h3>
-	<p class="flex-1 text-left">
+
+	<p class="skill-text">
 		{isSaveThrow
 			? "SAVING THROW"
 			: skill.toUpperCase().split("_").join(" ")}
@@ -77,4 +80,17 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
+
+	.skill-container {
+		@apply w-full h-full flex flex-row items-center gap-2;
+	}
+	.skill-checks {
+		@apply flex-1 flex flex-row items-center gap-0.5;
+	}
+	.skill-value {
+		@apply flex-1 text-center bg-z2 px-2 rounded-lg;
+	}
+	.skill-text {
+		@apply flex-3 text-left;
+	}
 </style>

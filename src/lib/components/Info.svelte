@@ -13,8 +13,8 @@
 
 <!------------------------------------------>
 
-<div class="w-full flex flex-row items-center gap-5">
-	<div class="flex flex-col items-start gap-1">
+<div class="info-container">
+	<div class="info-section">
 		<h3 class="main-text">Character Name</h3>
 		<input
 			bind:value={character.info.name}
@@ -24,8 +24,8 @@
 		/>
 	</div>
 
-	<div class="flex flex-col items-start gap-1">
-		<div class="w-full flex flex-row items-center gap-2">
+	<div class="info-section">
+		<div class="info-subsection">
 			<h3 class="flex-1 main-text">Level</h3>
 			<input
 				bind:value={character.level}
@@ -34,7 +34,7 @@
 				type="number"
 			/>
 		</div>
-		<div class="w-full flex flex-row items-center gap-2">
+		<div class="info-subsection">
 			<h3 class="main-text">Proficiency Bonus</h3>
 			<p class="bg-z2 text-left px-3 rounded-lg">
 				{proficiencyBonus}
@@ -47,4 +47,15 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
+
+	.info-container {
+		@apply w-full flex flex-row items-center gap-5;
+	}
+
+	.info-section {
+		@apply flex flex-col items-start gap-1;
+		.info-subsection {
+			@apply w-full flex flex-row items-center gap-2;
+		}
+	}
 </style>

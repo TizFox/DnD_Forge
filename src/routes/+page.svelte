@@ -58,16 +58,14 @@
 				<button
 					type="button"
 					onclick={() => fileInput?.click()}
-					class="
-					w-full h-full px-11 py-3 bg-z1 rounded-lg
-					border-2 border-dark transition-std
-					hover:border-cta
-					base-text text-left truncate
-					{fileName ? 'text-dark' : 'text-dark/25'}"
+					class="w-full h-full px-11 py-3 bg-z2 rounded-lg
+						border-2 border-dark transition-std
+						hover:border-cta
+						base-text text-left truncate
+						{fileName ? 'text-dark' : 'text-dark/25'}"
 				>
 					<FileUser
-						class="h-1/2 absolute top-1/4 left-3 transition-std
-					text-dark group-hover:text-cta"
+						class="h-1/2 absolute top-1/4 left-3 transition-std text-dark group-hover:text-cta"
 					/>
 					{fileName ?? "Character FIle"}
 				</button>
@@ -156,7 +154,7 @@
 		@apply w-full h-(--bars-size) z-10;
 	}
 	.footer {
-		@apply w-full h-full p-5 gap-3
+		@apply w-full h-full p-5 gap-5
 		flex flex-row items-center justify-center
 		bg-z2 shadow-2xl;
 	}

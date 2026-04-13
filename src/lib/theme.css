@@ -92,6 +92,9 @@
 			}
 		}
 	}
+	.std-check {
+		@apply appearance-none transition-std rounded-sm bg-z2 checked:bg-cta;
+	}
 
 	.no-spinner::-webkit-inner-spin-button,
 	.no-spinner::-webkit-outer-spin-button {
