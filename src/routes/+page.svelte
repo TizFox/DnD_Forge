@@ -1,13 +1,15 @@
 <script lang="ts">
 	const NAME = "D&D Forge";
 
-	const logo = "/logo.svg";
+	import logo from "$lib/assets/logo.svg";
 
 	import { FileUser } from "@lucide/svelte";
 
 	import type { Character } from "$lib/types";
 	import { FILE_EXTENTION, load, save } from "$lib/dndCharHandler";
+	import { createNewCharacter } from "$lib/characterHandler";
 
+	import Info from "$lib/components/Info.svelte";
 	import Stats from "$lib/components/Stats.svelte";
 
 	let fileInput = $state<HTMLInputElement | null>(null);
@@ -20,7 +22,9 @@
 <svelte:head>
 	<link rel="icon" href={logo} />
 	<title>
-		{dndChar ? dndChar.characterInfo.name + " - Character Sheet" : NAME}
+		{dndChar && dndChar.info.name != ""
+			? dndChar.info.name + " - Character Sheet"
+			: NAME}
 	</title>
 </svelte:head>
 
@@ -35,6 +39,13 @@
 		<div class="user-actions">
 			<button
 				onclick={() => {
+					dndChar = createNewCharacter();
+				}}
+				class="std-btn">New Character</button
+			>
+
+			<button
+				onclick={() => {
 					if (dndChar) {
 						save(dndChar);
 					}
@@ -43,7 +54,7 @@
 			>
 
 			<!-- Input -->
-			<div class="w-fit h-full relative group rounded-lg">
+			<div class="w-fit relative group rounded-lg">
 				<button
 					type="button"
 					onclick={() => fileInput?.click()}
@@ -86,27 +97,28 @@
 <main class="flex items-center justify-center">
 	<div class="scene">
 		{#if dndChar}
-			<section>
-				<p>{JSON.stringify(dndChar)}</p>
-				<Stats character={dndChar} />
-			</section>
+			<Info character={dndChar} />
+			<Stats character={dndChar} />
+			<p>{JSON.stringify(dndChar)}</p>
 		{/if}
 	</div>
 </main>
 
 <footer class="footer-container">
 	<div class="footer">
-		<a href="/" class="h-full"
-			><img src={logo} alt="Logo" class="h-full" /></a
-		>
+		<a href="/" class="h-full">
+			<img src={logo} alt="Logo" class="h-full" />
+		</a>
 		<div>
 			<h1>{NAME}</h1>
 			<p>
 				By <a
 					target="_blank"
 					href="https://github.com/TizFox"
-					class="link">TizFox</a
+					class="link"
 				>
+					TizFox
+				</a>
 			</p>
 		</div>
 	</div>

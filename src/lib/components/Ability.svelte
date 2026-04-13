@@ -27,45 +27,26 @@
 
 <!------------------------------------------>
 
-<div
-	class="flex flex-col items-center justify-center bg-z1 p-3 gap-5 rounded-xl"
->
-	<div class="flex flex-col items-center justify-center">
+<div class="ability-container">
+	<div class="ability-info">
 		<h2 class="main-text">{ability.toUpperCase()}</h2>
 		<h1 class="bg-z2 text-center w-fit p-3 rounded-lg">
 			{modifier > 0 ? "+" : ""}{modifier}
 		</h1>
 		<input
 			bind:value={character.stats[ability].value}
-			class="no-spinner bg-z2 text-center px-3 rounded-lg"
+			class="no-spinner w-1/4 bg-z2 text-center px-3 rounded-lg"
 			defaultValue={value}
 			type="number"
 		/>
 
-		<div class="w-full flex flex-row items-center justify-between gap-3">
-			<div>
-				<input
-					checked={getAbilityProficiency(abilitySelector)}
-					onchange={(e) =>
-						setAbilityProficiency(
-							abilitySelector,
-							e.currentTarget.checked,
-						)}
-					type="checkbox"
-				/>
-			</div>
-			<h2 class="bg-z2 text-center p-2 rounded-lg">
-				{saveThrow > 0 ? "+" : ""}{saveThrow}
-			</h2>
-			<p>SAVING THROW</p>
-		</div>
-	</div>
+		<Skill {character} {ability} skill="athletics" isSaveThrow={true} />
 
-	<hr />
+		<hr />
 
-	<div>
 		{#each ALL_SKILLS[ability] as skill}
-			<Skill {character} {ability} {skill} />{/each}
+			<Skill {character} {ability} {skill} />
+		{/each}
 	</div>
 </div>
 
@@ -73,4 +54,12 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
+
+	.ability-container {
+		@apply flex flex-col items-center justify-center bg-z1 p-3 gap-3 rounded-xl;
+	}
+
+	.ability-info {
+		@apply flex flex-col items-center justify-center gap-2;
+	}
 </style>

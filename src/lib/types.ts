@@ -66,12 +66,8 @@ type Skill = {
 
 // Character
 export interface Character {
-	metadata: {
-		fileName: string;
+	info: {
 		player: string;
-	};
-
-	characterInfo: {
 		name: string;
 		background: string;
 		alignment: Alignemts;
@@ -81,14 +77,22 @@ export interface Character {
 		bonds: string;
 		flaws: string;
 
-		description: string;
+		description: {
+			age: number;
+			height: number;
+			weight: number;
+			eyeColor: string;
+			skinColor: string;
+			hairColor: string;
+			other: string;
+		};
 		backstory: string;
 	};
 
 	class: string;
 	race: string;
 	speed: number;
-	initialive: number;
+	initiative: number;
 	level: number;
 	ca: number;
 

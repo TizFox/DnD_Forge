@@ -17,6 +17,127 @@ export function getPassivePerception(character: Character): number {
 	);
 }
 
+export function createNewCharacter(): Character {
+	let char: Character = {
+		info: {
+			player: "",
+			name: "",
+			background: "",
+			alignment: { morality: "neutral", order: "neutral" },
+
+			personalityTraits: "",
+			ideals: "",
+			bonds: "",
+			flaws: "",
+
+			description: {
+				age: 0,
+				height: 0,
+				weight: 0,
+				eyeColor: "",
+				skinColor: "",
+				hairColor: "",
+				other: "",
+			},
+			backstory: "",
+		},
+
+		class: "",
+		race: "",
+		speed: 0,
+		initiative: 0,
+		level: 1,
+		ca: 0,
+
+		stats: {
+			strength: {
+				value: 8,
+				proficiency: false,
+				skills: {
+					athletics: { proficiency: false, expertise: false },
+				},
+			},
+			dexterity: {
+				value: 8,
+				proficiency: false,
+				skills: {
+					acrobatics: { proficiency: false, expertise: false },
+					sleight_of_hand: { proficiency: false, expertise: false },
+					stealth: { proficiency: false, expertise: false },
+				},
+			},
+			constitution: {
+				value: 8,
+				proficiency: false,
+				skills: {},
+			},
+			intelligence: {
+				value: 8,
+				proficiency: false,
+				skills: {
+					arcana: { proficiency: false, expertise: false },
+					history: { proficiency: false, expertise: false },
+					investigation: { proficiency: false, expertise: false },
+					nature: { proficiency: false, expertise: false },
+					religion: { proficiency: false, expertise: false },
+				},
+			},
+			wisdom: {
+				value: 8,
+				proficiency: false,
+				skills: {
+					animal_handling: { proficiency: false, expertise: false },
+					insight: { proficiency: false, expertise: false },
+					medicine: { proficiency: false, expertise: false },
+					perception: { proficiency: false, expertise: false },
+					survival: { proficiency: false, expertise: false },
+				},
+			},
+			charisma: {
+				value: 8,
+				proficiency: false,
+				skills: {
+					deception: { proficiency: false, expertise: false },
+					intimidation: { proficiency: false, expertise: false },
+					performance: { proficiency: false, expertise: false },
+					persuasion: { proficiency: false, expertise: false },
+				},
+			},
+		},
+
+		hp: {
+			current: 0,
+			max: 0,
+			temp: 0,
+		},
+
+		features: {
+			proficiencies: "",
+			languages: "",
+			raceTraits: "",
+			classTraits: "",
+		},
+
+		equipment: {
+			coins: {
+				cp: 0,
+				sp: 0,
+				ep: 0,
+				gp: 0,
+				pp: 0,
+			},
+			inventory: "",
+			weapons: [],
+		},
+
+		magic: {
+			spells: [],
+		},
+	};
+
+	return char;
+}
+
 // Abilities
 type AbilitySelector = {
 	character: Character;
