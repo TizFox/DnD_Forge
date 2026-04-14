@@ -1,5 +1,5 @@
 import type {
-	Alignemts,
+	Alignments,
 	CoinsEnum,
 	AbilitiesEnum,
 	Ability,
@@ -15,7 +15,7 @@ export class Character {
 		player: string;
 		name: string;
 		background: string;
-		alignment: Alignemts;
+		alignment: Alignments;
 
 		class: string;
 		race: string;

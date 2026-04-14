@@ -1,4 +1,4 @@
-export type Alignemts = {
+export type Alignments = {
 	morality: "good" | "neutral" | "evil";
 	order: "lawful" | "neutral" | "chaoric";
 };

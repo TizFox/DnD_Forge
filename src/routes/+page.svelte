@@ -1,7 +1,6 @@
 <script lang="ts">
 	const NAME = "D&D Forge";
-
-	import logo from "$lib/assets/logo.svg";
+	import logo from "$lib/assets/logo1000.png";
 
 	import { FileUser } from "@lucide/svelte";
 
@@ -32,10 +31,7 @@
 
 <nav class="navbar-container">
 	<div class="navbar">
-		<a href="/" class="h-full"
-			><img src={logo} alt="Logo" class="h-full" /></a
-		>
-
+		<img src={logo} alt="Logo" class="h-full" />
 		<div class="user-actions">
 			<button
 				onclick={() => {
@@ -103,9 +99,7 @@
 
 <footer class="footer-container">
 	<div class="footer">
-		<a href="/" class="h-full">
-			<img src={logo} alt="Logo" class="h-full" />
-		</a>
+		<img src={logo} alt="Logo" class="h-full" />
 		<div>
 			<h1>{NAME}</h1>
 			<p>
