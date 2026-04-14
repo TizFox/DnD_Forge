@@ -5,9 +5,9 @@
 
 	import { FileUser } from "@lucide/svelte";
 
-	import type { Character } from "$lib/types";
 	import { FILE_EXTENTION, load, save } from "$lib/dndCharHandler";
-	import { createNewCharacter } from "$lib/characterHandler";
+	import { Character } from "$lib/character.svelte";
+	import type { CharacterType } from "$lib/character.svelte";
 
 	import Info from "$lib/components/Info.svelte";
 	import Stats from "$lib/components/Stats.svelte";
@@ -39,7 +39,7 @@
 		<div class="user-actions">
 			<button
 				onclick={() => {
-					dndChar = createNewCharacter();
+					dndChar = new Character();
 				}}
 				class="std-btn">New Character</button
 			>
@@ -74,10 +74,9 @@
 					oninput={() => {
 						if (fileInput?.files && fileInput.files.length > 0) {
 							fileName = fileInput.files[0].name;
-							load(
-								fileInput.files[0],
-								(data: Character) => (dndChar = data),
-							);
+							load(fileInput.files[0], (data: CharacterType) => {
+								dndChar = Character.from(data);
+							});
 						}
 					}}
 					class="hidden"

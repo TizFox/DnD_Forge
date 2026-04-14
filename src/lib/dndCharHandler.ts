@@ -1,26 +1,23 @@
-import type { Character } from "$lib/types";
+import { Character } from "$lib/character.svelte";
+import type { CharacterType } from "$lib/character.svelte";
 
 export const FILE_EXTENTION = ".dndchar";
 
-function checkCharacter(jsonString: string): Character {
-	return JSON.parse(jsonString) as Character;
-}
-
-export function load(file: File, onLoad: (c: Character) => void): void {
+export function load(file: File, onLoad: (data: CharacterType) => void): void {
 	const reader = new FileReader();
 
 	reader.onload = () => {
-		onLoad(checkCharacter(reader.result as string));
+		onLoad(JSON.parse(reader.result as string) as CharacterType);
 	};
 	reader.readAsText(file);
 }
 
-export function save(data: Character): void {
-	data.info.name = data.info.name.trim();
+export function save(char: Character): void {
+	char.info.name = char.info.name.trim();
 	const name =
-		data.info.name != "" ? data.info.name.split(" ").join("_") : "unknown";
+		char.info.name != "" ? char.info.name.split(" ").join("_") : "unknown";
 
-	const json = JSON.stringify(data, null, 2);
+	const json = JSON.stringify(char);
 	const blob = new Blob([json], { type: "application/json" });
 	const url = URL.createObjectURL(blob);
 	const a = document.createElement("a");

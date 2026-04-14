@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Character } from "$lib/types";
+	import { Character } from "$lib/character.svelte";
 	import { ALL_ABILITIES } from "$lib/types";
 
 	import Ability from "$lib/components/Ability.svelte";

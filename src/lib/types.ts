@@ -2,7 +2,7 @@ export type Alignemts = {
 	morality: "good" | "neutral" | "evil";
 	order: "lawful" | "neutral" | "chaoric";
 };
-export type coins = "cp" | "sp" | "ep" | "gp" | "pp";
+export type CoinsEnum = "cp" | "sp" | "ep" | "gp" | "pp";
 
 // Abilities
 export type AbilitiesEnum =
@@ -20,7 +20,7 @@ export const ALL_ABILITIES: AbilitiesEnum[] = [
 	"wisdom",
 	"charisma",
 ];
-type Ability<T extends string> = {
+export type Ability<T extends string> = {
 	value: number;
 	proficiency: boolean; // => +proficiencyBonus
 	skills: Record<T, Skill>;
@@ -64,63 +64,5 @@ type Skill = {
 	expertise: boolean; // => +proficiencyBonus (again)
 };
 
-// Character
-export interface Character {
-	info: {
-		player: string;
-		name: string;
-		background: string;
-		alignment: Alignemts;
-
-		personalityTraits: string;
-		ideals: string;
-		bonds: string;
-		flaws: string;
-
-		description: {
-			age: number;
-			height: number;
-			weight: number;
-			eyeColor: string;
-			skinColor: string;
-			hairColor: string;
-			other: string;
-		};
-		backstory: string;
-	};
-
-	class: string;
-	race: string;
-	speed: number;
-	initiative: number;
-	level: number;
-	ca: number;
-
-	stats: { [Ab in AbilitiesEnum]: Ability<SkillsEnum[Ab]> };
-
-	hp: {
-		current: number;
-		max: number;
-		temp: number;
-	};
-
-	features: {
-		proficiencies: string;
-		languages: string;
-		raceTraits: string;
-		classTraits: string;
-	};
-
-	equipment: {
-		coins: { [key in coins]: number };
-		inventory: string;
-		weapons: Weapon[];
-	};
-
-	magic: {
-		spells: Spell[];
-	};
-}
-
-interface Weapon {}
-interface Spell {}
+export interface Weapon {}
+export interface Spell {}

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { getProficiencyBonus } from "$lib/characterHandler";
-	import type { Character } from "$lib/types";
+	import { Character } from "$lib/character.svelte";
 
 	type InfoPropsType = {
 		character: Character;
@@ -8,7 +7,7 @@
 
 	let { character }: InfoPropsType = $props();
 
-	let proficiencyBonus = $derived(getProficiencyBonus(character));
+	let proficiencyBonus = $derived(character.getProficiencyBonus());
 </script>
 
 <!------------------------------------------>
@@ -28,9 +27,9 @@
 		<div class="info-subsection">
 			<h3 class="flex-1 main-text">Level</h3>
 			<input
-				bind:value={character.level}
+				bind:value={character.info.level}
 				class="flex-1 no-spinner bg-z2 text-left px-3 rounded-lg"
-				defaultValue={character.level}
+				defaultValue={character.info.level}
 				type="number"
 			/>
 		</div>

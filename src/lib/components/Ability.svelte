@@ -1,14 +1,7 @@
 <script lang="ts">
-	import type { Character, AbilitiesEnum } from "$lib/types";
+	import { Character } from "$lib/character.svelte";
+	import type { AbilitiesEnum } from "$lib/types";
 	import { ALL_SKILLS } from "$lib/types";
-
-	import {
-		getAbilityValue,
-		getAbilityModifier,
-		getAbilitySaveThrow,
-		getAbilityProficiency,
-		setAbilityProficiency,
-	} from "$lib/characterHandler";
 
 	import Skill from "./Skill.svelte";
 
@@ -18,11 +11,8 @@
 	};
 	let { character, ability }: AbilityPropsType = $props();
 
-	let abilitySelector = $derived({ character, ability });
-
-	let value = $derived(getAbilityValue(abilitySelector));
-	let modifier = $derived(getAbilityModifier(abilitySelector));
-	let saveThrow = $derived(getAbilitySaveThrow(abilitySelector));
+	let value = $derived(character.getAbilityValue(ability));
+	let modifier = $derived(character.getAbilityModifier(ability));
 </script>
 
 <!------------------------------------------>
@@ -40,7 +30,7 @@
 			type="number"
 		/>
 
-		<Skill {character} {ability} skill="" isSaveThrow={true} />
+		<Skill {character} {ability} isSaveThrow={true} />
 
 		{#if ALL_SKILLS[ability].length > 0}
 			<hr />

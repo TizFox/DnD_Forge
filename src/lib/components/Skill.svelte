@@ -1,37 +1,25 @@
 <script lang="ts">
-	import {
-		getAbilityProficiency,
-		setAbilityProficiency,
-		getSkillExpertise,
-		getSkillProficiency,
-		getSkillValue,
-		setSkillExpertise,
-		setSkillProficiency,
-		getAbilityValue,
-		getAbilitySaveThrow,
-	} from "$lib/characterHandler";
-	import type { Character, AbilitiesEnum, SkillsEnum } from "$lib/types";
+	import { Character } from "$lib/character.svelte";
+	import type { AbilitiesEnum, SkillsEnum } from "$lib/types";
 
 	type SkillPropsType = {
 		character: Character;
 		ability: AbilitiesEnum;
-		skill: SkillsEnum[AbilitiesEnum];
+		skill?: SkillsEnum[AbilitiesEnum];
 		isSaveThrow?: boolean;
 	};
 
 	let {
 		character,
 		ability,
-		skill,
+		skill = "athletics",
 		isSaveThrow = false,
 	}: SkillPropsType = $props();
-	let abilitySelector = $derived({ character, ability });
-	let skillSelector = $derived({ character, ability, skill });
 
 	let value = $derived(
 		isSaveThrow
-			? getAbilitySaveThrow(abilitySelector)
-			: getSkillValue(skillSelector),
+			? character.getAbilitySaveThrow(ability)
+			: character.getSkillValue(ability, skill),
 	);
 </script>
 
@@ -40,24 +28,29 @@
 <div class="skill-container">
 	<div class="skill-checks">
 		<input
-			checked={getSkillExpertise(skillSelector)}
+			checked={character.getSkillExpertise(ability, skill)}
 			onchange={(e) =>
-				setSkillExpertise(skillSelector, e.currentTarget.checked)}
+				character.setSkillExpertise(
+					ability,
+					skill,
+					e.currentTarget.checked,
+				)}
 			type="checkbox"
 			class={"w-1/2 h-5 std-check " + (isSaveThrow ? "invisible" : "")}
 		/>
 		<input
 			checked={isSaveThrow
-				? getAbilityProficiency(abilitySelector)
-				: getSkillProficiency(skillSelector)}
+				? character.getAbilityProficiency(ability)
+				: character.getSkillProficiency(ability, skill)}
 			onchange={(e) =>
 				isSaveThrow
-					? setAbilityProficiency(
-							abilitySelector,
+					? character.setAbilityProficiency(
+							ability,
 							e.currentTarget.checked,
 						)
-					: setSkillProficiency(
-							skillSelector,
+					: character.setSkillProficiency(
+							ability,
+							skill,
 							e.currentTarget.checked,
 						)}
 			type="checkbox"
