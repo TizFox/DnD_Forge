@@ -11,7 +11,6 @@
 	import Info from "$lib/components/Info.svelte";
 	import Stats from "$lib/components/Stats.svelte";
 	import TextInput from "$lib/components/TextInput.svelte";
-	import Alignments from "$lib/components/Alignments.svelte";
 
 	let fileInput = $state<HTMLInputElement | null>(null);
 	let fileName = $state<string | null>(null);
