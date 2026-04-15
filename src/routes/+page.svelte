@@ -4,7 +4,7 @@
 
 	import { FileUser } from "@lucide/svelte";
 
-	import { FILE_EXTENTION, load, save } from "$lib/dndCharHandler";
+	import { FILE_EXTENTION, load, save } from "$lib/fileHandler";
 	import { Character } from "$lib/character.svelte";
 	import type { CharacterType } from "$lib/character.svelte";
 
