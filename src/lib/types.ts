@@ -1,6 +1,16 @@
+export enum Morality {
+	Good = "good",
+	Neutral = "neutral",
+	Evil = "evil",
+}
+export enum Order {
+	Lawful = "lawful",
+	Neutral = "neutral",
+	Chaotic = "chaotic",
+}
 export type Alignments = {
-	morality: "good" | "neutral" | "evil";
-	order: "lawful" | "neutral" | "chaoric";
+	morality: Morality;
+	order: Order;
 };
 export type CoinsEnum = "cp" | "sp" | "ep" | "gp" | "pp";
 

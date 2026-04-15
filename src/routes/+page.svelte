@@ -10,6 +10,8 @@
 
 	import Info from "$lib/components/Info.svelte";
 	import Stats from "$lib/components/Stats.svelte";
+	import TextInput from "$lib/components/TextInput.svelte";
+	import Alignments from "$lib/components/Alignments.svelte";
 
 	let fileInput = $state<HTMLInputElement | null>(null);
 	let fileName = $state<string | null>(null);
@@ -92,6 +94,17 @@
 		{#if dndChar}
 			<Info character={dndChar} />
 			<Stats character={dndChar} />
+			{#each Object.entries(dndChar.info.characteristics) as [key, value]}
+				<TextInput
+					title={key.replace("_", " ")}
+					text={value}
+					setText={(s: string) => {
+						dndChar!.info.characteristics[
+							key as keyof CharacterType["info"]["characteristics"]
+						] = s;
+					}}
+				/>
+			{/each}
 			<p>{JSON.stringify(dndChar)}</p>
 		{/if}
 	</div>
@@ -125,13 +138,13 @@
 		fixed top-0 left-0;
 	}
 	.navbar {
-		@apply w-full h-full p-5
-		flex flex-row justify-start items-center gap-5
-		bg-z2 shadow-2xl;
+		@apply w-full h-full p-5 bg-z2
+		flex flex-row items-center justify-start gap-5
+		shadow-2xl;
 
 		.user-actions {
 			@apply w-full h-full
-			flex flex-row justify-end items-center gap-5;
+			flex flex-row items-center justify-end gap-5;
 		}
 	}
 
@@ -147,8 +160,8 @@
 		@apply w-full h-(--bars-size) z-10;
 	}
 	.footer {
-		@apply w-full h-full p-5 gap-5
-		flex flex-row items-center justify-center
-		bg-z2 shadow-2xl;
+		@apply w-full h-full p-5 bg-z2
+		flex flex-row items-center justify-center gap-5
+		shadow-2xl;
 	}
 </style>

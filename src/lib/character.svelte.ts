@@ -1,11 +1,13 @@
-import type {
-	Alignments,
-	CoinsEnum,
-	AbilitiesEnum,
-	Ability,
-	SkillsEnum,
-	Weapon,
-	Spell,
+import {
+	type Alignments,
+	type CoinsEnum,
+	type AbilitiesEnum,
+	type Ability,
+	type SkillsEnum,
+	type Weapon,
+	type Spell,
+	Morality,
+	Order,
 } from "./types";
 
 export type CharacterType = InstanceType<typeof Character>;
@@ -24,11 +26,6 @@ export class Character {
 		level: number;
 		ca: number;
 
-		personalityTraits: string;
-		ideals: string;
-		bonds: string;
-		flaws: string;
-
 		description: {
 			age: number;
 			height: number;
@@ -38,7 +35,13 @@ export class Character {
 			hairColor: string;
 			other: string;
 		};
-		backstory: string;
+		characteristics: {
+			personality_traits: string;
+			ideals: string;
+			bonds: string;
+			flaws: string;
+			backstory: string;
+		};
 	};
 
 	hp: {
@@ -52,8 +55,9 @@ export class Character {
 	features: {
 		proficiencies: string;
 		languages: string;
-		raceTraits: string;
-		classTraits: string;
+		race_traits: string;
+		class_traits: string;
+		subclass_traits: string;
 	};
 
 	equipment: {
@@ -88,7 +92,7 @@ export class Character {
 			player: "",
 			name: "",
 			background: "",
-			alignment: { morality: "neutral", order: "neutral" },
+			alignment: { morality: Morality.Neutral, order: Order.Neutral },
 
 			class: "",
 			race: "",
@@ -96,11 +100,6 @@ export class Character {
 			initiative: 0,
 			level: 1,
 			ca: 0,
-
-			personalityTraits: "",
-			ideals: "",
-			bonds: "",
-			flaws: "",
 
 			description: {
 				age: 0,
@@ -111,7 +110,13 @@ export class Character {
 				hairColor: "",
 				other: "",
 			},
-			backstory: "",
+			characteristics: {
+				personality_traits: "",
+				ideals: "",
+				bonds: "",
+				flaws: "",
+				backstory: "",
+			},
 		});
 		this.hp = $state({
 			current: 0,
@@ -176,8 +181,9 @@ export class Character {
 		this.features = $state({
 			proficiencies: "",
 			languages: "",
-			raceTraits: "",
-			classTraits: "",
+			race_traits: "",
+			class_traits: "",
+			subclass_traits: "",
 		});
 		this.equipment = $state({
 			coins: {

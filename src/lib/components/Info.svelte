@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
+	import Alignment from "./Alignment.svelte";
 
 	type InfoPropsType = {
 		character: Character;
@@ -17,7 +18,7 @@
 		<h3 class="main-text">Character Name</h3>
 		<input
 			bind:value={character.info.name}
-			class="bg-z2 text-left px-3 rounded-lg"
+			class="std-input"
 			defaultValue={character.info.name}
 			type="text"
 		/>
@@ -28,17 +29,24 @@
 			<h3 class="flex-1 main-text">Level</h3>
 			<input
 				bind:value={character.info.level}
-				class="flex-1 no-spinner bg-z2 text-left px-3 rounded-lg"
+				class="flex-1 no-spinner std-input"
 				defaultValue={character.info.level}
 				type="number"
 			/>
 		</div>
 		<div class="info-subsection">
 			<h3 class="main-text">Proficiency Bonus</h3>
-			<p class="bg-z2 text-left px-3 rounded-lg">
+			<p
+				class="h-8 bg-z2 flex items-center justify-center px-3 rounded-lg"
+			>
 				{proficiencyBonus}
 			</p>
 		</div>
+	</div>
+
+	<div class="info-section">
+		<h3 class="main-text">Alignment</h3>
+		<Alignment {character} />
 	</div>
 </div>
 
@@ -48,13 +56,15 @@
 	@import "$lib/theme.css";
 
 	.info-container {
-		@apply w-full flex flex-row items-center gap-5;
+		@apply w-full
+		flex flex-row items-center gap-5;
 	}
 
 	.info-section {
 		@apply flex flex-col items-start gap-1;
 		.info-subsection {
-			@apply w-full flex flex-row items-center gap-2;
+			@apply w-full
+			flex flex-row items-center gap-2;
 		}
 	}
 </style>

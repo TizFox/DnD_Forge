@@ -36,7 +36,7 @@
 					e.currentTarget.checked,
 				)}
 			type="checkbox"
-			class={"w-1/2 h-5 std-check " + (isSaveThrow ? "invisible" : "")}
+			class={"std-check skill-bools " + (isSaveThrow ? "invisible" : "")}
 		/>
 		<input
 			checked={isSaveThrow
@@ -54,7 +54,7 @@
 							e.currentTarget.checked,
 						)}
 			type="checkbox"
-			class="w-1/2 h-5 std-check"
+			class="std-check skill-bools"
 		/>
 	</div>
 
@@ -75,13 +75,20 @@
 	@import "$lib/theme.css";
 
 	.skill-container {
-		@apply w-full h-full flex flex-row items-center gap-2;
+		@apply w-full h-full
+		flex flex-row items-center gap-2;
 	}
 	.skill-checks {
-		@apply flex-1 flex flex-row items-center gap-0.5;
+		@apply flex-1
+		flex flex-row items-center gap-0.5;
+	}
+	.skill-bools {
+		@apply w-8 h-8;
 	}
 	.skill-value {
-		@apply flex-1 text-center bg-z2 px-2 rounded-lg;
+		@apply flex-1 h-8 px-2 bg-z2
+		flex items-center justify-center
+		rounded-lg;
 	}
 	.skill-text {
 		@apply flex-3 text-left;

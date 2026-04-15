@@ -20,12 +20,12 @@
 <div class="ability-container">
 	<div class="ability-info">
 		<h2 class="main-text">{ability.toUpperCase()}</h2>
-		<h1 class="bg-z2 text-center w-fit p-3 rounded-lg">
+		<h1 class="ability-mod">
 			{modifier > 0 ? "+" : ""}{modifier}
 		</h1>
 		<input
 			bind:value={character.stats[ability].value}
-			class="no-spinner w-1/4 bg-z2 text-center px-3 rounded-lg"
+			class="ability-value no-spinner"
 			defaultValue={value}
 			type="number"
 		/>
@@ -34,7 +34,6 @@
 
 		{#if ALL_SKILLS[ability].length > 0}
 			<hr />
-
 			{#each ALL_SKILLS[ability] as skill}
 				<Skill {character} {ability} {skill} />
 			{/each}
@@ -48,12 +47,21 @@
 	@import "$lib/theme.css";
 
 	.ability-container {
-		@apply bg-z1 w-full flex p-3
-		flex-col items-center justify-center gap-3
+		@apply w-full p-3 bg-z1
+		flex flex-col items-center justify-center gap-3
 		rounded-xl;
 	}
 
 	.ability-info {
 		@apply flex flex-col items-center justify-center gap-2;
+	}
+
+	.ability-mod {
+		@apply w-fit p-3 bg-z2
+		text-center rounded-lg;
+	}
+	.ability-value {
+		@apply w-1/4 h-8 bg-z2
+		text-center rounded-lg;
 	}
 </style>
