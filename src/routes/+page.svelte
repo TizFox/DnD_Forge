@@ -10,6 +10,7 @@
 	import Info from "$lib/components/Info.svelte";
 	import Stats from "$lib/components/Stats.svelte";
 	import Hp from "$lib/components/Hp.svelte";
+	import Ca from "$lib/components/Ca.svelte";
 	import Features from "$lib/components/Features.svelte";
 	import Characteristics from "$lib/components/Characteristics.svelte";
 
@@ -95,7 +96,10 @@
 			<Info character={dndChar} />
 			<div class="w-full flex flex-row gap-5">
 				<Stats wClass="w-1/4" character={dndChar} />
-				<Hp wClass="w-1/4" character={dndChar} />
+				<div class="w-1/4 flex flex-col gap-5">
+					<Hp character={dndChar} />
+					<Ca character={dndChar} />
+				</div>
 				<div class="w-1/2 flex flex-col gap-5">
 					<Features character={dndChar} />
 					<Characteristics character={dndChar} />

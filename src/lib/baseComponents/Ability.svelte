@@ -2,6 +2,7 @@
 	import { Character } from "$lib/character.svelte";
 	import type { AbilitiesEnum } from "$lib/types";
 	import { ALL_SKILLS } from "$lib/types";
+	import NumberInput from "./NumberInput.svelte";
 
 	import Skill from "./Skill.svelte";
 
@@ -22,11 +23,12 @@
 	<h1 class="ability-mod">
 		{modifier > 0 ? "+" : ""}{modifier}
 	</h1>
-	<input
-		bind:value={character.stats[ability].value}
-		class="ability-value no-spinner"
-		defaultValue={value}
-		type="number"
+
+	<NumberInput
+		wClass="w-1/4"
+		minValue={1}
+		{value}
+		onChange={(n: number) => (character.stats[ability].value = n)}
 	/>
 
 	<Skill {character} {ability} isSaveThrow={true} />
@@ -52,10 +54,6 @@
 
 	.ability-mod {
 		@apply w-fit p-3 bg-z2
-		text-center rounded-lg;
-	}
-	.ability-value {
-		@apply w-1/4 h-8 bg-z2
 		text-center rounded-lg;
 	}
 </style>

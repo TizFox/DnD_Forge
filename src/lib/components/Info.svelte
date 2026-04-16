@@ -2,6 +2,8 @@
 	import { Character } from "$lib/character.svelte";
 
 	import Alignment from "$lib/baseComponents/Alignment.svelte";
+	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
+	import TextInput from "$lib/baseComponents/TextInput.svelte";
 
 	type InfoPropsType = {
 		character: Character;
@@ -16,29 +18,55 @@
 
 <div class="info-container">
 	<div class="info-section">
-		<h3 class="main-text">Character Name</h3>
-		<input
-			bind:value={character.info.name}
-			class="std-input"
-			defaultValue={character.info.name}
-			type="text"
-		/>
+		<div class="info-subsection">
+			<h3>Character Name</h3>
+			<TextInput
+				wClass="flex-2"
+				value={character.info.name}
+				onChange={(s: string) => (character.info.name = s)}
+			/>
+		</div>
+
+		<div class="info-subsection">
+			<h3>Player Name</h3>
+			<TextInput
+				wClass="flex-2"
+				value={character.info.player}
+				onChange={(s: string) => (character.info.player = s)}
+			/>
+		</div>
 	</div>
 
 	<div class="info-section">
 		<div class="info-subsection">
-			<h3 class="flex-1 main-text">Level</h3>
-			<input
-				bind:value={character.info.level}
-				class="flex-1 no-spinner std-input"
-				defaultValue={character.info.level}
-				type="number"
+			<h3>Background</h3>
+			<TextInput
+				wClass="flex-2"
+				value={character.info.background}
+				onChange={(s: string) => (character.info.background = s)}
+			/>
+		</div>
+
+		<div class="info-subsection">
+			<h3>Alignment</h3>
+			<Alignment wClass="flex-2" {character} />
+		</div>
+	</div>
+
+	<div class="info-section">
+		<div class="info-subsection">
+			<h3>Level</h3>
+			<NumberInput
+				wClass="flex-2"
+				minValue={1}
+				value={character.info.level}
+				onChange={(n: number) => (character.info.level = n)}
 			/>
 		</div>
 		<div class="info-subsection">
-			<h3 class="main-text">Proficiency Bonus</h3>
+			<h3>Proficiency Bonus</h3>
 			<p
-				class="h-8 bg-z2 flex items-center justify-center px-3 rounded-lg"
+				class="flex-2 h-8 bg-z2 flex items-center justify-center px-3 rounded-lg"
 			>
 				{proficiencyBonus}
 			</p>
@@ -47,28 +75,21 @@
 
 	<div class="info-section">
 		<div class="info-subsection">
-			<h3 class="flex-1 main-text">Class</h3>
-			<input
-				bind:value={character.info.class}
-				class="flex-1 std-input"
-				defaultValue={character.info.class}
-				type="text"
+			<h3>Class</h3>
+			<TextInput
+				wClass="flex-2"
+				value={character.info.class}
+				onChange={(s: string) => (character.info.class = s)}
 			/>
 		</div>
 		<div class="info-subsection">
-			<h3 class="flex-1 main-text">Race</h3>
-			<input
-				bind:value={character.info.race}
-				class="flex-1 std-input"
-				defaultValue={character.info.race}
-				type="text"
+			<h3>Race</h3>
+			<TextInput
+				wClass="flex-2"
+				value={character.info.race}
+				onChange={(s: string) => (character.info.race = s)}
 			/>
 		</div>
-	</div>
-
-	<div class="info-section">
-		<h3 class="main-text">Alignment</h3>
-		<Alignment {character} />
 	</div>
 </div>
 
@@ -77,13 +98,17 @@
 <style lang="postcss">
 	@import "$lib/theme.css";
 
+	h3 {
+		@apply main-text flex-1 text-right;
+	}
+
 	.info-container {
 		@apply w-full
-		flex flex-row items-center gap-5;
+		grid grid-cols-2 items-center gap-5;
 	}
 
 	.info-section {
-		@apply flex flex-col items-start gap-1;
+		@apply flex flex-col items-start gap-2;
 		.info-subsection {
 			@apply w-full
 			flex flex-row items-center gap-2;

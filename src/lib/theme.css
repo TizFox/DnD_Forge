@@ -112,22 +112,4 @@
 			}
 		}
 	}
-	.std-input {
-		@apply h-8 bg-z2 text-left px-3 rounded-lg;
-	}
-	.std-check {
-		@apply appearance-none
-		 bg-z2 checked:bg-cta
-		transition-std rounded-lg;
-	}
-
-	.no-spinner::-webkit-inner-spin-button,
-	.no-spinner::-webkit-outer-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
-	.no-spinner {
-		-moz-appearance: textfield;
-		appearance: textfield;
-	}
 }

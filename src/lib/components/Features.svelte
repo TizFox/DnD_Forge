@@ -2,7 +2,7 @@
 	import type { CharacterType } from "$lib/character.svelte";
 	import { Character } from "$lib/character.svelte";
 
-	import TextInput from "$lib/baseComponents/TextInput.svelte";
+	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
 
 	type StatsPropsType = {
 		wClass?: string;
@@ -16,10 +16,10 @@
 
 <div class="{wClass} h-fit flex flex-col gap-5">
 	{#each Object.entries(character.features) as [key, value]}
-		<TextInput
+		<AreaInput
 			title={key.split("_").join(" ")}
-			text={value}
-			setText={(s: string) => {
+			{value}
+			onChange={(s: string) => {
 				character!.features[key as keyof CharacterType["features"]] = s;
 			}}
 		/>

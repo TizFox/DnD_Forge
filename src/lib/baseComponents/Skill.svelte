@@ -28,6 +28,7 @@
 <div class="skill-container">
 	<div class="skill-checks">
 		<input
+			class={"skill-bool " + (isSaveThrow ? "invisible" : "")}
 			checked={character.getSkillExpertise(ability, skill)}
 			onchange={(e) =>
 				character.setSkillExpertise(
@@ -36,9 +37,9 @@
 					e.currentTarget.checked,
 				)}
 			type="checkbox"
-			class={"std-check skill-bools " + (isSaveThrow ? "invisible" : "")}
 		/>
 		<input
+			class="skill-bool"
 			checked={isSaveThrow
 				? character.getAbilityProficiency(ability)
 				: character.getSkillProficiency(ability, skill)}
@@ -54,7 +55,6 @@
 							e.currentTarget.checked,
 						)}
 			type="checkbox"
-			class="std-check skill-bools"
 		/>
 	</div>
 
@@ -82,8 +82,11 @@
 		@apply flex-1
 		flex flex-row items-center gap-0.5;
 	}
-	.skill-bools {
-		@apply w-8 h-8;
+	.skill-bool {
+		@apply w-8 h-8 appearance-none
+		bg-z2 border-2 border-dark
+		transition-std rounded-lg
+		 checked:bg-cta checked:border-cta;
 	}
 	.skill-value {
 		@apply flex-1 h-8 px-2 bg-z2

@@ -1,55 +1,42 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
 
+	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
+
 	type StatsPropsType = {
 		wClass?: string;
 		character: Character;
 	};
 
-	let { wClass = "w-fit", character }: StatsPropsType = $props();
+	let { wClass = "w-full", character }: StatsPropsType = $props();
 </script>
 
 <!------------------------------------------>
 
-<div
-	class="{wClass} h-fit p-3 bg-z1
-		flex flex-col items-center justify-center gap-3
-		rounded-xl"
->
-	<h2 class="main-text">HP</h2>
-	<div class="w-full flex flex-row items-center justify-center gap-3">
-		<div class="flex flex-col items-center">
-			<span>MAX</span>
-			<input
-				bind:value={character.hp.max}
-				class="w-full std-input text-center no-spinner"
-				defaultValue={character.hp.max}
-				type="number"
+<div class="{wClass} hp-container">
+	<div class="hp-couple">
+		<div class="hp-item">
+			<span class="main-text">Max HP</span>
+			<NumberInput
+				value={character.hp.max}
+				onChange={(n: number) => (character.hp.max = n)}
 			/>
 		</div>
-		<div class="flex flex-col items-center">
-			<span>TEMP</span>
-			<input
-				bind:value={character.hp.temp}
-				class="w-full std-input text-center no-spinner"
-				defaultValue={character.hp.temp}
-				type="number"
+		<div class="hp-item">
+			<span class="main-text">Temporary HP</span>
+			<NumberInput
+				value={character.hp.temp}
+				onChange={(n: number) => (character.hp.temp = n)}
 			/>
 		</div>
 	</div>
 
-	<div class="w-full flex flex-col items-center">
-		<span>CURRENT</span>
-		<input
-			bind:value={character.hp.current}
-			onchange={() =>
-				(character.hp.current =
-					character.hp.current > character.hp.max
-						? character.hp.max
-						: character.hp.current)}
-			class="w-full std-input text-center no-spinner"
-			defaultValue={character.hp.current}
-			type="number"
+	<div class="hp-item">
+		<span class="main-text">Current HP</span>
+		<NumberInput
+			value={character.hp.current}
+			maxValue={character.hp.max}
+			onChange={(n: number) => (character.hp.current = n)}
 		/>
 	</div>
 </div>
@@ -60,11 +47,17 @@
 	@import "$lib/theme.css";
 
 	.hp-container {
+		@apply h-fit p-3 bg-z1
+		flex flex-col items-center justify-center gap-3
+		rounded-xl;
 	}
 
-	.hp-current {
+	.hp-couple {
+		@apply w-full
+		flex flex-row items-center justify-center gap-3;
 	}
-
-	.hp-other {
+	.hp-item {
+		@apply w-full
+		flex flex-col items-center;
 	}
 </style>
