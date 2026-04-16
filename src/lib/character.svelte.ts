@@ -53,11 +53,11 @@ export class Character {
 	stats: { [Ab in AbilitiesEnum]: Ability<SkillsEnum[Ab]> };
 
 	features: {
-		proficiencies: string;
-		languages: string;
-		race_traits: string;
 		class_traits: string;
 		subclass_traits: string;
+		race_and_background_traits: string;
+		proficiencies: string;
+		languages: string;
 	};
 
 	equipment: {
@@ -179,11 +179,11 @@ export class Character {
 			},
 		});
 		this.features = $state({
-			proficiencies: "",
-			languages: "",
-			race_traits: "",
 			class_traits: "",
 			subclass_traits: "",
+			race_and_background_traits: "",
+			proficiencies: "",
+			languages: "",
 		});
 		this.equipment = $state({
 			coins: {

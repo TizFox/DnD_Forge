@@ -5,12 +5,13 @@
 	import { FileUser } from "@lucide/svelte";
 
 	import { FILE_EXTENTION, load, save } from "$lib/fileHandler";
-	import { Character } from "$lib/character.svelte";
-	import type { CharacterType } from "$lib/character.svelte";
+	import { Character, type CharacterType } from "$lib/character.svelte";
 
 	import Info from "$lib/components/Info.svelte";
 	import Stats from "$lib/components/Stats.svelte";
-	import TextInput from "$lib/components/TextInput.svelte";
+	import Hp from "$lib/components/Hp.svelte";
+	import Features from "$lib/components/Features.svelte";
+	import Characteristics from "$lib/components/Characteristics.svelte";
 
 	let fileInput = $state<HTMLInputElement | null>(null);
 	let fileName = $state<string | null>(null);
@@ -89,21 +90,18 @@
 <section class="divider"></section>
 
 <main class="flex items-center justify-center">
-	<div class="scene">
+	<div class="w-full max-w-7xl min-h-(--main-size) p-5 flex flex-col gap-5">
 		{#if dndChar}
 			<Info character={dndChar} />
-			<Stats character={dndChar} />
-			{#each Object.entries(dndChar.info.characteristics) as [key, value]}
-				<TextInput
-					title={key.replace("_", " ")}
-					text={value}
-					setText={(s: string) => {
-						dndChar!.info.characteristics[
-							key as keyof CharacterType["info"]["characteristics"]
-						] = s;
-					}}
-				/>
-			{/each}
+			<div class="w-full flex flex-row gap-5">
+				<Stats wClass="w-1/4" character={dndChar} />
+				<Hp wClass="w-1/4" character={dndChar} />
+				<div class="w-1/2 flex flex-col gap-5">
+					<Features character={dndChar} />
+					<Characteristics character={dndChar} />
+				</div>
+			</div>
+
 			<p>{JSON.stringify(dndChar)}</p>
 		{/if}
 	</div>
@@ -149,10 +147,6 @@
 
 	.divider {
 		@apply h-(--bars-size);
-	}
-
-	.scene {
-		@apply w-full max-w-7xl min-h-(--main-size) p-5;
 	}
 
 	.footer-container {

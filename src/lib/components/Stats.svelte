@@ -2,19 +2,19 @@
 	import { Character } from "$lib/character.svelte";
 	import { ALL_ABILITIES } from "$lib/types";
 
-	import Ability from "$lib/components/Ability.svelte";
+	import Ability from "$lib/baseComponents/Ability.svelte";
 
 	type StatsPropsType = {
 		wClass?: string;
 		character: Character;
 	};
 
-	let { wClass = "w-fit", character }: StatsPropsType = $props();
+	let { wClass = "w-full", character }: StatsPropsType = $props();
 </script>
 
 <!------------------------------------------>
 
-<div class="{wClass} flex flex-col items-center gap-5">
+<div class="{wClass} flex flex-col items-start justify-between gap-5">
 	{#each ALL_ABILITIES as ability}
 		<Ability {character} {ability} />
 	{/each}

@@ -18,27 +18,25 @@
 <!------------------------------------------>
 
 <div class="ability-container">
-	<div class="ability-info">
-		<h2 class="main-text">{ability.toUpperCase()}</h2>
-		<h1 class="ability-mod">
-			{modifier > 0 ? "+" : ""}{modifier}
-		</h1>
-		<input
-			bind:value={character.stats[ability].value}
-			class="ability-value no-spinner"
-			defaultValue={value}
-			type="number"
-		/>
+	<h2 class="main-text">{ability.toUpperCase()}</h2>
+	<h1 class="ability-mod">
+		{modifier > 0 ? "+" : ""}{modifier}
+	</h1>
+	<input
+		bind:value={character.stats[ability].value}
+		class="ability-value no-spinner"
+		defaultValue={value}
+		type="number"
+	/>
 
-		<Skill {character} {ability} isSaveThrow={true} />
+	<Skill {character} {ability} isSaveThrow={true} />
 
-		{#if ALL_SKILLS[ability].length > 0}
-			<hr />
-			{#each ALL_SKILLS[ability] as skill}
-				<Skill {character} {ability} {skill} />
-			{/each}
-		{/if}
-	</div>
+	{#if ALL_SKILLS[ability].length > 0}
+		<hr />
+		{#each ALL_SKILLS[ability] as skill}
+			<Skill {character} {ability} {skill} />
+		{/each}
+	{/if}
 </div>
 
 <!------------------------------------------>
@@ -50,10 +48,6 @@
 		@apply w-full p-3 bg-z1
 		flex flex-col items-center justify-center gap-3
 		rounded-xl;
-	}
-
-	.ability-info {
-		@apply flex flex-col items-center justify-center gap-2;
 	}
 
 	.ability-mod {

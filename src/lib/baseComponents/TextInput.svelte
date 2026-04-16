@@ -2,17 +2,23 @@
 	import { Character } from "$lib/character.svelte";
 
 	type TextInputPropsType = {
+		wClass?: string;
 		title: string;
 		text: string;
 		setText: (s: string) => void;
 	};
 
-	let { title, text, setText }: TextInputPropsType = $props();
+	let {
+		wClass = "w-full",
+		title,
+		text,
+		setText,
+	}: TextInputPropsType = $props();
 </script>
 
 <!------------------------------------------>
 
-<div class="text-container">
+<div class="{wClass} text-container">
 	<h2 class="main-text">{title.toUpperCase()}</h2>
 	<textarea
 		bind:value={text}
