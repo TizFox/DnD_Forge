@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
-	import { ALL_ABILITIES } from "$lib/types";
 
-	import Ability from "$lib/baseComponents/Ability.svelte";
+	import PassiveSkill from "$lib/baseComponents/PassiveSkill.svelte";
 
 	type StatsPropsType = {
 		wClass?: string;
@@ -14,10 +13,11 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} flex flex-col items-start justify-between gap-3">
-	{#each ALL_ABILITIES as ability}
-		<Ability {character} {ability} />
-	{/each}
+<div class="{wClass} grid grid-cols-2 gap-3">
+	<PassiveSkill {character} ability="wisdom" skill="perception" />
+	<PassiveSkill {character} ability="wisdom" skill="insight" />
+	<PassiveSkill {character} ability="wisdom" skill="survival" />
+	<PassiveSkill {character} ability="dexterity" skill="acrobatics" />
 </div>
 
 <!------------------------------------------>

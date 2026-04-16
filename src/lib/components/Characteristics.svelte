@@ -14,7 +14,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} h-fit grid grid-cols-2 gap-5">
+<div class="{wClass} h-fit grid grid-cols-2 gap-3">
 	{#each Object.entries(character.info.characteristics) as [key, value]}
 		<AreaInput
 			wClass={key === "backstory" ? "col-span-2" : ""}

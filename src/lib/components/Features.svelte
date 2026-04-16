@@ -14,7 +14,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} h-fit flex flex-col gap-5">
+<div class="{wClass} h-fit flex flex-col gap-3">
 	{#each Object.entries(character.features) as [key, value]}
 		<AreaInput
 			title={key.split("_").join(" ")}

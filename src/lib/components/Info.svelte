@@ -35,25 +35,7 @@
 				onChange={(s: string) => (character.info.player = s)}
 			/>
 		</div>
-	</div>
 
-	<div class="info-section">
-		<div class="info-subsection">
-			<h3>Background</h3>
-			<TextInput
-				wClass="flex-2"
-				value={character.info.background}
-				onChange={(s: string) => (character.info.background = s)}
-			/>
-		</div>
-
-		<div class="info-subsection">
-			<h3>Alignment</h3>
-			<Alignment wClass="flex-2" {character} />
-		</div>
-	</div>
-
-	<div class="info-section">
 		<div class="info-subsection">
 			<h3>Level</h3>
 			<NumberInput
@@ -74,6 +56,19 @@
 	</div>
 
 	<div class="info-section">
+		<div class="info-subsection">
+			<h3>Background</h3>
+			<TextInput
+				wClass="flex-2"
+				value={character.info.background}
+				onChange={(s: string) => (character.info.background = s)}
+			/>
+		</div>
+		<div class="info-subsection">
+			<h3>Alignment</h3>
+			<Alignment wClass="flex-2" {character} />
+		</div>
+
 		<div class="info-subsection">
 			<h3>Class</h3>
 			<TextInput
@@ -103,8 +98,9 @@
 	}
 
 	.info-container {
-		@apply w-full
-		grid grid-cols-2 items-center gap-5;
+		@apply w-full h-fit p-3 bg-z1
+		grid grid-cols-2 items-center gap-2
+		rounded-xl;
 	}
 
 	.info-section {

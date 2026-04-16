@@ -206,17 +206,6 @@ export class Character {
 		return Math.floor((this.info.level - 1) / 4) + 2;
 	}
 
-	getPassivePerception(): number {
-		console.log(`getPassivePerception()`);
-		return (
-			10 +
-			this.getAbilityModifier("wisdom") +
-			(this.getAbilityProficiency("wisdom")
-				? this.getProficiencyBonus()
-				: 0)
-		);
-	}
-
 	// Abilities
 	getAbilityProficiency(ab: AbilitiesEnum): boolean {
 		console.log(`getAbilityProficiency(${ab})`);
@@ -294,5 +283,12 @@ export class Character {
 				: 0) +
 			(this.getSkillExpertise(ab, sk) ? this.getProficiencyBonus() : 0)
 		);
+	}
+	getPassiveSkillValue<Ab extends AbilitiesEnum>(
+		ability: Ab,
+		skill: SkillsEnum[Ab],
+	): number {
+		console.log(`getPassivePerception()`);
+		return 10 + this.getSkillValue(ability, skill);
 	}
 }

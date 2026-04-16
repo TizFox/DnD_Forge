@@ -13,6 +13,8 @@
 	import Ca from "$lib/components/Ca.svelte";
 	import Features from "$lib/components/Features.svelte";
 	import Characteristics from "$lib/components/Characteristics.svelte";
+	import PassiveSkill from "$lib/baseComponents/PassiveSkill.svelte";
+	import Passive from "$lib/components/Passive.svelte";
 
 	let fileInput = $state<HTMLInputElement | null>(null);
 	let fileName = $state<string | null>(null);
@@ -99,6 +101,7 @@
 				<div class="w-1/4 flex flex-col gap-5">
 					<Hp character={dndChar} />
 					<Ca character={dndChar} />
+					<Passive character={dndChar} />
 				</div>
 				<div class="w-1/2 flex flex-col gap-5">
 					<Features character={dndChar} />

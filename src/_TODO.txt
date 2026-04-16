@@ -1,0 +1,4 @@
+TODO:
+- Fixare width di Alignment
+- Aggiungere Dadi Vita
+- Aggiungere TS Morte
