@@ -34,6 +34,10 @@
 	}
 	.text-input {
 		@apply w-full h-full p-3 bg-z2 text-left
-		border-2 border-dark rounded-lg;
+		border-2 border-dark rounded-lg
+		transition-std
+		focus:border-cta
+		focus:outline-none
+		focus:shadow-none;
 	}
 </style>

@@ -38,7 +38,11 @@
 
 	.number-input {
 		@apply h-8 px-3 bg-z2 text-center
-		border-2 border-dark rounded-lg;
+		border-2 border-dark rounded-lg
+		transition-std
+		focus:border-cta
+		focus:outline-none
+		focus:shadow-none;
 	}
 	.no-spinner::-webkit-inner-spin-button,
 	.no-spinner::-webkit-outer-spin-button {

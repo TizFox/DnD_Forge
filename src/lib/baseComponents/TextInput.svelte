@@ -24,6 +24,10 @@
 
 	.text-input {
 		@apply h-8 px-3 bg-z2 text-left
-		border-2 border-dark rounded-lg;
+		border-2 border-dark rounded-lg
+		transition-std
+		focus:border-cta
+		focus:outline-none
+		focus:shadow-none;
 	}
 </style>
