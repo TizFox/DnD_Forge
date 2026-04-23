@@ -40,13 +40,15 @@
 		@apply flex-1 h-8 px-3 bg-z2 text-left
 		border-2 border-dark
 		transition-std
-		focus:border-cta;
-	}
+		focus:border-cta
+		focus:outline-none
+		focus:shadow-none;
 
-	.morality-select {
-		@apply border-r rounded-l-lg;
-	}
-	.order-select {
-		@apply border-l rounded-r-lg;
+		&.morality-select {
+			@apply border-r rounded-l-lg;
+		}
+		&.order-select {
+			@apply border-l rounded-r-lg;
+		}
 	}
 </style>

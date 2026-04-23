@@ -1,4 +1,6 @@
 TODO:
-- [  TS  ] Aggiungere Dadi Vita
-- [  TS  ] Aggiungere TS Morte
-- [SVELTE] Finire UI con tutti gli input necessari
+- [  TS  ] Aggiungere campi per caratteristiche da incantatore
+- [SVELTE] Aggiungere input per:
+ 			- equipment, armi e monete
+    		- caratteristiche da incantatore e incantesimi
+      		- descrizione (età, altezza, peso ...)

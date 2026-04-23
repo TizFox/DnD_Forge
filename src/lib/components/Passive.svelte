@@ -3,12 +3,12 @@
 
 	import PassiveSkill from "$lib/baseComponents/PassiveSkill.svelte";
 
-	type StatsPropsType = {
+	type PassivePropsType = {
 		wClass?: string;
 		character: Character;
 	};
 
-	let { wClass = "w-full", character }: StatsPropsType = $props();
+	let { wClass = "w-full", character }: PassivePropsType = $props();
 </script>
 
 <!------------------------------------------>

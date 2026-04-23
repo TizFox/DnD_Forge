@@ -4,26 +4,24 @@
 
 	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
 
-	type FeaturesPropsType = {
+	type ActionsPropsType = {
 		wClass?: string;
 		character: Character;
 	};
 
-	let { wClass = "w-full", character }: FeaturesPropsType = $props();
+	let { wClass = "w-full", character }: ActionsPropsType = $props();
 </script>
 
 <!------------------------------------------>
 
 <div class="{wClass} h-fit flex flex-col gap-3">
-	{#each Object.entries(character.features) as [key, value]}
-		<AreaInput
-			title={key.split("_").join(" ")}
-			{value}
-			onChange={(s: string) => {
-				character.features[key as keyof CharacterType["features"]] = s;
-			}}
-		/>
-	{/each}
+	<AreaInput
+		title="Actions"
+		value={character.info.actions}
+		onChange={(s: string) => {
+			character.info.actions = s;
+		}}
+	/>
 </div>
 
 <!------------------------------------------>

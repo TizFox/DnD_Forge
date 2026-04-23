@@ -42,6 +42,8 @@ export class Character {
 			flaws: string;
 			backstory: string;
 		};
+
+		actions: string;
 	};
 
 	hp: {
@@ -126,6 +128,8 @@ export class Character {
 				flaws: "",
 				backstory: "",
 			},
+
+			actions: "",
 		});
 		this.hp = $state({
 			current: 0,

@@ -4,12 +4,12 @@
 
 	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
 
-	type StatsPropsType = {
+	type CharacteristicsPropsType = {
 		wClass?: string;
 		character: Character;
 	};
 
-	let { wClass = "w-full", character }: StatsPropsType = $props();
+	let { wClass = "w-full", character }: CharacteristicsPropsType = $props();
 </script>
 
 <!------------------------------------------>
@@ -21,7 +21,7 @@
 			title={key.split("_").join(" ")}
 			{value}
 			onChange={(s: string) => {
-				character!.info.characteristics[
+				character.info.characteristics[
 					key as keyof CharacterType["info"]["characteristics"]
 				] = s;
 			}}

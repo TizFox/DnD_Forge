@@ -4,12 +4,12 @@
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import CheckboxInput from "$lib/baseComponents/CheckboxInput.svelte";
 
-	type StatsPropsType = {
+	type HpPropsType = {
 		wClass?: string;
 		character: Character;
 	};
 
-	let { wClass = "w-full", character }: StatsPropsType = $props();
+	let { wClass = "w-full", character }: HpPropsType = $props();
 </script>
 
 <!------------------------------------------>

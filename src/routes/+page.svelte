@@ -15,9 +15,11 @@
 	import Stats from "$lib/components/Stats.svelte";
 
 	// 2/3
-	import Hp from "$lib/components/Hp.svelte";
 	import Ca from "$lib/components/Ca.svelte";
+	import Hp from "$lib/components/Hp.svelte";
+	import Actions from "$lib/components/Actions.svelte";
 	import Passive from "$lib/components/Passive.svelte";
+	import Equipment from "$lib/components/Equipment.svelte";
 
 	// 3/3
 	import Features from "$lib/components/Features.svelte";
@@ -61,10 +63,15 @@
 	<div class="user-actions">
 		<button
 			onclick={() => {
+				if (dndChar) {
+					save(dndChar);
+				}
 				dndChar = new Character();
 			}}
-			class="std-btn">New Character</button
+			class="std-btn"
 		>
+			New Character
+		</button>
 
 		<button
 			onclick={() => {
@@ -72,8 +79,10 @@
 					save(dndChar);
 				}
 			}}
-			class="std-btn">Save</button
+			class="std-btn"
 		>
+			Save
+		</button>
 
 		<!-- Input -->
 		<div class="w-fit relative group rounded-lg">
@@ -116,13 +125,15 @@
 		{#if dndChar}
 			<Info character={dndChar} />
 			<div class="w-full flex flex-row gap-5">
-				<Stats wClass="w-1/4" character={dndChar} />
-				<div class="w-1/4 flex flex-col gap-5">
-					<Hp character={dndChar} />
+				<Stats wClass="w-1/3" character={dndChar} />
+				<div class="w-1/3 flex flex-col gap-5">
 					<Ca character={dndChar} />
+					<Hp character={dndChar} />
+					<Actions character={dndChar} />
 					<Passive character={dndChar} />
+					<Equipment character={dndChar} />
 				</div>
-				<div class="w-1/2 flex flex-col gap-5">
+				<div class="w-1/3 flex flex-col gap-5">
 					<Features character={dndChar} />
 					<Characteristics character={dndChar} />
 				</div>
@@ -136,7 +147,7 @@
 <footer class="bar-container footer">
 	<img src={logo} alt="Logo" class="h-full" />
 	<div>
-		<h1>{NAME}</h1>
+		<h1 class="main-text">{NAME}</h1>
 		<p>
 			By <a target="_blank" href="https://github.com/TizFox" class="link">
 				TizFox
