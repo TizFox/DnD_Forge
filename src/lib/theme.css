@@ -4,8 +4,6 @@
 	--main-size: 80dvh;
 	--bars-size: 10dvh;
 
-	--transition-std: all 200ms ease-in-out;
-
 	--color-disabled: var(--color-red-300);
 
 	--color-dark: var(--color-slate-50);
@@ -46,7 +44,7 @@
 }
 
 @utility transition-std {
-	@apply transition-all duration-200 ease-in-out;
+	@apply transition-colors duration-200 ease-in-out;
 }
 
 @layer base {

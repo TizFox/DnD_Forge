@@ -41,6 +41,6 @@
 		@apply w-8 h-8 appearance-none
 		bg-z2 border-2 border-dark
 		transition-std rounded-lg
-		 checked:bg-cta checked:border-cta;
+		checked:bg-cta checked:border-cta;
 	}
 </style>
