@@ -2,8 +2,8 @@
 	import { Character } from "$lib/character.svelte";
 	import type { AbilitiesEnum } from "$lib/types";
 	import { ALL_SKILLS } from "$lib/types";
-	import NumberInput from "./NumberInput.svelte";
 
+	import NumberInput from "./NumberInput.svelte";
 	import Skill from "./Skill.svelte";
 
 	type AbilityPropsType = {
@@ -20,7 +20,7 @@
 
 <div class="ability-container">
 	<h2 class="main-text">{ability.toUpperCase()}</h2>
-	<h1 class="ability-mod">
+	<h1 class="ability-mod main-text">
 		{modifier > 0 ? "+" : ""}{modifier}
 	</h1>
 

@@ -26,6 +26,9 @@
 		if (maxValue) {
 			value = value > maxValue ? maxValue : value;
 		}
+		if (!value) {
+			value = 0;
+		}
 		onChange(value);
 	}}
 	type="number"

@@ -2,6 +2,8 @@
 	import { Character } from "$lib/character.svelte";
 	import type { AbilitiesEnum, SkillsEnum } from "$lib/types";
 
+	import CheckboxInput from "./CheckboxInput.svelte";
+
 	type SkillPropsType = {
 		character: Character;
 		ability: AbilitiesEnum;
@@ -27,34 +29,19 @@
 
 <div class="skill-container">
 	<div class="skill-checks">
-		<input
-			class={"skill-bool " + (isSaveThrow ? "invisible" : "")}
+		<CheckboxInput
+			visible={!isSaveThrow}
 			checked={character.getSkillExpertise(ability, skill)}
-			onchange={(e) =>
-				character.setSkillExpertise(
-					ability,
-					skill,
-					e.currentTarget.checked,
-				)}
-			type="checkbox"
+			onChange={(val) => character.setSkillExpertise(ability, skill, val)}
 		/>
-		<input
-			class="skill-bool"
+		<CheckboxInput
 			checked={isSaveThrow
 				? character.getAbilityProficiency(ability)
 				: character.getSkillProficiency(ability, skill)}
-			onchange={(e) =>
+			onChange={(val) =>
 				isSaveThrow
-					? character.setAbilityProficiency(
-							ability,
-							e.currentTarget.checked,
-						)
-					: character.setSkillProficiency(
-							ability,
-							skill,
-							e.currentTarget.checked,
-						)}
-			type="checkbox"
+					? character.setAbilityProficiency(ability, val)
+					: character.setSkillProficiency(ability, skill, val)}
 		/>
 	</div>
 
@@ -81,12 +68,6 @@
 	.skill-checks {
 		@apply flex-1
 		flex flex-row items-center gap-0.5;
-	}
-	.skill-bool {
-		@apply w-8 h-8 appearance-none
-		bg-z2 border-2 border-dark
-		transition-std rounded-lg
-		 checked:bg-cta checked:border-cta;
 	}
 	.skill-value {
 		@apply flex-1 h-8 px-2 bg-z2

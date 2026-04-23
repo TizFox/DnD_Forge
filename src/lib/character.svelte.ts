@@ -48,6 +48,15 @@ export class Character {
 		current: number;
 		max: number;
 		temp: number;
+		hitDice: {
+			max: number;
+			type: number;
+			spent: number;
+		};
+		deathTS: {
+			success: number;
+			failure: number;
+		};
 	};
 
 	stats: { [Ab in AbilitiesEnum]: Ability<SkillsEnum[Ab]> };
@@ -122,6 +131,15 @@ export class Character {
 			current: 0,
 			max: 0,
 			temp: 0,
+			hitDice: {
+				max: 0,
+				type: 0,
+				spent: 0,
+			},
+			deathTS: {
+				success: 0,
+				failure: 0,
+			},
 		});
 		this.stats = $state({
 			strength: {

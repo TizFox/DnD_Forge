@@ -33,15 +33,20 @@
 	@import "$lib/theme.css";
 
 	.alignments-container {
-		@apply flex flex-row w-full;
+		@apply flex flex-row;
+	}
+
+	select {
+		@apply flex-1 h-8 px-3 bg-z2 text-left
+		border-2 border-dark
+		transition-std
+		focus:border-cta;
 	}
 
 	.morality-select {
-		@apply flex-1 w-0 min-w-0 h-8 px-3 bg-z2 text-left
-		border-2 border-r border-dark rounded-l-lg;
+		@apply border-r rounded-l-lg;
 	}
 	.order-select {
-		@apply flex-1 w-0 min-w-0 h-8 px-3 bg-z2 text-left
-		border-2 border-l border-dark rounded-r-lg;
+		@apply border-l rounded-r-lg;
 	}
 </style>

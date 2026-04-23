@@ -10,22 +10,8 @@
 
 	--color-dark: var(--color-slate-50);
 	--color-light: var(--color-slate-950);
-	--color-cta: var(--color-sky-400);
+	--color-cta: var(--color-slate-400);
 	--color-err: var(--color-red-600);
-
-	--color-class-barbarian: var(--color-red-50);
-	--color-class-bard: var(--color-red-50);
-	--color-class-cleric: var(--color-red-50);
-	--color-class-druid: var(--color-red-50);
-	--color-class-fighter: var(--color-red-50);
-	--color-class-monk: var(--color-red-50);
-	--color-class-paladin: var(--color-red-50);
-	--color-class-ranger: var(--color-red-50);
-	--color-class-rogue: var(--color-red-50);
-	--color-class-sorcerer: var(--color-red-50);
-	--color-class-warlock: var(--color-red-50);
-	--color-class-wizard: var(--color-red-50);
-	--color-class-artificer: var(--color-red-50);
 
 	/* Follow the z-index */
 	--color-z0: var(--color-zinc-900);

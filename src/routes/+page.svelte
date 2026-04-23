@@ -6,19 +6,41 @@
 
 	import { FILE_EXTENTION, load, save } from "$lib/fileHandler";
 	import { Character, type CharacterType } from "$lib/character.svelte";
+	import { getColor } from "$lib/classColors";
 
+	// full
 	import Info from "$lib/components/Info.svelte";
+
+	// 1/3
 	import Stats from "$lib/components/Stats.svelte";
+
+	// 2/3
 	import Hp from "$lib/components/Hp.svelte";
 	import Ca from "$lib/components/Ca.svelte";
+	import Passive from "$lib/components/Passive.svelte";
+
+	// 3/3
 	import Features from "$lib/components/Features.svelte";
 	import Characteristics from "$lib/components/Characteristics.svelte";
-	import PassiveSkill from "$lib/baseComponents/PassiveSkill.svelte";
-	import Passive from "$lib/components/Passive.svelte";
 
 	let fileInput = $state<HTMLInputElement | null>(null);
 	let fileName = $state<string | null>(null);
 	let dndChar = $state<Character | null>(null);
+
+	$effect(() => {
+		if (!dndChar) {
+			document.documentElement.style.setProperty(
+				"--color-cta",
+				getColor("default"),
+			);
+			return;
+		}
+
+		document.documentElement.style.setProperty(
+			"--color-cta",
+			getColor(dndChar.info.class.toLowerCase()),
+		);
+	});
 </script>
 
 <!------------------------------------------>
@@ -90,6 +112,7 @@
 
 <main class="flex items-center justify-center">
 	<div class="w-full max-w-7xl min-h-(--main-size) p-5 flex flex-col gap-5">
+		<!--min-w-7xl-->
 		{#if dndChar}
 			<Info character={dndChar} />
 			<div class="w-full flex flex-row gap-5">

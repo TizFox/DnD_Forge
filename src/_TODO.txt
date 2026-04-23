@@ -1,4 +1,4 @@
 TODO:
-- Fixare width di Alignment
-- Aggiungere Dadi Vita
-- Aggiungere TS Morte
+- [  TS  ] Aggiungere Dadi Vita
+- [  TS  ] Aggiungere TS Morte
+- [SVELTE] Finire UI con tutti gli input necessari
