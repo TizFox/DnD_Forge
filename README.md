@@ -49,10 +49,12 @@ This project is open source. See the repository for details.
 
 ## Author
 
-**TizFox** — [github.com/TizFox](https://github.com/TizFox)
+**TizFox** - [github.com/TizFox](https://github.com/TizFox)
 
 ---
 
 <div align="center">
+
 *"May your rolls be high and your campaigns legendary."*
+
 </div>
