@@ -41,18 +41,18 @@ DnD_Forge/
 
 ---
 
-## 📜 License
+## License
 
 This project is open source. See the repository for details.
 
 ---
 
-## 👤 Author
+## Author
 
 **TizFox** — [github.com/TizFox](https://github.com/TizFox)
 
 ---
 
 <div align="center">
-	*"May your rolls be high and your campaigns legendary."*
+*"May your rolls be high and your campaigns legendary."*
 </div>
