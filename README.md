@@ -1,16 +1,16 @@
 <p align="center">
-  <img src="src/lib/assets/logo.svg" alt="DnD Forge Logo" width="200"/>
+  <img src="src/lib/assets/logo1000.png" alt="DnD Forge Logo" width="200"/>
 </p>
 
 # DnD Forge
 
 > A modern, web-based character sheet and toolkit for **Dungeons & Dragons 5th Edition**, built with SvelteKit and TypeScript.
 
-**Live demo:** [tizfox.github.io/DnD_Forge](https://tizfox.github.io/DnD_Forge/)
+**Try it yourself:** [tizfox.github.io/DnD_Forge](https://tizfox.github.io/DnD_Forge/)
 
 ---
 
-## 🧙 About
+## About
 
 **DnD Forge** is a lightweight, fast, and fully client-side web app that lets players manage their D&D 5e characters directly in the browser — no account, no backend, no fuss. Forge your hero and bring them to the table.
 
@@ -53,6 +53,6 @@ This project is open source. See the repository for details.
 
 ---
 
-<p class="center">
-*May your rolls be high and your campaigns legendary.* 🎲
+<p align="center">
+	*May your rolls be high and your campaigns legendary.* 🎲
 </p>
