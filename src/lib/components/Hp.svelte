@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { Heart, Skull } from "@lucide/svelte";
+
 	import { Character } from "$lib/character.svelte";
 
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
@@ -42,7 +44,7 @@
 	</div>
 
 	<div class="hp-multi">
-		<div class="hp-item gap-1">
+		<div class="hp-item">
 			<span>Hit Die</span>
 			<div class="hp-multi">
 				<NumberInput
@@ -50,7 +52,7 @@
 					maxValue={character.info.level}
 					onChange={(n: number) => (character.hp.hitDice.max = n)}
 				></NumberInput>
-				d
+				<p class="font-bold">d</p>
 				<NumberInput
 					value={character.hp.hitDice.type}
 					onChange={(n: number) => (character.hp.hitDice.type = n)}
@@ -63,9 +65,10 @@
 			></NumberInput>
 		</div>
 
-		<div class="hp-item gap-1">
+		<div class="hp-item">
 			<span>Death TS</span>
 			<div class="hp-multi">
+				<Heart class="text-cta" />
 				<CheckboxInput
 					checked={character.hp.deathTS.success >= 1}
 					onChange={(val) => {
@@ -86,6 +89,7 @@
 				/>
 			</div>
 			<div class="hp-multi">
+				<Skull class="text-cta" />
 				<CheckboxInput
 					checked={character.hp.deathTS.failure >= 1}
 					onChange={(val) => {
@@ -130,6 +134,6 @@
 	}
 	.hp-item {
 		@apply w-full
-		flex flex-col items-center;
+		flex flex-col items-center gap-1;
 	}
 </style>

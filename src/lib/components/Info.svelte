@@ -116,10 +116,10 @@
 			flex flex-row items-center gap-2;
 
 			h3 {
-				@apply w-1/3 main-text text-right;
+				@apply flex-1 main-text text-right;
 			}
 			span {
-				@apply w-2/3;
+				@apply flex-2;
 			}
 		}
 	}
