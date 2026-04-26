@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-	--main-size: 80vh;
-	--bars-size: 10vh;
+	--main-size: 86vh;
+	--bars-size: 7vh;
 
 	--color-disabled: var(--color-red-300);
 
