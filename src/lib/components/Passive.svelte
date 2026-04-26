@@ -13,7 +13,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} grid grid-cols-2 gap-3">
+<div class="{wClass} passive-container">
 	<PassiveSkill {character} ability="wisdom" skill="perception" />
 	<PassiveSkill {character} ability="wisdom" skill="insight" />
 	<PassiveSkill {character} ability="wisdom" skill="survival" />
@@ -24,4 +24,8 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
+
+	.passive-container {
+		@apply grid grid-cols-2 gap-3;
+	}
 </style>

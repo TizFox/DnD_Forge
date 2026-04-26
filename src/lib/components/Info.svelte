@@ -19,7 +19,7 @@
 <div class="info-container">
 	<div class="info-section">
 		<div class="info-subsection">
-			<h3>Character Name</h3>
+			<h3>NAME</h3>
 			<span>
 				<TextInput
 					value={character.info.name}
@@ -29,7 +29,7 @@
 		</div>
 
 		<div class="info-subsection">
-			<h3>Player Name</h3>
+			<h3>PLAYER</h3>
 			<span>
 				<TextInput
 					value={character.info.player}
@@ -39,17 +39,20 @@
 		</div>
 
 		<div class="info-subsection">
-			<h3>Level</h3>
+			<h3>LEVEL</h3>
 			<span>
 				<NumberInput
 					minValue={1}
 					value={character.info.level}
-					onChange={(n: number) => (character.info.level = n)}
+					onChange={(n: number) => {
+						character.info.level = n;
+						character.hp.hitDice.max = n;
+					}}
 				/>
 			</span>
 		</div>
 		<div class="info-subsection">
-			<h3>Proficiency Bonus</h3>
+			<h3>P.BONUS</h3>
 			<span>
 				<p
 					class="w-full h-8 bg-z2 flex items-center justify-center px-3 rounded-lg"
@@ -62,7 +65,7 @@
 
 	<div class="info-section">
 		<div class="info-subsection">
-			<h3>Background</h3>
+			<h3>BACKGROUND</h3>
 			<span>
 				<TextInput
 					value={character.info.background}
@@ -71,14 +74,14 @@
 			</span>
 		</div>
 		<div class="info-subsection">
-			<h3>Alignment</h3>
+			<h3>ALIGNMENT</h3>
 			<span>
 				<Alignment {character} />
 			</span>
 		</div>
 
 		<div class="info-subsection">
-			<h3>Class</h3>
+			<h3>CLASS</h3>
 			<span>
 				<TextInput
 					value={character.info.class}
@@ -87,7 +90,7 @@
 			</span>
 		</div>
 		<div class="info-subsection">
-			<h3>Race</h3>
+			<h3>RACE</h3>
 			<span>
 				<TextInput
 					value={character.info.race}
@@ -119,7 +122,7 @@
 				@apply flex-1 main-text text-right;
 			}
 			span {
-				@apply flex-2;
+				@apply flex-3;
 			}
 		}
 	}

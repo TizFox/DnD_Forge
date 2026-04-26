@@ -14,7 +14,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} h-fit grid grid-cols-2 gap-3">
+<div class="{wClass} characteristics-container">
 	{#each Object.entries(character.info.characteristics) as [key, value]}
 		<AreaInput
 			wClass={key === "backstory" ? "col-span-2" : ""}
@@ -33,4 +33,8 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
+
+	.characteristics-container {
+		@apply h-fit grid grid-cols-2 gap-3;
+	}
 </style>

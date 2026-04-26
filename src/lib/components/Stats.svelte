@@ -14,7 +14,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} flex flex-col items-start justify-between gap-3">
+<div class="{wClass} stats-container">
 	{#each ALL_ABILITIES as ability}
 		<Ability {character} {ability} />
 	{/each}
@@ -24,4 +24,8 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
+
+	.stats-container {
+		@apply flex flex-col items-start justify-between gap-3;
+	}
 </style>

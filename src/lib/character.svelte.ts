@@ -133,10 +133,10 @@ export class Character {
 		});
 		this.hp = $state({
 			current: 0,
-			max: 0,
+			max: 1,
 			temp: 0,
 			hitDice: {
-				max: 0,
+				max: 1,
 				type: 0,
 				spent: 0,
 			},

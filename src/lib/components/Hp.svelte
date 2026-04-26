@@ -18,45 +18,42 @@
 
 <div class="{wClass} hp-container">
 	<div class="hp-multi">
-		<div class="hp-item">
-			<span>Max HP</span>
-			<NumberInput
-				value={character.hp.max}
-				onChange={(n: number) => (character.hp.max = n)}
-			/>
-		</div>
-		<div class="hp-item">
-			<span>Temp HP</span>
-			<NumberInput
-				value={character.hp.temp}
-				onChange={(n: number) => (character.hp.temp = n)}
-			/>
-		</div>
-	</div>
-
-	<div class="hp-item">
-		<span>Current HP</span>
 		<NumberInput
-			value={character.hp.current}
-			maxValue={character.hp.max}
-			onChange={(n: number) => (character.hp.current = n)}
+			title="max hp"
+			value={character.hp.max}
+			minValue={1}
+			onChange={(n: number) => (character.hp.max = n)}
+		/>
+
+		<NumberInput
+			title="temp hp"
+			value={character.hp.temp}
+			onChange={(n: number) => (character.hp.temp = n)}
 		/>
 	</div>
 
+	<NumberInput
+		title="current hp"
+		value={character.hp.current}
+		maxValue={character.hp.max}
+		onChange={(n: number) => (character.hp.current = n)}
+	/>
+
 	<div class="hp-multi">
 		<div class="hp-item">
-			<span>Hit Die</span>
+			<span class="main-text">HIT DICE</span>
 			<div class="hp-multi">
-				<NumberInput
-					value={character.hp.hitDice.max}
-					maxValue={character.info.level}
-					onChange={(n: number) => (character.hp.hitDice.max = n)}
-				></NumberInput>
+				<p
+					class="w-full h-8 bg-z2 flex items-center justify-center rounded-lg"
+				>
+					{character.hp.hitDice.max}
+				</p>
+
 				<p class="font-bold">d</p>
 				<NumberInput
 					value={character.hp.hitDice.type}
 					onChange={(n: number) => (character.hp.hitDice.type = n)}
-				></NumberInput>
+				/>
 			</div>
 			<NumberInput
 				value={character.hp.hitDice.spent}
@@ -66,7 +63,7 @@
 		</div>
 
 		<div class="hp-item">
-			<span>Death TS</span>
+			<span class="main-text">DEATH TS</span>
 			<div class="hp-multi">
 				<Heart class="text-cta" />
 				<CheckboxInput
@@ -117,10 +114,6 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	span {
-		@apply main-text;
-	}
 
 	.hp-container {
 		@apply h-fit p-3 bg-z1

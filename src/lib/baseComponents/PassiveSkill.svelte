@@ -22,7 +22,7 @@
 <!------------------------------------------>
 
 <div class="{wClass} ps-container">
-	<h3 class="main-text">Passive <br /> {skill.toUpperCase()}</h3>
+	<h3 class="main-text">Passive<br />{skill.toUpperCase()}</h3>
 	<h3 class="ps-value">{passiveSkill}</h3>
 </div>
 

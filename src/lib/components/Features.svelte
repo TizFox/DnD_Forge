@@ -14,7 +14,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} h-fit flex flex-col gap-3">
+<div class="{wClass} features-container">
 	{#each Object.entries(character.features) as [key, value]}
 		<AreaInput
 			title={key.split("_").join(" ")}
@@ -30,4 +30,8 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
+
+	.features-container {
+		@apply h-fit flex flex-col gap-3;
+	}
 </style>
