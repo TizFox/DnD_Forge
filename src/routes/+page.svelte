@@ -162,9 +162,8 @@
 	@import "$lib/theme.css";
 
 	.bar-container {
-		@apply w-full h-(--bars-size) p-5 bg-z2
-		flex flex-row items-center gap-5
-		shadow-2xl;
+		@apply w-full h-(--bars-size) px-5 py-2 bg-z2
+		flex flex-row items-center gap-5;
 
 		&.navbar {
 			@apply justify-start;
