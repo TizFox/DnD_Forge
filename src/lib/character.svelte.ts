@@ -25,6 +25,10 @@ export class Character {
 		initiative: number;
 		level: number;
 		ca: number;
+		shield: {
+			value: number;
+			worn: boolean;
+		};
 
 		description: {
 			age: number;
@@ -111,6 +115,10 @@ export class Character {
 			initiative: 0,
 			level: 1,
 			ca: 0,
+			shield: {
+				value: 0,
+				worn: false,
+			},
 
 			description: {
 				age: 0,
