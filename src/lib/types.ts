@@ -12,6 +12,22 @@ export type Alignments = {
 	morality: Morality;
 	order: Order;
 };
+export enum Sizes {
+	Tiny = "Tiny",
+	Small = "Small",
+	Medium = "Medium",
+	Large = "Large",
+	Huge = "Huge",
+	Gargantuan = "Gargantuan",
+}
+export const SIZES_ELUSION: Record<Sizes, number> = {
+	Tiny: +4,
+	Small: +1,
+	Medium: 0,
+	Large: -1,
+	Huge: -2,
+	Gargantuan: -4,
+};
 export type CoinsEnum = "cp" | "sp" | "ep" | "gp" | "pp";
 
 // Abilities

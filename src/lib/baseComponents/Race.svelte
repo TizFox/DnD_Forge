@@ -1,0 +1,47 @@
+<script lang="ts">
+	import { Character } from "$lib/character.svelte";
+	import { Sizes } from "$lib/types";
+
+	import TextInput from "./TextInput.svelte";
+
+	type RacePropsType = {
+		wClass?: string;
+		character: Character;
+	};
+
+	let { wClass = "w-full", character }: RacePropsType = $props();
+</script>
+
+<!------------------------------------------>
+
+<div class="{wClass} sizes-container">
+	<TextInput
+		rClass="rounded-l-lg"
+		value={character.info.race}
+		onChange={(s: string) => (character.info.race = s)}
+	/>
+	<select class="sizes-select" bind:value={character.info.size}>
+		{#each Object.values(Sizes) as m}
+			<option value={m}>{m.toUpperCase()}</option>
+		{/each}
+	</select>
+</div>
+
+<!------------------------------------------>
+
+<style lang="postcss">
+	@import "$lib/theme.css";
+
+	.sizes-container {
+		@apply flex flex-row;
+	}
+
+	.sizes-select {
+		@apply w-min h-8 px-3 bg-z2 text-left
+		border-2 border-dark rounded-r-lg
+		transition-std
+		focus:border-cta
+		focus:outline-none
+		focus:shadow-none;
+	}
+</style>

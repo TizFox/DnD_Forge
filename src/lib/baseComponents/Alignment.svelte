@@ -2,11 +2,12 @@
 	import { Character } from "$lib/character.svelte";
 	import { Morality, Order } from "$lib/types";
 
-	type AlignmentsPropsType = {
+	type AlignmentPropsType = {
 		wClass?: string;
 		character: Character;
 	};
-	let { wClass = "w-full", character }: AlignmentsPropsType = $props();
+
+	let { wClass = "w-full", character }: AlignmentPropsType = $props();
 </script>
 
 <!------------------------------------------>
@@ -45,10 +46,10 @@
 		focus:shadow-none;
 
 		&.morality-select {
-			@apply border-r rounded-l-lg;
+			@apply rounded-l-lg;
 		}
 		&.order-select {
-			@apply border-l rounded-r-lg;
+			@apply rounded-r-lg;
 		}
 	}
 </style>

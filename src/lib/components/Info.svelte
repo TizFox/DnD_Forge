@@ -4,6 +4,7 @@
 	import TextInput from "$lib/baseComponents/TextInput.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import Alignment from "$lib/baseComponents/Alignment.svelte";
+	import Race from "$lib/baseComponents/Race.svelte";
 
 	type InfoPropsType = {
 		character: Character;
@@ -92,10 +93,7 @@
 		<div class="info-subsection">
 			<h3>RACE</h3>
 			<span>
-				<TextInput
-					value={character.info.race}
-					onChange={(s: string) => (character.info.race = s)}
-				/>
+				<Race {character} />
 			</span>
 		</div>
 	</div>
@@ -114,6 +112,7 @@
 
 	.info-section {
 		@apply flex flex-col items-start gap-2;
+
 		.info-subsection {
 			@apply w-full
 			flex flex-row items-center gap-2;

@@ -14,15 +14,6 @@
 
 <!------------------------------------------>
 
-<!--
-		isSaveThrow
-			? character.setAbilityProficiency(ability, e.currentTarget.checked)
-			: character.setSkillProficiency(
-					ability,
-					skill,
-					e.currentTarget.checked,
-				)}-->
-
 <input
 	class="checkbox-input {visible ? '' : 'invisible'}"
 	{checked}

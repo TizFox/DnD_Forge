@@ -8,6 +8,8 @@ import {
 	type Spell,
 	Morality,
 	Order,
+	Sizes,
+	SIZES_ELUSION,
 } from "./types";
 
 export type CharacterType = InstanceType<typeof Character>;
@@ -21,6 +23,7 @@ export class Character {
 
 		class: string;
 		race: string;
+		size: Sizes;
 		speed: number;
 		initiative: number;
 		level: number;
@@ -111,6 +114,7 @@ export class Character {
 
 			class: "",
 			race: "",
+			size: Sizes.Medium,
 			speed: 0,
 			initiative: 0,
 			level: 1,
@@ -229,6 +233,11 @@ export class Character {
 		this.magic = $state({
 			spells: [],
 		});
+	}
+
+	getSizeElusion(): number {
+		console.log(`getSizeElusion()`);
+		return SIZES_ELUSION[this.info.size];
 	}
 
 	getProficiencyBonus(): number {

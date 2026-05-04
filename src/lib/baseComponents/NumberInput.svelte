@@ -1,6 +1,7 @@
 <script lang="ts">
 	type NumberInputPropsType = {
 		wClass?: string;
+		rClass?: string;
 		title?: string;
 		minValue?: number;
 		value: number;
@@ -10,6 +11,7 @@
 
 	let {
 		wClass = "w-full",
+		rClass = "rounded-lg",
 		title = "",
 		minValue = 0,
 		value,
@@ -25,7 +27,7 @@
 		<span class="main-text">{title.toUpperCase()}</span>
 	{/if}
 	<input
-		class="number-input no-spinner"
+		class="{rClass} number-input no-spinner"
 		bind:value
 		onchange={() => {
 			value = value < minValue ? minValue : value;
@@ -52,7 +54,7 @@
 
 	.number-input {
 		@apply w-full h-8 px-3 bg-z2 text-center
-		border-2 border-dark rounded-lg
+		border-2 border-dark
 		transition-std
 		focus:border-cta
 		focus:outline-none

@@ -10,6 +10,7 @@
 		character: Character;
 		ability: AbilitiesEnum;
 	};
+
 	let { character, ability }: AbilityPropsType = $props();
 
 	let value = $derived(character.getAbilityValue(ability));
