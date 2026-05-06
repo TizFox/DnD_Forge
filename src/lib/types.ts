@@ -1,3 +1,7 @@
+export type Language = "en" | "it";
+
+export type Localized<T> = Record<Language, T>;
+
 export enum Morality {
 	Good = "good",
 	Neutral = "neutral",
@@ -90,5 +94,29 @@ type Skill = {
 	expertise: boolean; // => +proficiencyBonus (again)
 };
 
+// Equipment
 export interface Weapon {}
-export interface Spell {}
+
+type SpellLevels = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+type SpellSchools =
+	| "abjuration"
+	| "conjuration"
+	| "divination"
+	| "enchantment"
+	| "evocation"
+	| "illusion"
+	| "necromancy"
+	| "trasmutation";
+
+export interface Spell {
+	manual: string;
+	name: string;
+	level: SpellLevels;
+	school: SpellSchools;
+	castingTime: string;
+	range: string;
+	components: string;
+	duration: string;
+	description: string;
+	higherLevels: string;
+}

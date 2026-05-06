@@ -1,8 +1,6 @@
 TODO:
 - [  TS  ] Aggiungere campi per caratteristiche da incantatore
 - [SVELTE] Aggiungere input per:
- 			- equipment, armi e monete
+ 			- armi
     		- caratteristiche da incantatore e incantesimi
       		- descrizione (età, altezza, peso ...)
-
-- [  TS  ] Modificare il current hp, usare un p per mostrare quanti hp si hanno, poi mettere un input per aggiungere o togliere gli hp (HP = 10, MOD_HP = -5 => click => HP = 5, MOD_HP = 0)
