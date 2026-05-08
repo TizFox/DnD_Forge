@@ -13,7 +13,7 @@ export enum Classes {
 	Warlock = "warlock",
 	Wizard = "wizard",
 	Multiclass = "multiclass",
-	// Linguee
+	// Lingue
 	Artefice = Artificer,
 	Barbaro = Barbarian,
 	Bardo = Bard,
@@ -28,7 +28,13 @@ export enum Classes {
 	Multiclasse = Multiclass,
 }
 
-const colorMap: Record<Classes | "default", string> = {
+const getTrueClass = (inputClass: string): Classes | undefined => {
+	let capClass = capitalize(inputClass);
+	return Object.values(Classes)[Object.keys(Classes).indexOf(capClass)];
+};
+
+const BASE_COLOR = "var(--color-slate-400)";
+const colorMap: Record<Classes, string> = {
 	[Classes.Artificer]: "var(--color-orange-400)",
 	[Classes.Barbarian]: "var(--color-red-400)",
 	[Classes.Bard]: "var(--color-pink-500)",
@@ -43,16 +49,19 @@ const colorMap: Record<Classes | "default", string> = {
 	[Classes.Warlock]: "var(--color-violet-400)",
 	[Classes.Wizard]: "var(--color-indigo-400)",
 	[Classes.Multiclass]: "#DAA520",
-	default: "var(--color-slate-400)",
+};
+
+const capitalize = (str: string): string => {
+	return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 };
 
 export const getColor = (charClass: string): string => {
-	const key = charClass.split(" ")[0].toLowerCase() as Classes;
-	if (colorMap[key]) {
-		return colorMap[key];
+	let trueClass = getTrueClass(charClass);
+	if (trueClass) {
+		return colorMap[trueClass];
 	}
 
-	return colorMap.default;
+	return BASE_COLOR;
 };
 
 export const getClassNames = (): string[] => {
