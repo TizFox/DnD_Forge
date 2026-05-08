@@ -3,6 +3,7 @@
 		wClass?: string;
 		rClass?: string;
 		value: string;
+		suggestions?: { id: string; options: string[] };
 		onChange: (s: string) => void;
 	};
 
@@ -10,6 +11,7 @@
 		wClass = "w-full",
 		rClass = "rounded-lg",
 		value,
+		suggestions = { id: "", options: [] },
 		onChange,
 	}: TextInputPropsType = $props();
 </script>
@@ -17,11 +19,20 @@
 <!------------------------------------------>
 
 <input
+	list={suggestions.id}
 	class="{wClass} {rClass} text-input"
 	bind:value
 	type="text"
 	onchange={() => onChange(value)}
 />
+
+{#if suggestions.id != ""}
+	<datalist id={suggestions.id}>
+		{#each suggestions.options as opt}
+			<option value={opt}></option>
+		{/each}
+	</datalist>
+{/if}
 
 <!------------------------------------------>
 

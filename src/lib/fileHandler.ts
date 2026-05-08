@@ -3,16 +3,19 @@ import type { CharacterType } from "$lib/character.svelte";
 
 export const FILE_EXTENTION = ".dndchar";
 
-export function load(file: File, onLoad: (data: CharacterType) => void): void {
+export const load = (
+	file: File,
+	onLoad: (data: CharacterType) => void,
+): void => {
 	const reader = new FileReader();
 
 	reader.onload = () => {
 		onLoad(JSON.parse(reader.result as string) as CharacterType);
 	};
 	reader.readAsText(file);
-}
+};
 
-export function save(char: Character): void {
+export const save = (char: Character): void => {
 	char.info.name = char.info.name.trim();
 	const name =
 		char.info.name != "" ? char.info.name.split(" ").join("_") : "unknown";
@@ -25,4 +28,4 @@ export function save(char: Character): void {
 	a.download = name + FILE_EXTENTION;
 	a.click();
 	URL.revokeObjectURL(url);
-}
+};

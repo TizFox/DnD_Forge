@@ -5,6 +5,7 @@
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import Alignment from "$lib/baseComponents/Alignment.svelte";
 	import Race from "$lib/baseComponents/Race.svelte";
+	import { getClassNames } from "$lib/classes";
 
 	type InfoPropsType = {
 		character: Character;
@@ -86,6 +87,7 @@
 			<span>
 				<TextInput
 					value={character.info.class}
+					suggestions={{ id: "classes", options: getClassNames() }}
 					onChange={(s: string) => (character.info.class = s)}
 				/>
 			</span>

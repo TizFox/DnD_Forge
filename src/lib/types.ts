@@ -1,5 +1,4 @@
 export type Language = "en" | "it";
-
 export type Localized<T> = Record<Language, T>;
 
 export enum Morality {
@@ -31,51 +30,22 @@ export const SIZES_ELUSION: Record<Sizes, number> = {
 	Large: -1,
 	Huge: -2,
 	Gargantuan: -4,
-};
+} as const;
 export type CoinsEnum = "cp" | "sp" | "ep" | "gp" | "pp";
 
 // Abilities
-export type AbilitiesEnum =
-	| "strength"
-	| "dexterity"
-	| "constitution"
-	| "intelligence"
-	| "wisdom"
-	| "charisma";
-export const ALL_ABILITIES: AbilitiesEnum[] = [
+export const ALL_ABILITIES = [
 	"strength",
 	"dexterity",
 	"constitution",
 	"intelligence",
 	"wisdom",
 	"charisma",
-];
-export type Ability<T extends string> = {
-	value: number;
-	proficiency: boolean; // => +proficiencyBonus
-	skills: Record<T, Skill>;
-};
+] as const;
+export type AbilitiesType = (typeof ALL_ABILITIES)[number];
 
 // Skills
-export type SkillsEnum = {
-	strength: "athletics";
-	dexterity: "acrobatics" | "sleight_of_hand" | "stealth";
-	constitution: never;
-	intelligence:
-		| "arcana"
-		| "history"
-		| "investigation"
-		| "nature"
-		| "religion";
-	wisdom:
-		| "animal_handling"
-		| "insight"
-		| "medicine"
-		| "perception"
-		| "survival";
-	charisma: "deception" | "intimidation" | "performance" | "persuasion";
-};
-export const ALL_SKILLS: { [ab in AbilitiesEnum]: SkillsEnum[ab][] } = {
+export const ALL_SKILLS: Record<AbilitiesType, string[]> = {
 	strength: ["athletics"],
 	dexterity: ["acrobatics", "sleight_of_hand", "stealth"],
 	constitution: [],
@@ -88,6 +58,15 @@ export const ALL_SKILLS: { [ab in AbilitiesEnum]: SkillsEnum[ab][] } = {
 		"survival",
 	],
 	charisma: ["deception", "intimidation", "performance", "persuasion"],
+} as const;
+export type SkillsType = {
+	[Ab in AbilitiesType]: (typeof ALL_SKILLS)[Ab][number];
+};
+
+export type Ability<Ab extends AbilitiesType> = {
+	value: number;
+	proficiency: boolean; // => +proficiencyBonus
+	skills: Record<SkillsType[Ab], Skill>;
 };
 type Skill = {
 	proficiency: boolean; // => +proficiencyBonus
@@ -97,16 +76,16 @@ type Skill = {
 // Equipment
 export interface Weapon {}
 
-type SpellLevels = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-type SpellSchools =
-	| "abjuration"
-	| "conjuration"
-	| "divination"
-	| "enchantment"
-	| "evocation"
-	| "illusion"
-	| "necromancy"
-	| "trasmutation";
+export type SpellLevels = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+export type SpellSchools =
+	| "Abjuration"
+	| "Conjuration"
+	| "Divination"
+	| "Enchantment"
+	| "Evocation"
+	| "Illusion"
+	| "Necromancy"
+	| "Trasmutation";
 
 export interface Spell {
 	manual: string;
@@ -120,3 +99,15 @@ export interface Spell {
 	description: string;
 	higherLevels: string;
 }
+export const EMPTY_SPELL: Spell = {
+	manual: "",
+	name: "",
+	level: 0,
+	school: "Abjuration",
+	castingTime: "",
+	range: "",
+	components: "",
+	duration: "",
+	description: "",
+	higherLevels: "",
+};

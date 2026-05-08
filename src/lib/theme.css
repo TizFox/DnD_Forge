@@ -24,16 +24,10 @@
 	@apply font-light text-xl md:text-2xl;
 }
 @utility h3-text {
-	@apply font-light text-lg md:text-xl;
-}
-@utility important-text {
-	@apply font-medium text-base md:text-lg;
-}
-@utility sm-important-text {
-	@apply font-medium text-sm md:text-base;
+	@apply text-lg md:text-xl;
 }
 @utility base-text {
-	@apply font-light text-base md:text-lg;
+	@apply font-medium text-base md:text-lg;
 }
 
 @utility main-text {
@@ -78,15 +72,16 @@
 		hover:text-cta hover:border-cta;
 	}
 	.std-btn {
-		@apply p-3
+		@apply h-full px-3
 		flex items-center justify-center
-		transition-std important-text
+		transition-std
 		rounded-lg
 		border-2 border-dark;
 
 		&:hover {
 			@apply text-light
-			border-cta bg-cta;
+			border-cta bg-cta
+			cursor-pointer;
 		}
 
 		&:disabled {

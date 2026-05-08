@@ -18,6 +18,25 @@
 		maxValue,
 		onChange,
 	}: NumberInputPropsType = $props();
+
+	let textInput = $derived<string>(String(value));
+
+	const evalInput = (): number | null => {
+		// Check if Input is an expression
+		if (!/^[\d\s\+\-\*\/\.\(\)]+$/.test(textInput)) {
+			return null;
+		}
+
+		// Evaluate the expression
+		try {
+			const result = Function(`"use strict"; return (${textInput})`)();
+			return typeof result === "number" && isFinite(result)
+				? result
+				: null;
+		} catch {
+			return null;
+		}
+	};
 </script>
 
 <!------------------------------------------>
@@ -28,8 +47,11 @@
 	{/if}
 	<input
 		class="{rClass} number-input no-spinner"
-		bind:value
+		bind:value={textInput}
 		onchange={() => {
+			const input = evalInput() ?? Number(textInput);
+
+			value = isNaN(input) ? minValue : input;
 			value = value < minValue ? minValue : value;
 			if (maxValue) {
 				value = value > maxValue ? maxValue : value;
@@ -37,9 +59,12 @@
 			if (!value) {
 				value = 0;
 			}
+
+			// "textInput" autoupdates given that is "$derived"
 			onChange(value);
 		}}
-		type="number"
+		inputmode="numeric"
+		type="text"
 	/>
 </div>
 

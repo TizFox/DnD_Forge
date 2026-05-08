@@ -6,7 +6,9 @@
 
 	import { FILE_EXTENTION, load, save } from "$lib/fileHandler";
 	import { Character, type CharacterType } from "$lib/character.svelte";
-	import { getColor } from "$lib/classColors";
+	import { getColor } from "$lib/classes";
+
+	import { getSpell } from "$lib/spells";
 
 	// full
 	import Info from "$lib/components/Info.svelte";
@@ -24,6 +26,7 @@
 	// 3/3
 	import Features from "$lib/components/Features.svelte";
 	import Characteristics from "$lib/components/Characteristics.svelte";
+	import Spellcasting from "$lib/components/Spellcasting.svelte";
 
 	let fileInput = $state<HTMLInputElement | null>(null);
 	let fileName = $state<string | null>(null);
@@ -85,11 +88,11 @@
 		</button>
 
 		<!-- Input -->
-		<div class="w-fit relative group rounded-lg">
+		<div class="w-fit h-full relative group rounded-lg">
 			<button
 				type="button"
 				onclick={() => fileInput?.click()}
-				class="w-full h-full px-11 py-3 bg-z2 rounded-lg
+				class="w-full h-full px-10 bg-z2 rounded-lg
 						border-2 border-dark transition-std
 						hover:border-cta
 						base-text text-left truncate
@@ -124,18 +127,21 @@
 		<!--min-w-7xl-->
 		{#if dndChar}
 			<Info character={dndChar} />
-			<div class="w-full flex flex-row gap-5">
-				<Stats wClass="w-1/3" character={dndChar} />
-				<div class="w-1/3 flex flex-col gap-5">
-					<Ca character={dndChar} />
-					<Hp character={dndChar} />
-					<Actions character={dndChar} />
-					<Passive character={dndChar} />
-					<Equipment character={dndChar} />
-				</div>
-				<div class="w-1/3 flex flex-col gap-5">
-					<Features character={dndChar} />
-					<Characteristics character={dndChar} />
+			<div class="w-full grid grid-cols-3 gap-5">
+				<Stats character={dndChar} />
+				<div class="col-span-2 grid grid-cols-2 gap-5">
+					<div class="h-min flex flex-col gap-5">
+						<Ca character={dndChar} />
+						<Hp character={dndChar} />
+						<Actions character={dndChar} />
+						<Passive character={dndChar} />
+						<Equipment character={dndChar} />
+					</div>
+					<div class="h-min flex flex-col gap-5">
+						<Features character={dndChar} />
+						<Characteristics character={dndChar} />
+					</div>
+					<Spellcasting wClass="col-span-2" character={dndChar} />
 				</div>
 			</div>
 

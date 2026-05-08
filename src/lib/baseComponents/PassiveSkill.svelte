@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
-	import type { AbilitiesEnum, SkillsEnum } from "$lib/types";
+	import type { AbilitiesType, SkillsType } from "$lib/types";
 
 	type PassiveSkillPropsType = {
 		wClass?: string;
 		character: Character;
-		ability: AbilitiesEnum;
-		skill: SkillsEnum[AbilitiesEnum];
+		ability: AbilitiesType;
+		skill: SkillsType[AbilitiesType];
 	};
 
 	let {

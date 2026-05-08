@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
-	import type { AbilitiesEnum, SkillsEnum } from "$lib/types";
+	import type { AbilitiesType, SkillsType } from "$lib/types";
 
 	import CheckboxInput from "./CheckboxInput.svelte";
 
 	type SkillPropsType = {
 		character: Character;
-		ability: AbilitiesEnum;
-		skill?: SkillsEnum[AbilitiesEnum];
+		ability: AbilitiesType;
+		skill?: SkillsType[AbilitiesType];
 		isSaveThrow?: boolean;
 	};
 

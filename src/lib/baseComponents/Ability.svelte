@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
-	import type { AbilitiesEnum } from "$lib/types";
-	import { ALL_SKILLS } from "$lib/types";
+	import { ALL_SKILLS, type AbilitiesType } from "$lib/types";
 
 	import NumberInput from "./NumberInput.svelte";
 	import Skill from "./Skill.svelte";
 
 	type AbilityPropsType = {
 		character: Character;
-		ability: AbilitiesEnum;
+		ability: AbilitiesType;
 	};
 
 	let { character, ability }: AbilityPropsType = $props();

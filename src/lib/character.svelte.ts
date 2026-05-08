@@ -1,9 +1,10 @@
+import { getSpell } from "./spells";
 import {
 	type Alignments,
 	type CoinsEnum,
-	type AbilitiesEnum,
+	type AbilitiesType,
+	type SkillsType,
 	type Ability,
-	type SkillsEnum,
 	type Weapon,
 	type Spell,
 	Morality,
@@ -68,7 +69,7 @@ export class Character {
 		};
 	};
 
-	stats: { [Ab in AbilitiesEnum]: Ability<SkillsEnum[Ab]> };
+	stats: { [Ab in AbilitiesType]: Ability<Ab> };
 
 	features: {
 		class_traits: string;
@@ -85,7 +86,8 @@ export class Character {
 	};
 
 	magic: {
-		spells: Spell[];
+		spellcastingAbility: AbilitiesType;
+		spells: Record<string, Spell | null>;
 	};
 
 	static from(data: CharacterType): Character {
@@ -231,7 +233,8 @@ export class Character {
 			weapons: [],
 		});
 		this.magic = $state({
-			spells: [],
+			spellcastingAbility: "strength",
+			spells: {},
 		});
 	}
 
@@ -246,44 +249,95 @@ export class Character {
 	}
 
 	// Abilities
-	getAbilityProficiency(ab: AbilitiesEnum): boolean {
-		console.log(`getAbilityProficiency(${ab})`);
+	getAbilityProficiency(ab: AbilitiesType): boolean {
+		console.log(`getAbilityProficiency("${ab}")`);
 		return this.stats[ab].proficiency;
 	}
-	setAbilityProficiency(ab: AbilitiesEnum, val: boolean): void {
-		console.log(`setAbilityProficiency(${ab}, ${val})`);
+	setAbilityProficiency(ab: AbilitiesType, val: boolean): void {
+		console.log(`setAbilityProficiency("${ab}", ${val})`);
 		this.stats[ab].proficiency = val;
 	}
-	getAbilityValue(ab: AbilitiesEnum): number {
-		console.log(`getAbilityValue(${ab})`);
+	getAbilityValue(ab: AbilitiesType): number {
+		console.log(`getAbilityValue("${ab}")`);
 		return this.stats[ab].value;
 	}
-	getAbilityModifier(ab: AbilitiesEnum): number {
-		console.log(`getAbilityModifier(${ab})`);
+	getAbilityModifier(ab: AbilitiesType): number {
+		console.log(`getAbilityModifier("${ab}")`);
 		return Math.floor((this.getAbilityValue(ab) - 10) / 2);
 	}
-	getAbilitySaveThrow(ab: AbilitiesEnum): number {
-		console.log(`getAbilitySaveThrow(${ab})`);
+	getAbilitySaveThrow(ab: AbilitiesType): number {
+		console.log(`getAbilitySaveThrow("${ab}")`);
 		return (
 			this.getAbilityModifier(ab) +
 			(this.getAbilityProficiency(ab) ? this.getProficiencyBonus() : 0)
 		);
 	}
 
+	// Spellcasting
+	getSpellcastingModifier(): number {
+		console.log(
+			`getSpellcastingModifier("${this.magic.spellcastingAbility}")`,
+		);
+		return (
+			this.getAbilityModifier(this.magic.spellcastingAbility) +
+			this.getProficiencyBonus()
+		);
+	}
+	getSpellcastingDC(): number {
+		console.log(
+			`getAbilityProficiency("${this.magic.spellcastingAbility}")`,
+		);
+
+		return 8 + this.getSpellcastingModifier();
+	}
+	getSpellList(): Spell[] {
+		console.log(`getSpellList()`);
+
+		let spellNullList = Object.values(this.magic.spells);
+		let spellList = spellNullList.filter((s) => s) as Spell[];
+
+		spellList.sort((a, b) => a.level - b.level);
+		return spellList;
+	}
+	addSpell(spellName: string): boolean {
+		spellName = spellName.toUpperCase();
+		console.log(`addSpell("${spellName}")`);
+
+		let spell: Spell | null = getSpell(spellName);
+		if (!spell || this.magic.spells[spellName]) {
+			return false;
+		}
+
+		this.magic.spells[spellName] = spell;
+
+		return true;
+	}
+	removeSpell(spellName: string): void {
+		spellName = spellName.toUpperCase();
+		console.log(`removeSpell("${spellName}")`);
+
+		let spell: Spell | null = getSpell(spellName);
+		if (!spell || !this.magic.spells[spellName]) {
+			return;
+		}
+
+		this.magic.spells[spellName] = null;
+	}
+
 	// Skills
-	getSkillProficiency<Ab extends AbilitiesEnum>(
+	getSkillProficiency<Ab extends AbilitiesType>(
 		ab: Ab,
-		sk: SkillsEnum[Ab],
+		sk: SkillsType[Ab],
 	): boolean {
-		console.log(`getSkillProficiency(${ab}, ${sk})`);
+		console.log(`getSkillProficiency("${ab}", "${sk}")`);
 		return this.stats[ab].skills[sk].proficiency ?? false;
 	}
-	setSkillProficiency<Ab extends AbilitiesEnum>(
+	setSkillProficiency<Ab extends AbilitiesType>(
 		ab: Ab,
-		sk: SkillsEnum[Ab],
+		sk: SkillsType[Ab],
 		val: boolean,
 	): void {
-		console.log(`setSkillProficiency(${ab}, ${sk}, ${val})`);
+		console.log(`setSkillProficiency("${ab}", "${sk}", ${val})`);
 		this.stats[ab].skills[sk].proficiency = val;
 
 		if (!val) {
@@ -291,30 +345,30 @@ export class Character {
 		}
 	}
 
-	getSkillExpertise<Ab extends AbilitiesEnum>(
+	getSkillExpertise<Ab extends AbilitiesType>(
 		ab: Ab,
-		sk: SkillsEnum[Ab],
+		sk: SkillsType[Ab],
 	): boolean {
-		console.log(`getSkillExpertise(${ab}, ${sk})`);
+		console.log(`getSkillExpertise("${ab}", "${sk}")`);
 		return this.stats[ab].skills[sk]?.expertise ?? false;
 	}
-	setSkillExpertise<Ab extends AbilitiesEnum>(
+	setSkillExpertise<Ab extends AbilitiesType>(
 		ab: Ab,
-		sk: SkillsEnum[Ab],
+		sk: SkillsType[Ab],
 		val: boolean,
 	): void {
-		console.log(`setSkillExpertise(${ab}, ${sk}, ${val})`);
+		console.log(`setSkillExpertise("${ab}", "${sk}", ${val})`);
 		this.stats[ab].skills[sk].expertise = val;
 
 		if (val) {
 			this.setSkillProficiency(ab, sk, true);
 		}
 	}
-	getSkillValue<Ab extends AbilitiesEnum>(
+	getSkillValue<Ab extends AbilitiesType>(
 		ab: Ab,
-		sk: SkillsEnum[Ab],
+		sk: SkillsType[Ab],
 	): number {
-		console.log(`getSkillValue(${ab}, ${sk})`);
+		console.log(`getSkillValue("${ab}", "${sk}")`);
 		return (
 			this.getAbilityModifier(ab) +
 			(this.getSkillProficiency(ab, sk)
@@ -323,9 +377,9 @@ export class Character {
 			(this.getSkillExpertise(ab, sk) ? this.getProficiencyBonus() : 0)
 		);
 	}
-	getPassiveSkillValue<Ab extends AbilitiesEnum>(
+	getPassiveSkillValue<Ab extends AbilitiesType>(
 		ability: Ab,
-		skill: SkillsEnum[Ab],
+		skill: SkillsType[Ab],
 	): number {
 		console.log(`getPassivePerception()`);
 		return 10 + this.getSkillValue(ability, skill);
