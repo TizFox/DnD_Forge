@@ -1,4 +1,4 @@
-export enum Classes {
+enum Classes {
 	Artificer = "artificer",
 	Barbarian = "barbarian",
 	Bard = "bard",
@@ -28,9 +28,10 @@ export enum Classes {
 	Multiclasse = Multiclass,
 }
 
-const getTrueClass = (inputClass: string): Classes | undefined => {
-	let capClass = capitalize(inputClass);
-	return Object.values(Classes)[Object.keys(Classes).indexOf(capClass)];
+const getTrueClass = (rawClass: string): Classes | undefined => {
+	return Object.values(Classes)[
+		Object.keys(Classes).indexOf(capitalize(rawClass))
+	];
 };
 
 const BASE_COLOR = "var(--color-slate-400)";
