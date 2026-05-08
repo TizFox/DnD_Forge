@@ -49,7 +49,7 @@
 	</div>
 
 	{#if showBody}
-		<div class="spell-body">BODYYY</div>
+		<div class="spell-body">{JSON.stringify(spell)}</div>
 	{/if}
 </div>
 

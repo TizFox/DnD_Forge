@@ -1,6 +1,5 @@
 TODO:
-- [  TS  ] Aggiungere campi per caratteristiche da incantatore
+- [SVELTE] Finire il body delle Spell
 - [SVELTE] Aggiungere input per:
  			- armi
-    		- caratteristiche da incantatore e incantesimi
       		- descrizione (età, altezza, peso ...)
