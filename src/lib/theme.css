@@ -4,6 +4,7 @@
 	--main-size: 86vh;
 	--bars-size: 7vh;
 
+	--max-btn-h: calc(var(--bars-size) / 2);
 	--color-disabled: var(--color-red-300);
 
 	--color-dark: var(--color-slate-50);
@@ -34,11 +35,15 @@
 	@apply font-bold text-cta text-center;
 }
 @utility error-text {
-	@apply font-bold text-err text-center p-5;
+	@apply font-bold text-err text-center p-3;
 }
 
 @utility transition-std {
 	@apply transition-colors duration-200 ease-in-out;
+}
+
+@utility base-container {
+	@apply h-fit p-3 bg-z1 rounded-xl;
 }
 
 @layer base {
@@ -72,7 +77,7 @@
 		hover:text-cta hover:border-cta;
 	}
 	.std-btn {
-		@apply h-full px-3
+		@apply h-full max-h-(--max-btn-h) px-3
 		flex items-center justify-center
 		transition-std
 		rounded-lg

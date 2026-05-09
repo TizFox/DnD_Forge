@@ -2,9 +2,11 @@
 	import { Character } from "$lib/character.svelte";
 	import { getSpellNames } from "$lib/spells";
 
-	import SpellcastingAbility from "$lib/baseComponents/SpellcastingAbility.svelte";
+	import SpellAbility from "$lib/baseComponents/SpellAbility.svelte";
+	import Value from "$lib/baseComponents/Value.svelte";
 	import TextInput from "$lib/baseComponents/TextInput.svelte";
 	import Spell from "$lib/baseComponents/Spell.svelte";
+	import SpellSlot from "$lib/baseComponents/SpellSlot.svelte";
 
 	type SpellcastingInfoPropsType = {
 		wClass?: string;
@@ -16,6 +18,9 @@
 	let spellBonus = $derived(character.getSpellcastingModifier());
 	let spellDC = $derived(character.getSpellcastingDC());
 
+	let spells = $derived(character.getSpellList());
+	let spellLevels = $derived([...new Set(spells.map((s) => s.level))].sort());
+
 	let newSpellName = $state("");
 </script>
 
@@ -26,18 +31,18 @@
 	<div class="spellcasting-info">
 		<div class="flex-2">
 			<h3 class="main-text">ABILITY</h3>
-			<SpellcastingAbility {character} />
+			<SpellAbility {character} />
 		</div>
 		<div class="flex-1">
 			<h3 class="main-text">SPELL BONUS</h3>
-			<h3 class="spellcasting-value">{spellBonus}</h3>
+			<Value value={spellBonus} />
 		</div>
 		<div class="flex-1">
 			<h3 class="main-text">SPELL DC</h3>
-			<h3 class="spellcasting-value">{spellDC}</h3>
+			<Value value={spellDC} />
 		</div>
 	</div>
-	<div class="spellcasting-add">
+	<div class="spellcasting-new">
 		<h3 class="main-text flex-1">NEW SPELL NAME</h3>
 		<TextInput
 			wClass="flex-2"
@@ -57,10 +62,21 @@
 		>
 	</div>
 	<div class="spellcasting-spells">
-		{#each character.getSpellList() as spell}
+		{#if spellLevels.length > 0}
+			<hr class="my-3" />
+			<div class="grid grid-cols-3 gap-1">
+				{#each spellLevels as level}
+					<SpellSlot {character} {level} />
+				{/each}
+			</div>
+
+			<hr class="my-3" />
+		{/if}
+
+		{#each spells as spell}
 			<Spell {character} {spell} />
 		{:else}
-			<h3 class="main-text">No Spells</h3>
+			<h3 class="main-text">NO SPELLS</h3>
 		{/each}
 	</div>
 </div>
@@ -71,23 +87,16 @@
 	@import "$lib/theme.css";
 
 	.spellcasting-container {
-		@apply h-full p-3 bg-z1
-		flex flex-col gap-2
-		rounded-xl;
+		@apply base-container
+		flex flex-col gap-2;
 	}
 
-	.spellcasting-add {
+	.spellcasting-new {
 		@apply flex flex-row gap-2;
 	}
 
 	.spellcasting-info {
 		@apply flex flex-row gap-2;
-
-		.spellcasting-value {
-			@apply w-full h-8 p-2 bg-z2
-			flex items-center justify-center
-			rounded-lg;
-		}
 	}
 
 	.spellcasting-spells {

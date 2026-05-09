@@ -26,6 +26,6 @@
 	@import "$lib/theme.css";
 
 	.stats-container {
-		@apply flex flex-col items-start justify-between gap-3;
+		@apply flex flex-col items-start justify-start gap-3;
 	}
 </style>

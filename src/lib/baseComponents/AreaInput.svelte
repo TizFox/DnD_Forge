@@ -18,14 +18,14 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} text-container">
+<div class="{wClass} area-container">
 	{#if title !== ""}
 		<h2 class="main-text">{title.toUpperCase()}</h2>
 	{/if}
 	<textarea
 		bind:value
 		onchange={() => onChange(value)}
-		class="{rClass} text-input"
+		class="{rClass} area-input"
 	>
 	</textarea>
 </div>
@@ -35,12 +35,11 @@
 <style lang="postcss">
 	@import "$lib/theme.css";
 
-	.text-container {
-		@apply p-3 bg-z1
-		flex flex-col items-center justify-center gap-1
-		rounded-xl;
+	.area-container {
+		@apply base-container
+		flex flex-col items-center justify-center gap-1;
 	}
-	.text-input {
+	.area-input {
 		@apply w-full h-full p-3 bg-z2 text-left field-sizing-content
 		border-2 border-dark
 		transition-std

@@ -2,6 +2,8 @@
 	import { Character } from "$lib/character.svelte";
 	import type { AbilitiesType, SkillsType } from "$lib/types";
 
+	import Value from "./Value.svelte";
+
 	type PassiveSkillPropsType = {
 		wClass?: string;
 		character: Character;
@@ -21,9 +23,9 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} ps-container">
+<div class="{wClass} passive-skill-container">
 	<h3 class="main-text">Passive<br />{skill.toUpperCase()}</h3>
-	<h3 class="ps-value">{passiveSkill}</h3>
+	<Value value={passiveSkill} />
 </div>
 
 <!------------------------------------------>
@@ -31,15 +33,8 @@
 <style lang="postcss">
 	@import "$lib/theme.css";
 
-	.ps-container {
-		@apply h-fit p-3 bg-z1
-		flex flex-col items-center justify-center
-		rounded-xl;
-	}
-
-	.ps-value {
-		@apply w-full h-8 p-2 bg-z2
-		flex items-center justify-center
-		rounded-lg;
+	.passive-skill-container {
+		@apply base-container
+		flex flex-col items-center justify-center;
 	}
 </style>

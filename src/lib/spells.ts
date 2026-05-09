@@ -32,5 +32,5 @@ export const getSpell = (name: string): Spell | null => {
 };
 
 export const getSpellNames = (): string[] => {
-	return ALL_SPELLS.map((x) => x.Name);
+	return ALL_SPELLS.map((s) => s.Name);
 };

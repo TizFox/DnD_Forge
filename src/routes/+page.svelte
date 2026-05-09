@@ -43,7 +43,7 @@
 
 		document.documentElement.style.setProperty(
 			"--color-cta",
-			getColor(dndChar.info.class.toLowerCase()),
+			getColor(dndChar.info.class),
 		);
 	});
 </script>
@@ -88,7 +88,7 @@
 		</button>
 
 		<!-- Input -->
-		<div class="w-fit h-full relative group rounded-lg">
+		<div class="w-fit h-full max-h-(--max-btn-h) relative group rounded-lg">
 			<button
 				type="button"
 				onclick={() => fileInput?.click()}
@@ -127,17 +127,17 @@
 		<!--min-w-7xl-->
 		{#if dndChar}
 			<Info character={dndChar} />
-			<div class="w-full grid grid-cols-3 gap-5">
-				<Stats character={dndChar} />
-				<div class="col-span-2 grid grid-cols-2 gap-5">
-					<div class="h-min flex flex-col gap-5">
+			<div class="w-full flex flex-row gap-5">
+				<Stats wClass="flex-1" character={dndChar} />
+				<div class="flex-2 grid grid-cols-2 auto-rows-fr gap-5">
+					<div class="flex flex-col gap-5">
 						<Ca character={dndChar} />
 						<Hp character={dndChar} />
 						<Actions character={dndChar} />
 						<Passive character={dndChar} />
 						<Equipment character={dndChar} />
 					</div>
-					<div class="h-min flex flex-col gap-5">
+					<div class="flex flex-col gap-5">
 						<Features character={dndChar} />
 						<Characteristics character={dndChar} />
 					</div>

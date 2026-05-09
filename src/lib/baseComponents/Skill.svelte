@@ -3,6 +3,7 @@
 	import type { AbilitiesType, SkillsType } from "$lib/types";
 
 	import CheckboxInput from "./CheckboxInput.svelte";
+	import Value from "./Value.svelte";
 
 	type SkillPropsType = {
 		character: Character;
@@ -45,9 +46,7 @@
 		/>
 	</div>
 
-	<h3 class="skill-value">
-		{value > 0 ? "+" : ""}{value}
-	</h3>
+	<Value wClass="flex-1" {value} />
 
 	<p class="skill-text">
 		{isSaveThrow
@@ -68,11 +67,6 @@
 	.skill-checks {
 		@apply flex-1
 		flex flex-row items-center gap-0.5;
-	}
-	.skill-value {
-		@apply flex-1 h-8 px-2 bg-z2
-		flex items-center justify-center
-		rounded-lg;
 	}
 	.skill-text {
 		@apply flex-3 text-left;

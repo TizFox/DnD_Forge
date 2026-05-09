@@ -28,6 +28,9 @@ enum Classes {
 	Multiclasse = Multiclass,
 }
 
+const capitalize = (str: string): string => {
+	return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+};
 const getTrueClass = (rawClass: string): Classes | undefined => {
 	return Object.values(Classes)[
 		Object.keys(Classes).indexOf(capitalize(rawClass))
@@ -50,10 +53,6 @@ const colorMap: Record<Classes, string> = {
 	[Classes.Warlock]: "var(--color-violet-400)",
 	[Classes.Wizard]: "var(--color-indigo-400)",
 	[Classes.Multiclass]: "#DAA520",
-};
-
-const capitalize = (str: string): string => {
-	return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 };
 
 export const getColor = (charClass: string): string => {

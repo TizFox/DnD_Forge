@@ -1,4 +1,3 @@
-import { getSpell } from "./spells";
 import {
 	type Alignments,
 	type CoinsEnum,
@@ -7,11 +6,14 @@ import {
 	type Ability,
 	type Weapon,
 	type Spell,
+	type SpellSlot,
 	Morality,
 	Order,
 	Sizes,
 	SIZES_ELUSION,
 } from "./types";
+
+import { getSpell } from "./spells";
 
 export type CharacterType = InstanceType<typeof Character>;
 
@@ -88,6 +90,7 @@ export class Character {
 	magic: {
 		spellcastingAbility: AbilitiesType;
 		spells: Record<string, Spell | null>;
+		spellSlots: SpellSlot[];
 	};
 
 	static from(data: CharacterType): Character {
@@ -235,6 +238,17 @@ export class Character {
 		this.magic = $state({
 			spellcastingAbility: "strength",
 			spells: {},
+			spellSlots: [
+				{ level: 1, total: 0, used: 0 },
+				{ level: 2, total: 0, used: 0 },
+				{ level: 3, total: 0, used: 0 },
+				{ level: 4, total: 0, used: 0 },
+				{ level: 5, total: 0, used: 0 },
+				{ level: 6, total: 0, used: 0 },
+				{ level: 7, total: 0, used: 0 },
+				{ level: 8, total: 0, used: 0 },
+				{ level: 9, total: 0, used: 0 },
+			],
 		});
 	}
 

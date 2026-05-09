@@ -14,13 +14,13 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} sizes-container">
+<div class="{wClass} race-container">
 	<TextInput
 		rClass="rounded-l-lg"
 		value={character.info.race}
 		onChange={(s: string) => (character.info.race = s)}
 	/>
-	<select class="sizes-select" bind:value={character.info.size}>
+	<select class="race-select" bind:value={character.info.size}>
 		{#each Object.values(Sizes) as m}
 			<option value={m}>{m.toUpperCase()}</option>
 		{/each}
@@ -32,11 +32,11 @@
 <style lang="postcss">
 	@import "$lib/theme.css";
 
-	.sizes-container {
+	.race-container {
 		@apply flex flex-row;
 	}
 
-	.sizes-select {
+	.race-select {
 		@apply w-min h-8 px-3 bg-z2 text-left
 		border-2 border-dark rounded-r-lg
 		transition-std

@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
+	import { getClassNames } from "$lib/classes";
 
 	import TextInput from "$lib/baseComponents/TextInput.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
+	import Value from "$lib/baseComponents/Value.svelte";
 	import Alignment from "$lib/baseComponents/Alignment.svelte";
 	import Race from "$lib/baseComponents/Race.svelte";
-	import { getClassNames } from "$lib/classes";
 
 	type InfoPropsType = {
 		character: Character;
@@ -56,11 +57,7 @@
 		<div class="info-subsection">
 			<h3>P.BONUS</h3>
 			<span>
-				<p
-					class="w-full h-8 bg-z2 flex items-center justify-center px-3 rounded-lg"
-				>
-					{proficiencyBonus}
-				</p>
+				<Value value={proficiencyBonus} />
 			</span>
 		</div>
 	</div>
@@ -87,7 +84,10 @@
 			<span>
 				<TextInput
 					value={character.info.class}
-					suggestions={{ id: "classes", options: getClassNames() }}
+					suggestions={{
+						id: "classesList",
+						options: getClassNames(),
+					}}
 					onChange={(s: string) => (character.info.class = s)}
 				/>
 			</span>
@@ -107,9 +107,8 @@
 	@import "$lib/theme.css";
 
 	.info-container {
-		@apply w-full h-fit p-3 bg-z1
-		grid grid-cols-2 items-center gap-2
-		rounded-xl;
+		@apply w-full base-container
+		grid grid-cols-2 items-center gap-2;
 	}
 
 	.info-section {

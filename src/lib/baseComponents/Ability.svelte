@@ -20,6 +20,7 @@
 
 <div class="ability-container">
 	<h2 class="main-text">{ability.toUpperCase()}</h2>
+
 	<h1 class="ability-mod main-text">
 		{modifier > 0 ? "+" : ""}{modifier}
 	</h1>
@@ -47,9 +48,8 @@
 	@import "$lib/theme.css";
 
 	.ability-container {
-		@apply w-full p-3 bg-z1
-		flex flex-col items-center justify-center gap-3
-		rounded-xl;
+		@apply w-full base-container
+		flex flex-col items-center justify-center gap-3;
 	}
 
 	.ability-mod {

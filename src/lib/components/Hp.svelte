@@ -3,6 +3,7 @@
 
 	import { Character } from "$lib/character.svelte";
 
+	import Value from "$lib/baseComponents/Value.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import CheckboxInput from "$lib/baseComponents/CheckboxInput.svelte";
 
@@ -43,13 +44,10 @@
 		<div class="hp-item">
 			<span class="main-text">HIT DICE</span>
 			<div class="hp-multi">
-				<p
-					class="w-full h-8 bg-z2 flex items-center justify-center rounded-lg"
-				>
-					{character.hp.hitDice.max}
-				</p>
+				<Value pClass="p-0" value={character.hp.hitDice.max} />
 
 				<p class="font-bold">d</p>
+
 				<NumberInput
 					value={character.hp.hitDice.type}
 					onChange={(n: number) => (character.hp.hitDice.type = n)}
@@ -116,9 +114,8 @@
 	@import "$lib/theme.css";
 
 	.hp-container {
-		@apply h-fit p-3 bg-z1
-		flex flex-col items-center justify-center gap-3
-		rounded-xl;
+		@apply base-container
+		flex flex-col items-center justify-center gap-3;
 	}
 
 	.hp-multi {

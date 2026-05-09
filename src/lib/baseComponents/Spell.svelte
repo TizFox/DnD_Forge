@@ -60,7 +60,7 @@
 
 	.spell-container {
 		@apply h-fit bg-z2 p-3
-		flex flex-col gap-3
+		flex flex-col gap-1
 		rounded-lg;
 	}
 

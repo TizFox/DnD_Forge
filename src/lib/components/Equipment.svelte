@@ -49,9 +49,8 @@
 	@import "$lib/theme.css";
 
 	.equipment-container {
-		@apply h-fit pb-3 bg-z1
-		flex flex-col items-center justify-center
-		rounded-xl;
+		@apply base-container p-0 pb-3
+		flex flex-col items-center justify-center;
 	}
 
 	.coins-container {

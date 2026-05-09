@@ -87,6 +87,12 @@ export type SpellSchools =
 	| "Necromancy"
 	| "Trasmutation";
 
+export type SpellSlot = {
+	level: Exclude<SpellLevels, 0>;
+	total: number;
+	used: number;
+};
+
 export interface Spell {
 	manual: string;
 	name: string;

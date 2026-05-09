@@ -61,8 +61,7 @@
 	@import "$lib/theme.css";
 
 	.ca-container {
-		@apply h-fit p-3 bg-z1
-		rounded-xl;
+		@apply base-container;
 	}
 
 	.ca-col {
