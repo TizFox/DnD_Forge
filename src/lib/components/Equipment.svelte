@@ -2,6 +2,7 @@
 	import type { CharacterType } from "$lib/character.svelte";
 	import { Character } from "$lib/character.svelte";
 
+	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
 	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 
@@ -21,7 +22,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} equipment-container">
+<BaseContainer extraClasses="{wClass} flex flex-col gap-3">
 	<AreaInput
 		title="equipment"
 		value={character.equipment.inventory}
@@ -41,21 +42,15 @@
 			</div>
 		{/each}
 	</div>
-</div>
+</BaseContainer>
 
 <!------------------------------------------>
 
 <style lang="postcss">
 	@import "$lib/theme.css";
 
-	.equipment-container {
-		@apply base-container p-0 pb-3
-		flex flex-col items-center justify-center;
-	}
-
 	.coins-container {
-		@apply w-full px-3
-		flex flex-row gap-1;
+		@apply px-3 flex gap-1;
 
 		.coin {
 			@apply w-full flex flex-col;

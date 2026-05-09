@@ -12,7 +12,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} alignments-container">
+<div class="{wClass} flex">
 	<select
 		class="morality-select"
 		bind:value={character.info.alignment.morality}
@@ -32,10 +32,6 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	.alignments-container {
-		@apply flex flex-row;
-	}
 
 	select {
 		@apply flex-1 h-8 px-3 bg-z2 text-left

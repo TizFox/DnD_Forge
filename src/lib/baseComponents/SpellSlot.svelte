@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Character } from "$lib/character.svelte";
 
-	import NumberInput from "./NumberInput.svelte";
+	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 
 	type SpellSlotPropsType = {
 		wClass?: string;
@@ -13,15 +13,16 @@
 </script>
 
 <!------------------------------------------>
+
 {#if level !== 0}
 	<div class="{wClass} spell-slot-container">
 		<h3 class="main-text">
 			SLOT LV. {level}
 		</h3>
 		<p class="spell-slot-input">
-			<span class="flex-1 text-right">TOT:</span>
+			<span class="text-right">TOT:</span>
 			<NumberInput
-				wClass="flex-3"
+				wClass="col-span-2"
 				value={character.magic.spellSlots[level - 1].total}
 				onChange={(n: number) => {
 					character.magic.spellSlots[level - 1].total = n;
@@ -29,9 +30,9 @@
 			/>
 		</p>
 		<p class="spell-slot-input">
-			<span class="flex-1 text-right">USED:</span>
+			<span class="text-right">USED:</span>
 			<NumberInput
-				wClass="flex-3"
+				wClass="col-span-2"
 				value={character.magic.spellSlots[level - 1].used}
 				maxValue={character.magic.spellSlots[level - 1].total}
 				onChange={(n: number) => {
@@ -54,6 +55,6 @@
 	}
 
 	.spell-slot-input {
-		@apply flex-1 flex flex-row;
+		@apply flex-1 grid grid-cols-3;
 	}
 </style>

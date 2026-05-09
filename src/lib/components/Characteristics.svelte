@@ -2,6 +2,7 @@
 	import type { CharacterType } from "$lib/character.svelte";
 	import { Character } from "$lib/character.svelte";
 
+	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
 	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
 
 	type CharacteristicsPropsType = {
@@ -14,7 +15,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} characteristics-container">
+<BaseContainer extraClasses="{wClass} grid grid-cols-2 gap-3">
 	{#each Object.entries(character.info.characteristics) as [key, value]}
 		<AreaInput
 			wClass={key === "backstory" ? "col-span-2" : ""}
@@ -27,14 +28,10 @@
 			}}
 		/>
 	{/each}
-</div>
+</BaseContainer>
 
 <!------------------------------------------>
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	.characteristics-container {
-		@apply h-fit grid grid-cols-2 gap-3;
-	}
 </style>

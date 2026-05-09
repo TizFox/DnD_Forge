@@ -2,7 +2,8 @@
 	import { Character } from "$lib/character.svelte";
 	import type { AbilitiesType, SkillsType } from "$lib/types";
 
-	import Value from "./Value.svelte";
+	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Value from "$lib/baseComponents/Value.svelte";
 
 	type PassiveSkillPropsType = {
 		wClass?: string;
@@ -23,18 +24,13 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} passive-skill-container">
+<BaseContainer extraClasses="{wClass} flex flex-col">
 	<h3 class="main-text">Passive<br />{skill.toUpperCase()}</h3>
 	<Value value={passiveSkill} />
-</div>
+</BaseContainer>
 
 <!------------------------------------------>
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	.passive-skill-container {
-		@apply base-container
-		flex flex-col items-center justify-center;
-	}
 </style>

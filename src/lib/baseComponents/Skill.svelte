@@ -2,8 +2,8 @@
 	import { Character } from "$lib/character.svelte";
 	import type { AbilitiesType, SkillsType } from "$lib/types";
 
-	import CheckboxInput from "./CheckboxInput.svelte";
-	import Value from "./Value.svelte";
+	import CheckboxInput from "$lib/baseComponents/CheckboxInput.svelte";
+	import Value from "$lib/baseComponents/Value.svelte";
 
 	type SkillPropsType = {
 		character: Character;

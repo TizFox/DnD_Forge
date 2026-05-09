@@ -2,15 +2,17 @@
 	import { Character } from "$lib/character.svelte";
 	import { ALL_SKILLS, type AbilitiesType } from "$lib/types";
 
-	import NumberInput from "./NumberInput.svelte";
-	import Skill from "./Skill.svelte";
+	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
+	import Skill from "$lib/baseComponents/Skill.svelte";
 
 	type AbilityPropsType = {
+		wClass?: string;
 		character: Character;
 		ability: AbilitiesType;
 	};
 
-	let { character, ability }: AbilityPropsType = $props();
+	let { wClass = "w-full", character, ability }: AbilityPropsType = $props();
 
 	let value = $derived(character.getAbilityValue(ability));
 	let modifier = $derived(character.getAbilityModifier(ability));
@@ -18,7 +20,7 @@
 
 <!------------------------------------------>
 
-<div class="ability-container">
+<BaseContainer extraClasses="{wClass} flex flex-col items-center gap-3">
 	<h2 class="main-text">{ability.toUpperCase()}</h2>
 
 	<h1 class="ability-mod main-text">
@@ -40,17 +42,12 @@
 			<Skill {character} {ability} {skill} />
 		{/each}
 	{/if}
-</div>
+</BaseContainer>
 
 <!------------------------------------------>
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	.ability-container {
-		@apply w-full base-container
-		flex flex-col items-center justify-center gap-3;
-	}
 
 	.ability-mod {
 		@apply w-fit p-3 bg-z2

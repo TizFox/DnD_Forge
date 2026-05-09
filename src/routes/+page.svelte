@@ -82,6 +82,7 @@
 					save(dndChar);
 				}
 			}}
+			disabled={dndChar === null}
 			class="std-btn"
 		>
 			Save

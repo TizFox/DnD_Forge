@@ -46,7 +46,7 @@ export class Character {
 			other: string;
 		};
 		characteristics: {
-			personality_traits: string;
+			personality: string;
 			ideals: string;
 			bonds: string;
 			flaws: string;
@@ -139,7 +139,7 @@ export class Character {
 				other: "",
 			},
 			characteristics: {
-				personality_traits: "",
+				personality: "",
 				ideals: "",
 				bonds: "",
 				flaws: "",

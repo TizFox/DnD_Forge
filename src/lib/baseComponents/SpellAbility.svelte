@@ -12,7 +12,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} spell-ability-container">
+<div class="{wClass} flex flex-row">
 	<select
 		class="spell-ability-select"
 		bind:value={character.magic.spellcastingAbility}
@@ -27,10 +27,6 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	.spell-ability-container {
-		@apply flex flex-row;
-	}
 
 	.spell-ability-select {
 		@apply flex-1 h-8 px-3 bg-z2 text-left

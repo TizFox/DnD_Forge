@@ -41,7 +41,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} number-input-countainer">
+<div class="{wClass} flex flex-col">
 	{#if title !== ""}
 		<span class="main-text">{title.toUpperCase()}</span>
 	{/if}
@@ -72,10 +72,6 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	.number-input-countainer {
-		@apply flex flex-col;
-	}
 
 	.number-input {
 		@apply w-full h-8 px-3 bg-z2 text-center

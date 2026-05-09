@@ -2,7 +2,7 @@
 	import { Character } from "$lib/character.svelte";
 	import { Sizes } from "$lib/types";
 
-	import TextInput from "./TextInput.svelte";
+	import TextInput from "$lib/baseComponents/TextInput.svelte";
 
 	type RacePropsType = {
 		wClass?: string;
@@ -14,7 +14,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} race-container">
+<div class="{wClass} flex">
 	<TextInput
 		rClass="rounded-l-lg"
 		value={character.info.race}
@@ -31,10 +31,6 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	.race-container {
-		@apply flex flex-row;
-	}
 
 	.race-select {
 		@apply w-min h-8 px-3 bg-z2 text-left

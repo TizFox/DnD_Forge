@@ -2,6 +2,7 @@
 	import { Character } from "$lib/character.svelte";
 	import { getClassNames } from "$lib/classes";
 
+	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
 	import TextInput from "$lib/baseComponents/TextInput.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import Value from "$lib/baseComponents/Value.svelte";
@@ -9,17 +10,18 @@
 	import Race from "$lib/baseComponents/Race.svelte";
 
 	type InfoPropsType = {
+		wClass?: string;
 		character: Character;
 	};
 
-	let { character }: InfoPropsType = $props();
+	let { wClass = "w-full", character }: InfoPropsType = $props();
 
 	let proficiencyBonus = $derived(character.getProficiencyBonus());
 </script>
 
 <!------------------------------------------>
 
-<div class="info-container">
+<BaseContainer extraClasses="{wClass} grid grid-cols-2 items-center gap-2">
 	<div class="info-section">
 		<div class="info-subsection">
 			<h3>NAME</h3>
@@ -99,17 +101,12 @@
 			</span>
 		</div>
 	</div>
-</div>
+</BaseContainer>
 
 <!------------------------------------------>
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	.info-container {
-		@apply w-full base-container
-		grid grid-cols-2 items-center gap-2;
-	}
 
 	.info-section {
 		@apply flex flex-col items-start gap-2;

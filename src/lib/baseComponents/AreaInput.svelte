@@ -18,7 +18,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} area-container">
+<div class="{wClass} flex flex-col">
 	{#if title !== ""}
 		<h2 class="main-text">{title.toUpperCase()}</h2>
 	{/if}
@@ -35,10 +35,6 @@
 <style lang="postcss">
 	@import "$lib/theme.css";
 
-	.area-container {
-		@apply base-container
-		flex flex-col items-center justify-center gap-1;
-	}
 	.area-input {
 		@apply w-full h-full p-3 bg-z2 text-left field-sizing-content
 		border-2 border-dark

@@ -3,6 +3,7 @@
 
 	import { Character } from "$lib/character.svelte";
 
+	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
 	import Value from "$lib/baseComponents/Value.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import CheckboxInput from "$lib/baseComponents/CheckboxInput.svelte";
@@ -17,7 +18,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} hp-container">
+<BaseContainer extraClasses="{wClass} flex flex-col gap-3">
 	<div class="hp-multi">
 		<NumberInput
 			title="max hp"
@@ -106,17 +107,12 @@
 			</div>
 		</div>
 	</div>
-</div>
+</BaseContainer>
 
 <!------------------------------------------>
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	.hp-container {
-		@apply base-container
-		flex flex-col items-center justify-center gap-3;
-	}
 
 	.hp-multi {
 		@apply w-full

@@ -42,10 +42,6 @@
 	@apply transition-colors duration-200 ease-in-out;
 }
 
-@utility base-container {
-	@apply h-fit p-3 bg-z1 rounded-xl;
-}
-
 @layer base {
 	body {
 		@apply overflow-x-hidden

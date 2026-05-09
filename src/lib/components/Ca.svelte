@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
 
+	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import CheckboxInput from "$lib/baseComponents/CheckboxInput.svelte";
 
@@ -14,7 +15,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} ca-container">
+<BaseContainer extraClasses={wClass}>
 	<div class="ca-col gap-3">
 		<div class="ca-row">
 			<NumberInput
@@ -53,24 +54,18 @@
 			</div>
 		</div>
 	</div>
-</div>
+</BaseContainer>
 
 <!------------------------------------------>
 
 <style lang="postcss">
 	@import "$lib/theme.css";
 
-	.ca-container {
-		@apply base-container;
-	}
-
 	.ca-col {
-		@apply w-full h-full
-		flex flex-col items-center justify-center;
+		@apply flex flex-col;
 	}
 
 	.ca-row {
-		@apply w-full h-full
-		flex flex-row items-center justify-center gap-1;
+		@apply flex gap-1;
 	}
 </style>
