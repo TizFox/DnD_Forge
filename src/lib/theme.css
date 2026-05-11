@@ -98,7 +98,8 @@
 		&:disabled {
 			@apply text-light border-disabled bg-disabled;
 			&:hover {
-				@apply text-light border-disabled bg-disabled;
+				@apply text-light border-disabled bg-disabled
+				cursor-default;
 			}
 		}
 	}
