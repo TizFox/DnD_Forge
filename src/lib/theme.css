@@ -38,6 +38,9 @@
 	@apply font-bold text-err text-center p-std;
 }
 
+@utility p-double {
+	@apply p-6;
+}
 @utility p-std {
 	@apply p-3;
 }
