@@ -26,7 +26,7 @@
 		<div class="spell-info">
 			<h3 class="main-text">{spell.name}</h3>
 			<div class="spell-subinfo">
-				<span class="flex-1 border-dark border-2 border-r rounded-l-lg">
+				<span class="flex-1 border-dark border-2 rounded-l-lg">
 					{#if spell.level === 0}
 						Cantrip
 					{:else}
@@ -34,18 +34,18 @@
 					{/if}
 				</span>
 
-				<span class="flex-2 border-dark border-2 border-x">
+				<span class="flex-2 border-dark border-2">
 					{spell.castingTime}
 					{#if spell.castingTime === "Bonus"}
 						Action
 					{/if}
 				</span>
 
-				<span class="flex-3 border-dark border-2 border-x">
+				<span class="flex-3 border-dark border-2">
 					{spell.duration}
 				</span>
 
-				<span class="flex-1 border-dark border-2 border-l rounded-r-lg"
+				<span class="flex-1 border-dark border-2 rounded-r-lg"
 					>{spell.range}</span
 				>
 			</div>
@@ -113,5 +113,6 @@
 	}
 
 	.spell-body {
+		@apply p-half border-dark border-2 rounded-lg;
 	}
 </style>

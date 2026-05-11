@@ -1,5 +1,4 @@
 TODO:
-- [SVELTE] Finire il body delle Spell
 - [SVELTE] Aggiungere input per:
  			- armi
       		- descrizione (età, altezza, peso ...)
