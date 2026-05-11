@@ -25,15 +25,36 @@
 	<div class="spell-header">
 		<div class="spell-info">
 			<h3 class="main-text">{spell.name}</h3>
-			<p>
-				{spell.level}
-			</p>
+			<div class="spell-subinfo">
+				<span class="flex-1 border-dark border-2 border-r rounded-l-lg">
+					{#if spell.level === 0}
+						Cantrip
+					{:else}
+						LV. {spell.level}
+					{/if}
+				</span>
+
+				<span class="flex-2 border-dark border-2 border-x">
+					{spell.castingTime}
+					{#if spell.castingTime === "Bonus"}
+						Action
+					{/if}
+				</span>
+
+				<span class="flex-3 border-dark border-2 border-x">
+					{spell.duration}
+				</span>
+
+				<span class="flex-1 border-dark border-2 border-l rounded-r-lg"
+					>{spell.range}</span
+				>
+			</div>
 		</div>
 
 		<div class="spell-actions">
 			<button
 				onclick={() => (showBody = !showBody)}
-				class="std-btn p-half"
+				class="std-btn p-half aspect-square"
 			>
 				{#if showBody}
 					<EyeOff />
@@ -43,13 +64,20 @@
 			</button>
 			<button
 				onclick={() => character.removeSpell(spell.name)}
-				class="std-btn p-half"><Trash2 /></button
+				class="std-btn p-half aspect-square"><Trash2 /></button
 			>
 		</div>
 	</div>
 
 	{#if showBody}
-		<div class="spell-body">{JSON.stringify(spell)}</div>
+		<div class="spell-body">
+			{spell.manual}<br />
+			{spell.school}, {spell.components}<br /><br />
+			{spell.description}
+			{#if spell.higherLevels !== ""}<br /><br />
+				{spell.higherLevels}
+			{/if}
+		</div>
 	{/if}
 </div>
 
@@ -60,21 +88,27 @@
 
 	.spell-container {
 		@apply h-fit bg-z2 p-std
-		flex flex-col gap-1
+		flex flex-col
 		rounded-lg;
 	}
 
 	.spell-header {
-		@apply w-full
-		flex flex-row gap-5;
+		@apply flex;
 
 		.spell-info {
-			@apply flex-1
+			@apply flex-5
 			flex flex-col items-start justify-center;
+
+			.spell-subinfo {
+				@apply w-full
+				flex
+				text-center;
+			}
 		}
 
 		.spell-actions {
-			@apply flex flex-row items-center gap-2;
+			@apply flex-1
+			flex items-center justify-end gap-2;
 		}
 	}
 

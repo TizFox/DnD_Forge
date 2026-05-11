@@ -88,11 +88,6 @@
 <style lang="postcss">
 	@import "$lib/theme.css";
 
-	.spellcasting-container {
-		@apply base-container
-		flex flex-col gap-2;
-	}
-
 	.spellcasting-new {
 		@apply flex flex-row gap-2;
 	}
