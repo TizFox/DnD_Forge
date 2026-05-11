@@ -1,7 +1,10 @@
 <script lang="ts">
+	import type { Component } from "svelte";
+	import type { IconProps } from "@lucide/svelte";
 	import { Heart, Skull } from "@lucide/svelte";
 
 	import { Character } from "$lib/character.svelte";
+	import { DEATH_TS_TYPES, type DeathTS } from "$lib/types";
 
 	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
 	import Value from "$lib/baseComponents/Value.svelte";
@@ -14,6 +17,11 @@
 	};
 
 	let { wClass = "w-full", character }: HpPropsType = $props();
+
+	const iconMap: Record<DeathTS, Component<IconProps>> = {
+		success: Heart,
+		failure: Skull,
+	} as const;
 </script>
 
 <!------------------------------------------>
@@ -63,48 +71,38 @@
 
 		<div class="hp-item">
 			<span class="main-text">DEATH TS</span>
-			<div class="hp-multi">
-				<Heart class="text-cta" />
-				<CheckboxInput
-					checked={character.hp.deathTS.success >= 1}
-					onChange={(val) => {
-						character.hp.deathTS.success = val ? 1 : 0;
-					}}
-				/>
-				<CheckboxInput
-					checked={character.hp.deathTS.success >= 2}
-					onChange={(val) => {
-						character.hp.deathTS.success = val ? 2 : 1;
-					}}
-				/>
-				<CheckboxInput
-					checked={character.hp.deathTS.success >= 3}
-					onChange={(val) => {
-						character.hp.deathTS.success = val ? 3 : 2;
-					}}
-				/>
-			</div>
-			<div class="hp-multi">
-				<Skull class="text-cta" />
-				<CheckboxInput
-					checked={character.hp.deathTS.failure >= 1}
-					onChange={(val) => {
-						character.hp.deathTS.failure = val ? 1 : 0;
-					}}
-				/>
-				<CheckboxInput
-					checked={character.hp.deathTS.failure >= 2}
-					onChange={(val) => {
-						character.hp.deathTS.failure = val ? 2 : 1;
-					}}
-				/>
-				<CheckboxInput
-					checked={character.hp.deathTS.failure >= 3}
-					onChange={(val) => {
-						character.hp.deathTS.failure = val ? 3 : 2;
-					}}
-				/>
-			</div>
+
+			{#each DEATH_TS_TYPES as type}
+				{@const Icon = iconMap[type]}
+				<div class="w-full flex items-center">
+					<Icon class="text-cta mr-1" />
+
+					<CheckboxInput
+						wClass="flex-1"
+						rClass="rounded-l-lg"
+						checked={character.hp.deathTS[type] >= 1}
+						onChange={(val) => {
+							character.hp.deathTS[type] = val ? 1 : 0;
+						}}
+					/>
+					<CheckboxInput
+						wClass="flex-1"
+						rClass=""
+						checked={character.hp.deathTS[type] >= 2}
+						onChange={(val) => {
+							character.hp.deathTS[type] = val ? 2 : 1;
+						}}
+					/>
+					<CheckboxInput
+						wClass="flex-1"
+						rClass="rounded-r-lg"
+						checked={character.hp.deathTS[type] >= 3}
+						onChange={(val) => {
+							character.hp.deathTS[type] = val ? 3 : 2;
+						}}
+					/>
+				</div>
+			{/each}
 		</div>
 	</div>
 </BaseContainer>
@@ -115,7 +113,7 @@
 	@import "$lib/theme.css";
 
 	.hp-multi {
-		@apply w-full
+		@apply flex-1
 		flex flex-row items-center justify-center gap-3;
 	}
 	.hp-item {

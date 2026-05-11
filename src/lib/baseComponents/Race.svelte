@@ -33,7 +33,7 @@
 	@import "$lib/theme.css";
 
 	.race-select {
-		@apply w-min h-8 px-3 bg-z2 text-left
+		@apply w-min h-8 px-std bg-z2 text-left
 		border-2 border-dark rounded-r-lg
 		transition-std
 		focus:border-cta

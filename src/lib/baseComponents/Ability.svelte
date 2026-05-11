@@ -50,7 +50,7 @@
 	@import "$lib/theme.css";
 
 	.ability-mod {
-		@apply w-fit p-3 bg-z2
+		@apply w-fit p-std bg-z2
 		text-center rounded-lg;
 	}
 </style>

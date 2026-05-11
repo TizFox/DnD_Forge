@@ -1,7 +1,7 @@
 import { Character } from "$lib/character.svelte";
 import type { CharacterType } from "$lib/character.svelte";
 
-export const FILE_EXTENTION = ".dndchar";
+export const FILE_EXTENTION = ".dndchar.json";
 
 export const load = (
 	file: File,

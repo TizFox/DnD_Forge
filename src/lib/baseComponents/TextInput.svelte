@@ -40,7 +40,7 @@
 	@import "$lib/theme.css";
 
 	.text-input {
-		@apply h-8 px-3 bg-z2 text-left
+		@apply h-8 px-std bg-z2 text-left
 		border-2 border-dark
 		transition-std
 		focus:border-cta

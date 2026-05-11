@@ -1,9 +1,10 @@
 import {
 	type Alignments,
-	type CoinsEnum,
+	type DeathTS,
 	type AbilitiesType,
 	type SkillsType,
 	type Ability,
+	type CoinsEnum,
 	type Weapon,
 	type Spell,
 	type SpellSlot,
@@ -65,10 +66,7 @@ export class Character {
 			type: number;
 			spent: number;
 		};
-		deathTS: {
-			success: number;
-			failure: number;
-		};
+		deathTS: Record<DeathTS, number>;
 	};
 
 	stats: { [Ab in AbilitiesType]: Ability<Ab> };

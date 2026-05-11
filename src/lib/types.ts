@@ -33,6 +33,9 @@ export const SIZES_ELUSION: Record<Sizes, number> = {
 } as const;
 export type CoinsEnum = "cp" | "sp" | "ep" | "gp" | "pp";
 
+export const DEATH_TS_TYPES = ["success", "failure"] as const;
+export type DeathTS = (typeof DEATH_TS_TYPES)[number];
+
 // Abilities
 export const ALL_ABILITIES = [
 	"strength",

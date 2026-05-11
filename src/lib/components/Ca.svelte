@@ -16,8 +16,8 @@
 <!------------------------------------------>
 
 <BaseContainer extraClasses={wClass}>
-	<div class="ca-col gap-3">
-		<div class="ca-row">
+	<div class="flex flex-col gap-3">
+		<div class="flex gap-1">
 			<NumberInput
 				title="initiative"
 				value={character.info.initiative}
@@ -39,15 +39,18 @@
 				onChange={(n: number) => (character.info.speed = n)}
 			/>
 		</div>
-		<div class="ca-col">
+		<div class="w-full flex flex-col">
 			<span class="main-text">SHIELD</span>
-			<div class="ca-row">
+			<div class="flex">
 				<NumberInput
-					wClass="flex-1"
+					wClass="flex-6"
+					rClass="rounded-l-lg"
 					value={character.info.shield.value}
 					onChange={(n: number) => (character.info.shield.value = n)}
 				/>
 				<CheckboxInput
+					wClass="flex-1"
+					rClass="rounded-r-lg"
 					checked={character.info.shield.worn}
 					onChange={(b: boolean) => (character.info.shield.worn = b)}
 				/>
@@ -60,12 +63,4 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	.ca-col {
-		@apply flex flex-col;
-	}
-
-	.ca-row {
-		@apply flex gap-1;
-	}
 </style>

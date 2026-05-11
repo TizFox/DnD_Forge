@@ -33,7 +33,7 @@
 		<div class="spell-actions">
 			<button
 				onclick={() => (showBody = !showBody)}
-				class="std-btn p-1.5"
+				class="std-btn p-half"
 			>
 				{#if showBody}
 					<EyeOff />
@@ -43,7 +43,7 @@
 			</button>
 			<button
 				onclick={() => character.removeSpell(spell.name)}
-				class="std-btn p-1.5"><Trash2 /></button
+				class="std-btn p-half"><Trash2 /></button
 			>
 		</div>
 	</div>
@@ -59,7 +59,7 @@
 	@import "$lib/theme.css";
 
 	.spell-container {
-		@apply h-fit bg-z2 p-3
+		@apply h-fit bg-z2 p-std
 		flex flex-col gap-1
 		rounded-lg;
 	}
@@ -70,11 +70,11 @@
 
 		.spell-info {
 			@apply flex-1
-			flex flex-row items-center justify-between;
+			flex flex-col items-start justify-center;
 		}
 
 		.spell-actions {
-			@apply flex flex-row items-center justify-end gap-2;
+			@apply flex flex-row items-center gap-2;
 		}
 	}
 

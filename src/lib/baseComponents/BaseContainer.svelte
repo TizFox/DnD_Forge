@@ -11,7 +11,7 @@
 
 <!------------------------------------------>
 
-<div class="{extraClasses} h-fit p-3 bg-z1 rounded-xl">
+<div class="{extraClasses} h-fit p-std bg-z1 rounded-xl">
 	{@render children()}
 </div>
 

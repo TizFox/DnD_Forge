@@ -36,7 +36,7 @@
 	@import "$lib/theme.css";
 
 	.area-input {
-		@apply w-full h-full p-3 bg-z2 text-left field-sizing-content
+		@apply w-full h-full p-std bg-z2 text-left field-sizing-content
 		border-2 border-dark
 		transition-std
 		focus:border-cta

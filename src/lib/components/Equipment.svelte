@@ -31,15 +31,13 @@
 		}}
 	/>
 
-	<div class="coins-container">
+	<div class="flex justify-between gap-1">
 		{#each coinNames as c}
-			<div class="coin">
-				<h3 class="main-text">{c.toUpperCase()}</h3>
-				<NumberInput
-					value={character.equipment.coins[c]}
-					onChange={(n: number) => (character.equipment.coins[c] = n)}
-				/>
-			</div>
+			<NumberInput
+				title={c}
+				value={character.equipment.coins[c]}
+				onChange={(n: number) => (character.equipment.coins[c] = n)}
+			/>
 		{/each}
 	</div>
 </BaseContainer>
@@ -48,12 +46,4 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
-
-	.coins-container {
-		@apply px-3 flex gap-1;
-
-		.coin {
-			@apply w-full flex flex-col;
-		}
-	}
 </style>

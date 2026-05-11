@@ -29,7 +29,7 @@
 	@import "$lib/theme.css";
 
 	.spell-ability-select {
-		@apply flex-1 h-8 px-3 bg-z2 text-left
+		@apply flex-1 h-8 px-std bg-z2 text-left
 		border-2 border-dark rounded-lg
 		transition-std
 		focus:border-cta

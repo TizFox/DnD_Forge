@@ -7,7 +7,7 @@
 
 	let {
 		wClass = "w-full",
-		pClass = "px-3",
+		pClass = "px-std",
 		value,
 	}: ValuePropsType = $props();
 </script>

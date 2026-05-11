@@ -35,7 +35,17 @@
 	@apply font-bold text-cta text-center;
 }
 @utility error-text {
-	@apply font-bold text-err text-center p-3;
+	@apply font-bold text-err text-center p-std;
+}
+
+@utility p-std {
+	@apply p-3;
+}
+@utility px-std {
+	@apply px-3;
+}
+@utility p-half {
+	@apply p-1.5;
 }
 
 @utility transition-std {
@@ -73,7 +83,7 @@
 		hover:text-cta hover:border-cta;
 	}
 	.std-btn {
-		@apply h-full max-h-(--max-btn-h) px-3
+		@apply h-full max-h-(--max-btn-h) px-std
 		flex items-center justify-center
 		transition-std
 		rounded-lg

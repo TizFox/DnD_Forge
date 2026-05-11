@@ -1,11 +1,15 @@
 <script lang="ts">
 	type CheckboxInputPropsType = {
+		wClass?: string;
+		rClass?: string;
 		visible?: boolean;
 		checked: boolean;
 		onChange: (b: boolean) => void;
 	};
 
 	let {
+		wClass = "w-8",
+		rClass = "rounded-lg",
 		visible = true,
 		checked,
 		onChange,
@@ -15,7 +19,7 @@
 <!------------------------------------------>
 
 <input
-	class="checkbox-input {visible ? '' : 'invisible'}"
+	class="{wClass} {rClass} checkbox-input {visible ? '' : 'invisible'}"
 	{checked}
 	onchange={(e) => {
 		onChange(e.currentTarget.checked);
@@ -29,9 +33,9 @@
 	@import "$lib/theme.css";
 
 	.checkbox-input {
-		@apply w-8 h-8 appearance-none
+		@apply h-8 appearance-none
 		bg-z2 border-2 border-dark
-		transition-std rounded-lg
+		transition-std
 		checked:bg-cta checked:border-cta
 		hover:cursor-pointer;
 	}

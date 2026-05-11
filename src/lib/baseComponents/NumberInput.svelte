@@ -74,7 +74,7 @@
 	@import "$lib/theme.css";
 
 	.number-input {
-		@apply w-full h-8 px-3 bg-z2 text-center
+		@apply w-full h-8 px-std bg-z2 text-center
 		border-2 border-dark
 		transition-std
 		focus:border-cta
