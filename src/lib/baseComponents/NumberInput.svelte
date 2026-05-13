@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { Plus, Minus, X, Divide, Equal, Delete } from "@lucide/svelte";
 
-	import BaseContainer from "./BaseContainer.svelte";
-	import Dice_1 from "@lucide/svelte/icons/dice-1";
-
 	type NumberInputPropsType = {
 		wClass?: string;
 		rClass?: string;
@@ -93,7 +90,7 @@
 
 <!------------------------------------------>
 
-<div class="{wClass} flex flex-col">
+<div class="{wClass} relative flex flex-col">
 	{#if title !== ""}
 		<span class="main-text">{title.toUpperCase()}</span>
 	{/if}
@@ -243,8 +240,8 @@
 	}
 
 	.keyboard-container {
-		@apply fixed z-99
-		bottom-[3%] left-1/2 translate-x-[-50%]
+		@apply absolute z-99
+		top-full left-1/2 -translate-x-1/2
 		w-fit h-fit p-double bg-z2 rounded-xl
 		flex justify-center items-center
 		border-3 border-z0
@@ -253,7 +250,7 @@
 	}
 	.keyboard {
 		@apply w-fit h-full
-		grid grid-cols-14
+		grid grid-cols-[repeat(14,1rem)]
 		auto-rows-fr;
 	}
 </style>
