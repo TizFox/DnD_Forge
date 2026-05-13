@@ -26,7 +26,10 @@
 		<div class="spell-info">
 			<h3 class="main-text">{spell.name}</h3>
 			<div class="spell-subinfo">
-				<span class="flex-1 border-dark border-2 rounded-l-lg">
+				<span
+					class="flex-1 border-dark border-2
+						{showBody ? 'rounded-tl-lg' : 'rounded-l-lg'}"
+				>
 					{#if spell.level === 0}
 						Cantrip
 					{:else}
@@ -45,16 +48,14 @@
 					{spell.duration}
 				</span>
 
-				<span class="flex-1 border-dark border-2 rounded-r-lg"
-					>{spell.range}</span
-				>
+				<span class="flex-1 border-dark border-2">{spell.range}</span>
 			</div>
 		</div>
 
 		<div class="spell-actions">
 			<button
 				onclick={() => (showBody = !showBody)}
-				class="std-btn p-half aspect-square"
+				class="std-btn rounded-none rounded-tl-lg"
 			>
 				{#if showBody}
 					<EyeOff />
@@ -64,8 +65,11 @@
 			</button>
 			<button
 				onclick={() => character.removeSpell(spell.name)}
-				class="std-btn p-half aspect-square"><Trash2 /></button
+				class="std-btn rounded-none
+					{showBody ? 'rounded-tr-lg' : 'rounded-r-lg'}"
 			>
+				<Trash2 />
+			</button>
 		</div>
 	</div>
 
@@ -87,7 +91,7 @@
 	@import "$lib/theme.css";
 
 	.spell-container {
-		@apply h-fit bg-z2 p-std
+		@apply bg-z2 p-half
 		flex flex-col
 		rounded-lg;
 	}
@@ -108,11 +112,16 @@
 
 		.spell-actions {
 			@apply flex-1
-			flex items-center justify-end gap-2;
+			flex justify-end;
+
+			.std-btn {
+				@apply flex-1 max-h-none;
+			}
 		}
 	}
 
 	.spell-body {
-		@apply p-half border-dark border-2 rounded-lg;
+		@apply p-half
+		border-dark border-2 rounded-b-lg;
 	}
 </style>

@@ -80,7 +80,7 @@
 		"-": () => addToInput("-"),
 		"*": () => addToInput("*"),
 		"/": () => addToInput("/"),
-		".": () => addToInput("."), //missing
+		".": () => addToInput("."), //missing (not necessary)
 		"(": () => addToInput("("),
 		")": () => addToInput(")"),
 		del: () => (textInput = textInput.slice(0, textInput.length - 1)),
@@ -178,13 +178,7 @@
 				{:else}
 					<button
 						onclick={() => keyboard[row4]()}
-						class="col-span-3 std-btn rounded-none {row4 === '('
-							? 'rounded-bl-lg'
-							: row4 === ')'
-								? 'rounded-br-lg'
-								: row4 === '/'
-									? 'rounded-b-lg'
-									: ''}"
+						class="col-span-3 std-btn rounded-none"
 					>
 						<h1>
 							{#if row4 === "/"}
@@ -197,18 +191,16 @@
 				{/if}
 			{/each}
 
-			<div class="col-span-14"></div>
-
 			<button
 				onclick={() => keyboard.enter()}
-				class="col-span-10 std-btn rounded-none rounded-l-lg"
+				class="col-span-10 std-btn rounded-none rounded-bl-lg"
 			>
 				<Equal />
 			</button>
 
 			<button
 				onclick={() => keyboard.del()}
-				class="col-span-4 std-btn p-std rounded-none rounded-r-lg"
+				class="col-span-4 std-btn p-std rounded-none rounded-br-lg"
 			>
 				<Delete />
 			</button>
@@ -242,7 +234,7 @@
 	.keyboard-container {
 		@apply absolute z-99
 		top-full left-1/2 -translate-x-1/2
-		w-fit h-fit p-double bg-z2 rounded-xl
+		w-fit h-fit p-std bg-z2 rounded-xl
 		flex justify-center items-center
 		border-3 border-z0
 		shadow-2xl
