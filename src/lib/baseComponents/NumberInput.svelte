@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { Plus, Minus, X, Divide, Equal, Delete } from "@lucide/svelte";
+	import type ArrowUp_1_0 from "@lucide/svelte/icons/arrow-up-1-0";
+	import { text } from "@sveltejs/kit";
+	import { untrack } from "svelte";
 
 	type NumberInputPropsType = {
 		wClass?: string;
@@ -21,9 +24,11 @@
 		onChange,
 	}: NumberInputPropsType = $props();
 
+	let lastValue = $state(0); // When error in evaluating expression return to last valid value
 	let textInput = $derived<string>(String(value));
 
 	const handleChange = () => {
+		lastValue = value;
 		const input = evalInput() ?? Number(textInput);
 
 		value = isNaN(input) ? minValue : input;
@@ -32,7 +37,7 @@
 			value = value > maxValue ? maxValue : value;
 		}
 		if (!value) {
-			value = 0;
+			value = lastValue;
 		}
 
 		// "textInput" autoupdates given that is "$derived"
@@ -62,6 +67,9 @@
 	};
 
 	const addToInput = (s: string) => {
+		if (textInput === "0") {
+			textInput = "";
+		}
 		textInput += s;
 	};
 
