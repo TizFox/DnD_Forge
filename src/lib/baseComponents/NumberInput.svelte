@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { Plus, Minus, X, Divide, Equal, Delete } from "@lucide/svelte";
-	import type ArrowUp_1_0 from "@lucide/svelte/icons/arrow-up-1-0";
-	import { text } from "@sveltejs/kit";
-	import { untrack } from "svelte";
 
 	type NumberInputPropsType = {
 		wClass?: string;
@@ -29,16 +26,12 @@
 
 	const handleChange = () => {
 		lastValue = value;
+
 		const input = evalInput() ?? Number(textInput);
 
-		value = isNaN(input) ? minValue : input;
+		value = textInput === "" ? minValue : isNaN(input) ? lastValue : input;
 		value = value < minValue ? minValue : value;
-		if (maxValue) {
-			value = value > maxValue ? maxValue : value;
-		}
-		if (!value) {
-			value = lastValue;
-		}
+		value = maxValue && value > maxValue ? maxValue : value;
 
 		// "textInput" autoupdates given that is "$derived"
 		onChange(value);
