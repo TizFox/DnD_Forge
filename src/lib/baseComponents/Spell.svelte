@@ -4,17 +4,13 @@
 	import type { Character } from "$lib/character.svelte";
 	import type { Spell } from "$lib/types";
 
-	type SpellcastingAbilityPropsType = {
+	type SpellPropsType = {
 		wClass?: string;
 		character: Character;
 		spell: Spell;
 	};
 
-	let {
-		wClass = "w-full",
-		character,
-		spell,
-	}: SpellcastingAbilityPropsType = $props();
+	let { wClass = "w-full", character, spell }: SpellPropsType = $props();
 
 	let showBody = $state<boolean>(false);
 </script>
@@ -24,7 +20,7 @@
 <div class="{wClass} spell-container">
 	<div class="spell-header">
 		<div class="spell-info">
-			<h3 class="main-text">{spell.name}</h3>
+			<h3 class="main-text">{spell.name.toUpperCase()}</h3>
 			<div class="spell-subinfo">
 				<span
 					class="flex-1 border-dark border-2

@@ -18,6 +18,7 @@
 	<TextInput
 		rClass="rounded-l-lg"
 		value={character.info.race}
+		placeholder="Character Race"
 		onChange={(s: string) => (character.info.race = s)}
 	/>
 	<select class="race-select" bind:value={character.info.size}>

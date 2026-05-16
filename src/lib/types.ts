@@ -77,8 +77,15 @@ type Skill = {
 };
 
 // Equipment
-export interface Weapon {}
+export interface Attack {
+	name: string;
+	ability: AbilitiesType;
+	proficient: boolean;
+	bonus: number;
+	damage: string;
+}
 
+// Spellcasting
 export type SpellLevels = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 export type SpellSchools =
 	| "Abjuration"

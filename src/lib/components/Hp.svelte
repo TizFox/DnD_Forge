@@ -81,24 +81,24 @@
 						wClass="flex-1"
 						rClass="rounded-l-lg"
 						checked={character.hp.deathTS[type] >= 1}
-						onChange={(val) => {
-							character.hp.deathTS[type] = val ? 1 : 0;
+						onChange={(b: boolean) => {
+							character.hp.deathTS[type] = b ? 1 : 0;
 						}}
 					/>
 					<CheckboxInput
 						wClass="flex-1"
 						rClass=""
 						checked={character.hp.deathTS[type] >= 2}
-						onChange={(val) => {
-							character.hp.deathTS[type] = val ? 2 : 1;
+						onChange={(b: boolean) => {
+							character.hp.deathTS[type] = b ? 2 : 1;
 						}}
 					/>
 					<CheckboxInput
 						wClass="flex-1"
 						rClass="rounded-r-lg"
 						checked={character.hp.deathTS[type] >= 3}
-						onChange={(val) => {
-							character.hp.deathTS[type] = val ? 3 : 2;
+						onChange={(b: boolean) => {
+							character.hp.deathTS[type] = b ? 3 : 2;
 						}}
 					/>
 				</div>

@@ -33,16 +33,17 @@
 		<CheckboxInput
 			visible={!isSaveThrow}
 			checked={character.getSkillExpertise(ability, skill)}
-			onChange={(val) => character.setSkillExpertise(ability, skill, val)}
+			onChange={(b: boolean) =>
+				character.setSkillExpertise(ability, skill, b)}
 		/>
 		<CheckboxInput
 			checked={isSaveThrow
 				? character.getAbilityProficiency(ability)
 				: character.getSkillProficiency(ability, skill)}
-			onChange={(val) =>
+			onChange={(b: boolean) =>
 				isSaveThrow
-					? character.setAbilityProficiency(ability, val)
-					: character.setSkillProficiency(ability, skill, val)}
+					? character.setAbilityProficiency(ability, b)
+					: character.setSkillProficiency(ability, skill, b)}
 		/>
 	</div>
 

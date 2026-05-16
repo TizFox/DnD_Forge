@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { ALL_ABILITIES } from "$lib/types";
 	import { Character } from "$lib/character.svelte";
 	import { getSpellNames } from "$lib/spells";
 
 	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
-	import SpellAbility from "$lib/baseComponents/SpellAbility.svelte";
 	import Value from "$lib/baseComponents/Value.svelte";
 	import TextInput from "$lib/baseComponents/TextInput.svelte";
 	import Spell from "$lib/baseComponents/Spell.svelte";
@@ -32,7 +32,16 @@
 	<div class="spellcasting-info">
 		<div class="flex-2">
 			<h3 class="main-text">ABILITY</h3>
-			<SpellAbility {character} />
+			<div class="{wClass} flex flex-row">
+				<select
+					class="spellcasting-ability-select"
+					bind:value={character.magic.spellcastingAbility}
+				>
+					{#each ALL_ABILITIES as a}
+						<option value={a}>{a.toUpperCase()}</option>
+					{/each}
+				</select>
+			</div>
 		</div>
 		<div class="flex-1">
 			<h3 class="main-text">SPELL BONUS</h3>
@@ -43,11 +52,12 @@
 			<Value value={spellDC} />
 		</div>
 	</div>
-	<div class="spellcasting-new">
-		<h3 class="main-text flex-1">NEW SPELL NAME</h3>
+	<div class="flex">
 		<TextInput
 			wClass="flex-2"
+			rClass="rounded-l-lg"
 			value={newSpellName}
+			placeholder="New Spell Name"
 			suggestions={{ id: "spellList", options: getSpellNames() }}
 			onChange={(s: string) => {
 				newSpellName = s;
@@ -60,8 +70,10 @@
 				}
 			}}
 			disabled={newSpellName === ""}
-			class="std-btn flex-1">ADD</button
+			class="std-btn rounded-l-none flex-1"
 		>
+			ADD
+		</button>
 	</div>
 	<div class="spellcasting-spells">
 		{#if spellLevels.length > 0}
@@ -88,12 +100,17 @@
 <style lang="postcss">
 	@import "$lib/theme.css";
 
-	.spellcasting-new {
-		@apply flex flex-row gap-2;
-	}
-
 	.spellcasting-info {
 		@apply flex flex-row gap-2;
+
+		.spellcasting-ability-select {
+			@apply flex-1 h-8 px-std bg-z2 text-left
+			border-2 border-dark rounded-lg
+			transition-std
+			focus:border-cta
+			focus:outline-none
+			focus:shadow-none;
+		}
 	}
 
 	.spellcasting-spells {

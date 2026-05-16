@@ -29,15 +29,15 @@
 
 		const input = evalInput() ?? Number(textInput);
 
-		value = textInput === "" ? minValue : isNaN(input) ? lastValue : input;
-		value = value < minValue ? minValue : value;
-		value = maxValue && value > maxValue ? maxValue : value;
+		value = isNaN(input) ? lastValue : input;
+		value = Math.max(value, minValue);
+		value = maxValue ? Math.min(value, maxValue) : value;
 
 		// "textInput" autoupdates given that is "$derived"
 		onChange(value);
 
 		// Weird Cases (?)
-		if (isNaN(Number(textInput))) {
+		if (textInput === "" || isNaN(Number(textInput))) {
 			textInput = String(value);
 		}
 	};

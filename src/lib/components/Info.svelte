@@ -28,6 +28,7 @@
 			<span>
 				<TextInput
 					value={character.info.name}
+					placeholder="Character Name"
 					onChange={(s: string) => (character.info.name = s)}
 				/>
 			</span>
@@ -38,6 +39,7 @@
 			<span>
 				<TextInput
 					value={character.info.player}
+					placeholder="Player Name"
 					onChange={(s: string) => (character.info.player = s)}
 				/>
 			</span>
@@ -70,6 +72,7 @@
 			<span>
 				<TextInput
 					value={character.info.background}
+					placeholder="Character Background"
 					onChange={(s: string) => (character.info.background = s)}
 				/>
 			</span>
@@ -86,6 +89,7 @@
 			<span>
 				<TextInput
 					value={character.info.class}
+					placeholder="Character Class"
 					suggestions={{
 						id: "classesList",
 						options: getClassNames(),

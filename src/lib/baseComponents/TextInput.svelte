@@ -3,6 +3,7 @@
 		wClass?: string;
 		rClass?: string;
 		value: string;
+		placeholder?: string;
 		suggestions?: { id: string; options: string[] };
 		onChange: (s: string) => void;
 	};
@@ -11,6 +12,7 @@
 		wClass = "w-full",
 		rClass = "rounded-lg",
 		value,
+		placeholder = "",
 		suggestions = { id: "", options: [] },
 		onChange,
 	}: TextInputPropsType = $props();
@@ -22,6 +24,7 @@
 	list={suggestions.id}
 	class="{wClass} {rClass} text-input"
 	bind:value
+	{placeholder}
 	type="text"
 	onchange={() => onChange(value)}
 />

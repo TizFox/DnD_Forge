@@ -5,7 +5,7 @@ import {
 	type SkillsType,
 	type Ability,
 	type CoinsEnum,
-	type Weapon,
+	type Attack,
 	type Spell,
 	type SpellSlot,
 	Morality,
@@ -82,12 +82,12 @@ export class Character {
 	equipment: {
 		coins: { [key in CoinsEnum]: number };
 		inventory: string;
-		weapons: Weapon[];
+		attacks: Record<string, Attack>;
 	};
 
 	magic: {
 		spellcastingAbility: AbilitiesType;
-		spells: Record<string, Spell | null>;
+		spells: Record<string, Spell>;
 		spellSlots: SpellSlot[];
 	};
 
@@ -231,7 +231,7 @@ export class Character {
 				pp: 0,
 			},
 			inventory: "",
-			weapons: [],
+			attacks: {},
 		});
 		this.magic = $state({
 			spellcastingAbility: "strength",
@@ -285,6 +285,100 @@ export class Character {
 		);
 	}
 
+	// Skills
+	getSkillProficiency<Ab extends AbilitiesType>(
+		ab: Ab,
+		sk: SkillsType[Ab],
+	): boolean {
+		console.log(`getSkillProficiency("${ab}", "${sk}")`);
+		return this.stats[ab].skills[sk].proficiency ?? false;
+	}
+	setSkillProficiency<Ab extends AbilitiesType>(
+		ab: Ab,
+		sk: SkillsType[Ab],
+		val: boolean,
+	): void {
+		console.log(`setSkillProficiency("${ab}", "${sk}", ${val})`);
+		this.stats[ab].skills[sk].proficiency = val;
+
+		if (!val) {
+			this.setSkillExpertise(ab, sk, false);
+		}
+	}
+	getSkillExpertise<Ab extends AbilitiesType>(
+		ab: Ab,
+		sk: SkillsType[Ab],
+	): boolean {
+		console.log(`getSkillExpertise("${ab}", "${sk}")`);
+		return this.stats[ab].skills[sk]?.expertise ?? false;
+	}
+	setSkillExpertise<Ab extends AbilitiesType>(
+		ab: Ab,
+		sk: SkillsType[Ab],
+		val: boolean,
+	): void {
+		console.log(`setSkillExpertise("${ab}", "${sk}", ${val})`);
+		this.stats[ab].skills[sk].expertise = val;
+
+		if (val) {
+			this.setSkillProficiency(ab, sk, true);
+		}
+	}
+	getSkillValue<Ab extends AbilitiesType>(
+		ab: Ab,
+		sk: SkillsType[Ab],
+	): number {
+		console.log(`getSkillValue("${ab}", "${sk}")`);
+		return (
+			this.getAbilityModifier(ab) +
+			(this.getSkillProficiency(ab, sk)
+				? this.getProficiencyBonus()
+				: 0) +
+			(this.getSkillExpertise(ab, sk) ? this.getProficiencyBonus() : 0)
+		);
+	}
+	getPassiveSkillValue<Ab extends AbilitiesType>(
+		ability: Ab,
+		skill: SkillsType[Ab],
+	): number {
+		console.log(`getPassivePerception()`);
+		return 10 + this.getSkillValue(ability, skill);
+	}
+
+	// Attacks
+	getAttackModifier(attackName: string): number {
+		attackName = attackName.toUpperCase();
+		const attack: Attack | null = this.equipment.attacks[attackName];
+		if (!attack) {
+			return -1;
+		}
+
+		console.log(`getAttackModifier("${attackName}")`);
+		return (
+			this.getAbilityModifier(attack.ability) +
+			(attack.proficient ? this.getProficiencyBonus() : 0) +
+			(attack.bonus != null ? attack.bonus : 0)
+		);
+	}
+	addAttack(attackName: string): void {
+		attackName = attackName.toUpperCase();
+		console.log(`addAttack("${attackName}")`);
+
+		this.equipment.attacks[attackName] = {
+			name: attackName,
+			ability: "strength",
+			proficient: false,
+			bonus: 0,
+			damage: "",
+		};
+	}
+	removeAttack(attackName: string): void {
+		attackName = attackName.toUpperCase();
+		console.log(`removeWeapon("${attackName}")`);
+
+		delete this.equipment.attacks[attackName];
+	}
+
 	// Spellcasting
 	getSpellcastingModifier(): number {
 		console.log(
@@ -333,67 +427,6 @@ export class Character {
 			return;
 		}
 
-		this.magic.spells[spellName] = null;
-	}
-
-	// Skills
-	getSkillProficiency<Ab extends AbilitiesType>(
-		ab: Ab,
-		sk: SkillsType[Ab],
-	): boolean {
-		console.log(`getSkillProficiency("${ab}", "${sk}")`);
-		return this.stats[ab].skills[sk].proficiency ?? false;
-	}
-	setSkillProficiency<Ab extends AbilitiesType>(
-		ab: Ab,
-		sk: SkillsType[Ab],
-		val: boolean,
-	): void {
-		console.log(`setSkillProficiency("${ab}", "${sk}", ${val})`);
-		this.stats[ab].skills[sk].proficiency = val;
-
-		if (!val) {
-			this.setSkillExpertise(ab, sk, false);
-		}
-	}
-
-	getSkillExpertise<Ab extends AbilitiesType>(
-		ab: Ab,
-		sk: SkillsType[Ab],
-	): boolean {
-		console.log(`getSkillExpertise("${ab}", "${sk}")`);
-		return this.stats[ab].skills[sk]?.expertise ?? false;
-	}
-	setSkillExpertise<Ab extends AbilitiesType>(
-		ab: Ab,
-		sk: SkillsType[Ab],
-		val: boolean,
-	): void {
-		console.log(`setSkillExpertise("${ab}", "${sk}", ${val})`);
-		this.stats[ab].skills[sk].expertise = val;
-
-		if (val) {
-			this.setSkillProficiency(ab, sk, true);
-		}
-	}
-	getSkillValue<Ab extends AbilitiesType>(
-		ab: Ab,
-		sk: SkillsType[Ab],
-	): number {
-		console.log(`getSkillValue("${ab}", "${sk}")`);
-		return (
-			this.getAbilityModifier(ab) +
-			(this.getSkillProficiency(ab, sk)
-				? this.getProficiencyBonus()
-				: 0) +
-			(this.getSkillExpertise(ab, sk) ? this.getProficiencyBonus() : 0)
-		);
-	}
-	getPassiveSkillValue<Ab extends AbilitiesType>(
-		ability: Ab,
-		skill: SkillsType[Ab],
-	): number {
-		console.log(`getPassivePerception()`);
-		return 10 + this.getSkillValue(ability, skill);
+		delete this.magic.spells[spellName];
 	}
 }
