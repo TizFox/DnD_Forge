@@ -22,7 +22,7 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses="{wClass} flex flex-col items-center gap-5">
+<BaseContainer extraClasses="{wClass} flex flex-col items-center gap-3">
 	<AreaInput
 		{wClass}
 		title="Actions"

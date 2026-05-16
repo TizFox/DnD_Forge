@@ -1,3 +1,2 @@
 TODO:
-- [SVELTE] Aggiungere input per:
-      		- descrizione (età, altezza, peso ...)
+- [??????] ???

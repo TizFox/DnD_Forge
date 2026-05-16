@@ -63,11 +63,11 @@
 
 	.skill-container {
 		@apply w-full h-full
-		flex flex-row items-center gap-2;
+		flex items-center gap-2;
 	}
 	.skill-checks {
 		@apply flex-1
-		flex flex-row items-center gap-0.5;
+		flex items-center gap-0.5;
 	}
 	.skill-text {
 		@apply flex-3 text-left;

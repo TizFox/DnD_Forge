@@ -30,7 +30,7 @@
 <div class="{wClass} attack-container">
 	<div class="attack-header">
 		<div class="attack-info">
-			<div class="w-full flex flex-row items-center justify-between">
+			<div class="w-full flex items-center justify-between">
 				<h3 class="h-fit main-text">{attack.name}</h3>
 				<div class="attack-actions">
 					<button
@@ -71,7 +71,7 @@
 
 	{#if showBody}
 		<div class="attack-body">
-			<div class="flex flex-row">
+			<div class="flex">
 				<CheckboxInput
 					rClass="rounded-tl-lg"
 					checked={attack.proficient}
@@ -94,7 +94,7 @@
 					onChange={(n: number) => (attack.bonus = n)}
 				/>
 			</div>
-			<div class="flex flex-row">
+			<div class="flex">
 				<TextInput
 					rClass="rounded-b-lg"
 					value={attack.damage}

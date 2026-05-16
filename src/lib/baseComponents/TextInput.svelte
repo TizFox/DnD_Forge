@@ -2,6 +2,7 @@
 	type TextInputPropsType = {
 		wClass?: string;
 		rClass?: string;
+		title?: string;
 		value: string;
 		placeholder?: string;
 		suggestions?: { id: string; options: string[] };
@@ -11,6 +12,7 @@
 	let {
 		wClass = "w-full",
 		rClass = "rounded-lg",
+		title = "",
 		value,
 		placeholder = "",
 		suggestions = { id: "", options: [] },
@@ -20,22 +22,27 @@
 
 <!------------------------------------------>
 
-<input
-	list={suggestions.id}
-	class="{wClass} {rClass} text-input"
-	bind:value
-	{placeholder}
-	type="text"
-	onchange={() => onChange(value)}
-/>
+<div class="{wClass} relative flex flex-col">
+	{#if title !== ""}
+		<span class="main-text">{title.toUpperCase()}</span>
+	{/if}
+	<input
+		list={suggestions.id}
+		class="{rClass} text-input"
+		bind:value
+		{placeholder}
+		type="text"
+		onchange={() => onChange(value)}
+	/>
 
-{#if suggestions.id != ""}
-	<datalist id={suggestions.id}>
-		{#each suggestions.options as opt}
-			<option value={opt}></option>
-		{/each}
-	</datalist>
-{/if}
+	{#if suggestions.id != ""}
+		<datalist id={suggestions.id}>
+			{#each suggestions.options as opt}
+				<option value={opt}></option>
+			{/each}
+		</datalist>
+	{/if}
+</div>
 
 <!------------------------------------------>
 

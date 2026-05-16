@@ -32,7 +32,7 @@
 	<div class="spellcasting-info">
 		<div class="flex-2">
 			<h3 class="main-text">ABILITY</h3>
-			<div class="{wClass} flex flex-row">
+			<div class="{wClass} flex">
 				<select
 					class="spellcasting-ability-select"
 					bind:value={character.magic.spellcastingAbility}
@@ -101,7 +101,7 @@
 	@import "$lib/theme.css";
 
 	.spellcasting-info {
-		@apply flex flex-row gap-2;
+		@apply flex gap-2;
 
 		.spellcasting-ability-select {
 			@apply flex-1 h-8 px-std bg-z2 text-left

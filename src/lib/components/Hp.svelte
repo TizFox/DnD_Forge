@@ -114,7 +114,7 @@
 
 	.hp-multi {
 		@apply flex-1
-		flex flex-row items-center justify-center gap-3;
+		flex items-center justify-center gap-3;
 	}
 	.hp-item {
 		@apply w-full

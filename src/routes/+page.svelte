@@ -26,6 +26,9 @@
 	// 3/3
 	import Features from "$lib/components/Features.svelte";
 	import Characteristics from "$lib/components/Characteristics.svelte";
+	import Description from "$lib/components/Description.svelte";
+
+	// 2-3/3
 	import Spellcasting from "$lib/components/Spellcasting.svelte";
 
 	let fileInput = $state<HTMLInputElement | null>(null);
@@ -128,7 +131,7 @@
 		<!--min-w-7xl-->
 		{#if dndChar}
 			<Info character={dndChar} />
-			<div class="w-full flex flex-row gap-5">
+			<div class="w-full flex gap-5">
 				<Stats wClass="flex-1" character={dndChar} />
 				<div class="flex-2 grid grid-cols-2 auto-rows-fr gap-5">
 					<div class="flex flex-col gap-5">
@@ -141,6 +144,7 @@
 					<div class="flex flex-col gap-5">
 						<Features character={dndChar} />
 						<Characteristics character={dndChar} />
+						<Description character={dndChar} />
 					</div>
 					<Spellcasting wClass="col-span-2" character={dndChar} />
 				</div>
@@ -170,13 +174,13 @@
 
 	.bar-container {
 		@apply w-full h-(--bars-size) px-5 py-2 bg-z2
-		flex flex-row items-center gap-5;
+		flex items-center gap-5;
 
 		&.navbar {
 			@apply justify-start;
 			.user-actions {
 				@apply w-full h-full
-				flex flex-row items-center justify-end gap-5;
+				flex items-center justify-end gap-5;
 			}
 		}
 

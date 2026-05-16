@@ -117,7 +117,7 @@
 
 		.info-subsection {
 			@apply w-full
-			flex flex-row items-center gap-2;
+			flex items-center gap-2;
 
 			h3 {
 				@apply flex-1 main-text text-right;
