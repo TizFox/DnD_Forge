@@ -57,6 +57,8 @@
 
 		{#each attackNames as name}
 			<Attack {character} attackName={name} />
+		{:else}
+			<h3 class="main-text">NO ATTACKS</h3>
 		{/each}
 	</div>
 </BaseContainer>
