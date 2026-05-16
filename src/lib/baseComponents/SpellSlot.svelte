@@ -14,34 +14,32 @@
 
 <!------------------------------------------>
 
-{#if level !== 0}
-	<div class="{wClass} spell-slot-container">
-		<h3 class="main-text">
-			SLOT LV. {level}
-		</h3>
-		<p class="spell-slot-input">
-			<span class="text-right">TOT:</span>
-			<NumberInput
-				wClass="col-span-2"
-				value={character.magic.spellSlots[level - 1].total}
-				onChange={(n: number) => {
-					character.magic.spellSlots[level - 1].total = n;
-				}}
-			/>
-		</p>
-		<p class="spell-slot-input">
-			<span class="text-right">USED:</span>
-			<NumberInput
-				wClass="col-span-2"
-				value={character.magic.spellSlots[level - 1].used}
-				maxValue={character.magic.spellSlots[level - 1].total}
-				onChange={(n: number) => {
-					character.magic.spellSlots[level - 1].used = n;
-				}}
-			/>
-		</p>
-	</div>
-{/if}
+<div class="{wClass} spell-slot-container">
+	<h3 class="main-text">
+		SLOT LV. {level}
+	</h3>
+	<p class="spell-slot-input">
+		<span class="text-right">TOT:</span>
+		<NumberInput
+			wClass="col-span-2"
+			value={character.magic.spellSlots[level - 1].total}
+			onChange={(n: number) => {
+				character.magic.spellSlots[level - 1].total = n;
+			}}
+		/>
+	</p>
+	<p class="spell-slot-input">
+		<span class="text-right">USED:</span>
+		<NumberInput
+			wClass="col-span-2"
+			value={character.magic.spellSlots[level - 1].used}
+			maxValue={character.magic.spellSlots[level - 1].total}
+			onChange={(n: number) => {
+				character.magic.spellSlots[level - 1].used = n;
+			}}
+		/>
+	</p>
+</div>
 
 <!------------------------------------------>
 

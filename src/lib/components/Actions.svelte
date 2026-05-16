@@ -55,6 +55,10 @@
 			</button>
 		</div>
 
+		{#if attackNames.length > 0}
+			<hr class="my-3" />
+		{/if}
+
 		{#each attackNames as name}
 			<Attack {character} attackName={name} />
 		{:else}

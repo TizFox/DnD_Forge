@@ -20,7 +20,9 @@
 	let spellDC = $derived(character.getSpellcastingDC());
 
 	let spells = $derived(character.getSpellList());
-	let spellLevels = $derived([...new Set(spells.map((s) => s.level))].sort());
+	let spellLevels = $derived(
+		[...new Set(spells.map((s) => s.level))].filter((l) => l != 0).sort(),
+	);
 
 	let newSpellName = $state("");
 </script>
@@ -29,7 +31,7 @@
 
 <BaseContainer extraClasses="{wClass} flex flex-col gap-3">
 	<h2 class="main-text">SPELLCASTING</h2>
-	<div class="spellcasting-info">
+	<div class="flex gap-2">
 		<div class="flex-2">
 			<h3 class="main-text">ABILITY</h3>
 			<div class="{wClass} flex">
@@ -52,41 +54,45 @@
 			<Value value={spellDC} />
 		</div>
 	</div>
-	<div class="flex">
-		<TextInput
-			wClass="flex-2"
-			rClass="rounded-l-lg"
-			value={newSpellName}
-			placeholder="New Spell Name"
-			suggestions={{ id: "spellList", options: getSpellNames() }}
-			onChange={(s: string) => {
-				newSpellName = s;
-			}}
-		/>
-		<button
-			onclick={() => {
-				if (character.addSpell(newSpellName)) {
-					newSpellName = "";
-				}
-			}}
-			disabled={newSpellName === ""}
-			class="std-btn rounded-l-none flex-1"
-		>
-			ADD
-		</button>
-	</div>
-	<div class="spellcasting-spells">
+
+	<div class="flex flex-col gap-1">
+		<div class="flex">
+			<TextInput
+				wClass="flex-2"
+				rClass="rounded-l-lg"
+				value={newSpellName}
+				placeholder="New Spell Name"
+				suggestions={{ id: "spellList", options: getSpellNames() }}
+				onChange={(s: string) => {
+					newSpellName = s;
+				}}
+			/>
+			<button
+				onclick={() => {
+					if (character.addSpell(newSpellName)) {
+						newSpellName = "";
+					}
+				}}
+				disabled={newSpellName === ""}
+				class="std-btn rounded-l-none flex-1"
+			>
+				ADD
+			</button>
+		</div>
+
 		{#if spellLevels.length > 0}
 			<hr class="my-3" />
+
 			<div class="grid grid-cols-3 gap-1">
 				{#each spellLevels as level}
 					<SpellSlot {character} {level} />
 				{/each}
 			</div>
-
-			<hr class="my-3" />
 		{/if}
 
+		{#if spells.length > 0}
+			<hr class="my-3" />
+		{/if}
 		{#each spells as spell}
 			<Spell {character} {spell} />
 		{:else}
@@ -100,20 +106,12 @@
 <style lang="postcss">
 	@import "$lib/theme.css";
 
-	.spellcasting-info {
-		@apply flex gap-2;
-
-		.spellcasting-ability-select {
-			@apply flex-1 h-8 px-std bg-z2 text-left
+	.spellcasting-ability-select {
+		@apply flex-1 h-8 px-std bg-z2 text-left
 			border-2 border-dark rounded-lg
 			transition-std
 			focus:border-cta
 			focus:outline-none
 			focus:shadow-none;
-		}
-	}
-
-	.spellcasting-spells {
-		@apply flex flex-col gap-1;
 	}
 </style>
