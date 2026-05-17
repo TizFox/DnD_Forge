@@ -59,10 +59,21 @@
 					)}
 				</span>
 
-				<span class="flex-2 border-dark border-2 rounded-br-lg">
-					{attack.damage}
-					{#if attack.bonus != 0}
-						{#if attack.bonus > 0}+{/if}{attack.bonus}
+				<span class="flex-2 border-dark border-2">
+					{#if attack.damage !== ""}
+						{attack.damage}
+						{#if attack.bonus !== 0}
+							{#if attack.bonus > 0}+{/if}{attack.bonus}
+						{/if}
+					{:else}
+						<span class="place-text">Damage</span>
+					{/if}
+				</span>
+				<span class="flex-1 border-dark border-2 rounded-br-lg">
+					{#if attack.range !== ""}
+						{attack.range}
+					{:else}
+						<span class="place-text">Range</span>
 					{/if}
 				</span>
 			</div>
@@ -94,14 +105,19 @@
 					onChange={(n: number) => (attack.bonus = n)}
 				/>
 			</div>
-			<div class="flex">
-				<TextInput
-					rClass="rounded-b-lg"
-					value={attack.damage}
-					placeholder="Attack Damage"
-					onChange={(s: string) => (attack.damage = s)}
-				/>
-			</div>
+
+			<TextInput
+				rClass="rounded-none"
+				value={attack.damage}
+				placeholder="Attack Damage"
+				onChange={(s: string) => (attack.damage = s)}
+			/>
+			<TextInput
+				rClass="rounded-b-lg"
+				value={attack.range}
+				placeholder="Attack Range"
+				onChange={(s: string) => (attack.range = s)}
+			/>
 		</div>
 	{/if}
 </div>

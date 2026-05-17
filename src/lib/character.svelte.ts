@@ -370,6 +370,7 @@ export class Character {
 			proficient: false,
 			bonus: 0,
 			damage: "",
+			range: "",
 		};
 	}
 	removeAttack(attackName: string): void {

@@ -99,8 +99,8 @@
 				class="w-full h-full px-10 bg-z2 rounded-lg
 						border-2 border-dark transition-std
 						hover:border-cta
-						base-text text-left truncate
-						{fileName ? 'text-dark' : 'text-dark/25'}"
+						text-left truncate
+						{fileName ? 'text-dark' : 'place-text'}"
 			>
 				<FileUser
 					class="h-1/2 absolute top-1/4 left-3 transition-std text-dark group-hover:text-cta"

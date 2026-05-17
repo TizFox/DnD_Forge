@@ -34,6 +34,12 @@
 @utility main-text {
 	@apply font-bold text-cta text-center;
 }
+@utility place-text {
+	@apply text-dark/30;
+}
+@utility place-placeholder {
+	@apply placeholder-dark/30;
+}
 @utility error-text {
 	@apply font-bold text-err text-center p-std;
 }
@@ -61,6 +67,10 @@
 		bg-z0
 		text-dark
 		base-text;
+	}
+
+	input {
+		@apply place-placeholder;
 	}
 
 	h1 {

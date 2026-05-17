@@ -83,6 +83,7 @@ export interface Attack {
 	proficient: boolean;
 	bonus: number;
 	damage: string;
+	range: string;
 }
 
 // Spellcasting
