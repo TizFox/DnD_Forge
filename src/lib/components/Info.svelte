@@ -68,12 +68,12 @@
 
 	<div class="info-section">
 		<div class="info-subsection">
-			<h3>BACKGROUND</h3>
+			<h3>CAMPAIGN</h3>
 			<span>
 				<TextInput
-					value={character.info.background}
-					placeholder="Character Background"
-					onChange={(s: string) => (character.info.background = s)}
+					value={character.info.campaign}
+					placeholder="Campaign Name"
+					onChange={(s: string) => (character.info.campaign = s)}
 				/>
 			</span>
 		</div>

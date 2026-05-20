@@ -22,7 +22,7 @@ export class Character {
 	info: {
 		player: string;
 		name: string;
-		background: string;
+		campaign: string;
 		alignment: Alignments;
 
 		class: string;
@@ -112,7 +112,7 @@ export class Character {
 		this.info = $state({
 			player: "",
 			name: "",
-			background: "",
+			campaign: "",
 			alignment: { morality: Morality.Neutral, order: Order.Neutral },
 
 			class: "",
