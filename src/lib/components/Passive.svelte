@@ -17,7 +17,8 @@
 	<PassiveSkill {character} ability="wisdom" skill="perception" />
 	<PassiveSkill {character} ability="wisdom" skill="insight" />
 	<PassiveSkill {character} ability="wisdom" skill="survival" />
-	<PassiveSkill {character} ability="dexterity" skill="acrobatics" />
+	<PassiveSkill {character} ability="intelligence" skill="investigation" />
+	<!--<PassiveSkill {character} ability="dexterity" skill="acrobatics" />-->
 </div>
 
 <!------------------------------------------>
