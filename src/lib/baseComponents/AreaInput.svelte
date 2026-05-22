@@ -38,8 +38,8 @@
 		}
 
 		const delta = e.clientY - startY;
-
 		const newHeight = startHeight + delta;
+
 		textArea.style.height = `${newHeight}px`;
 	}
 
@@ -57,7 +57,6 @@
 	<textarea
 		bind:this={textArea}
 		bind:value
-		onchange={() => onChange(value)}
 		oninput={() => (textArea.style.height = "")}
 		class="peer area-input"
 	>
@@ -99,7 +98,6 @@
 		border-2 border-t-0 rounded-b-lg
 		transition-std border-dark peer-focus:border-cta
 		hover:cursor-ns-resize
-
 		select-none touch-none;
 	}
 </style>
