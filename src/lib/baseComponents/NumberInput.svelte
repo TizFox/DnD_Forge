@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Plus, Minus, X, Divide, Equal, Delete } from "@lucide/svelte";
 
+	import { showKeyboard } from "$lib/keyboard.svelte";
+
 	type NumberInputPropsType = {
 		wClass?: string;
 		rClass?: string;
@@ -104,109 +106,111 @@
 		type="text"
 	/>
 
-	<section
-		role="presentation"
-		onmousedown={(e: MouseEvent) => e.preventDefault()}
-		class="keyboard-container"
-	>
-		<div class="keyboard">
-			{#each ["1", "2", "3", 2, "+"] as row1}
-				{#if typeof row1 === "number"}
-					<div class="col-span-{row1}"></div>
-				{:else}
-					<button
-						onclick={() => keyboard[row1]()}
-						class="col-span-3 std-btn rounded-none {row1 === '1'
-							? 'rounded-tl-lg'
-							: row1 === '3'
-								? 'rounded-tr-lg'
-								: row1 === '+'
-									? 'rounded-t-lg'
-									: ''}"
-					>
-						<h1>
-							{#if row1 === "+"}
-								<Plus />
-							{:else}
-								{row1}
-							{/if}
-						</h1>
-					</button>
-				{/if}
-			{/each}
+	{#if showKeyboard()}
+		<section
+			role="presentation"
+			onmousedown={(e: MouseEvent) => e.preventDefault()}
+			class="keyboard-container"
+		>
+			<div class="keyboard">
+				{#each ["1", "2", "3", 2, "+"] as row1}
+					{#if typeof row1 === "number"}
+						<div class="col-span-{row1}"></div>
+					{:else}
+						<button
+							onclick={() => keyboard[row1]()}
+							class="col-span-3 std-btn rounded-none {row1 === '1'
+								? 'rounded-tl-lg'
+								: row1 === '3'
+									? 'rounded-tr-lg'
+									: row1 === '+'
+										? 'rounded-t-lg'
+										: ''}"
+						>
+							<h1>
+								{#if row1 === "+"}
+									<Plus />
+								{:else}
+									{row1}
+								{/if}
+							</h1>
+						</button>
+					{/if}
+				{/each}
 
-			{#each ["4", "5", "6", 2, "-"] as row2}
-				{#if typeof row2 === "number"}
-					<div class="col-span-{row2}"></div>
-				{:else}
-					<button
-						onclick={() => keyboard[row2]()}
-						class="col-span-3 std-btn rounded-none"
-					>
-						<h1>
-							{#if row2 === "-"}
-								<Minus />
-							{:else}
-								{row2}
-							{/if}
-						</h1>
-					</button>
-				{/if}
-			{/each}
+				{#each ["4", "5", "6", 2, "-"] as row2}
+					{#if typeof row2 === "number"}
+						<div class="col-span-{row2}"></div>
+					{:else}
+						<button
+							onclick={() => keyboard[row2]()}
+							class="col-span-3 std-btn rounded-none"
+						>
+							<h1>
+								{#if row2 === "-"}
+									<Minus />
+								{:else}
+									{row2}
+								{/if}
+							</h1>
+						</button>
+					{/if}
+				{/each}
 
-			{#each ["7", "8", "9", 2, "*"] as row3}
-				{#if typeof row3 === "number"}
-					<div class="col-span-{row3}"></div>
-				{:else}
-					<button
-						onclick={() => keyboard[row3]()}
-						class="col-span-3 std-btn rounded-none"
-					>
-						<h1>
-							{#if row3 === "*"}
-								<X />
-							{:else}
-								{row3}
-							{/if}
-						</h1>
-					</button>
-				{/if}
-			{/each}
+				{#each ["7", "8", "9", 2, "*"] as row3}
+					{#if typeof row3 === "number"}
+						<div class="col-span-{row3}"></div>
+					{:else}
+						<button
+							onclick={() => keyboard[row3]()}
+							class="col-span-3 std-btn rounded-none"
+						>
+							<h1>
+								{#if row3 === "*"}
+									<X />
+								{:else}
+									{row3}
+								{/if}
+							</h1>
+						</button>
+					{/if}
+				{/each}
 
-			{#each ["(", "0", ")", 2, "/"] as row4}
-				{#if typeof row4 === "number"}
-					<div class="col-span-{row4}"></div>
-				{:else}
-					<button
-						onclick={() => keyboard[row4]()}
-						class="col-span-3 std-btn rounded-none"
-					>
-						<h1>
-							{#if row4 === "/"}
-								<Divide />
-							{:else}
-								{row4}
-							{/if}
-						</h1>
-					</button>
-				{/if}
-			{/each}
+				{#each ["(", "0", ")", 2, "/"] as row4}
+					{#if typeof row4 === "number"}
+						<div class="col-span-{row4}"></div>
+					{:else}
+						<button
+							onclick={() => keyboard[row4]()}
+							class="col-span-3 std-btn rounded-none"
+						>
+							<h1>
+								{#if row4 === "/"}
+									<Divide />
+								{:else}
+									{row4}
+								{/if}
+							</h1>
+						</button>
+					{/if}
+				{/each}
 
-			<button
-				onclick={() => keyboard.enter()}
-				class="col-span-10 std-btn rounded-none rounded-bl-lg"
-			>
-				<Equal />
-			</button>
+				<button
+					onclick={() => keyboard.enter()}
+					class="col-span-10 std-btn rounded-none rounded-bl-lg"
+				>
+					<Equal />
+				</button>
 
-			<button
-				onclick={() => keyboard.del()}
-				class="col-span-4 std-btn p-std rounded-none rounded-br-lg"
-			>
-				<Delete />
-			</button>
-		</div>
-	</section>
+				<button
+					onclick={() => keyboard.del()}
+					class="col-span-4 std-btn p-std rounded-none rounded-br-lg"
+				>
+					<Delete />
+				</button>
+			</div>
+		</section>
+	{/if}
 </div>
 
 <!------------------------------------------>

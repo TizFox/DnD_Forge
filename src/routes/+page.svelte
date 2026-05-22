@@ -2,13 +2,12 @@
 	const NAME = "D&D Forge";
 	import logo from "$lib/assets/logo1000.png";
 
-	import { FileUser } from "@lucide/svelte";
+	import { KeyboardOff, Keyboard, FileUser } from "@lucide/svelte";
 
 	import { FILE_EXTENTION, load, save } from "$lib/fileHandler";
 	import { Character, type CharacterType } from "$lib/character.svelte";
+	import { showKeyboard, toggleKeyboard } from "$lib/keyboard.svelte";
 	import { getColor } from "$lib/classes";
-
-	import { getSpell } from "$lib/spells";
 
 	// full
 	import Info from "$lib/components/Info.svelte";
@@ -67,6 +66,14 @@
 <nav class="bar-container navbar">
 	<img src={logo} alt="Logo" class="h-full" />
 	<div class="user-actions">
+		<button onclick={toggleKeyboard} class="std-btn">
+			{#if showKeyboard()}
+				<KeyboardOff />
+			{:else}
+				<Keyboard />
+			{/if}
+		</button>
+
 		<button
 			onclick={() => {
 				if (dndChar) {
