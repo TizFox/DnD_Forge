@@ -57,7 +57,7 @@
 	<textarea
 		bind:this={textArea}
 		bind:value
-		oninput={() => (textArea.style.height = "")}
+		onchange={() => onChange(value)}
 		class="peer area-input"
 	>
 	</textarea>
