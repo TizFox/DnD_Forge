@@ -82,7 +82,7 @@
 	.area-input {
 		scrollbar-gutter: stable;
 		scrollbar-width: thin;
-		scrollbar-color: var(--color-cta) var(--color-z2);
+		scrollbar-color: var(--color-cta) transparent;
 
 		@apply w-full h-full p-std pr-0.5 bg-z2
 		field-sizing-content resize-none
