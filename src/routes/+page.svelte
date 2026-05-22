@@ -126,7 +126,7 @@
 				}}
 				class="hidden"
 				type="file"
-				accept={FILE_EXTENTION}
+				accept="application/json,{FILE_EXTENTION}"
 				multiple={false}
 			/>
 		</div>

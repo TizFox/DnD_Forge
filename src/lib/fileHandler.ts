@@ -1,7 +1,7 @@
 import { Character } from "$lib/character.svelte";
 import type { CharacterType } from "$lib/character.svelte";
 
-export const FILE_EXTENTION = ".json";
+export const FILE_EXTENTION = ".dndchar.json";
 
 export const load = (
 	file: File,
@@ -18,10 +18,7 @@ export const load = (
 export const save = (char: Character): void => {
 	char.info.name = char.info.name.trim();
 	const name =
-		"DNDCHAR_" +
-		(char.info.name != ""
-			? char.info.name.split(" ").join("-")
-			: "unknown");
+		char.info.name != "" ? char.info.name.split(" ").join("_") : "unknown";
 
 	console.log(name);
 

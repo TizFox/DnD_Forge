@@ -18,7 +18,7 @@
 	let textArea: HTMLTextAreaElement;
 	let startY = 0;
 	let startHeight = 0;
-	let resizing = false;
+	let resizing = $state(false);
 
 	function onResizeStart(e: PointerEvent) {
 		e.preventDefault();
@@ -62,7 +62,7 @@
 	>
 	</textarea>
 	<div
-		class="resize"
+		class="resize {resizing ? 'bg-z1' : 'bg-z2'}"
 		role="separator"
 		aria-orientation="horizontal"
 		onpointerdown={onResizeStart}
@@ -84,7 +84,7 @@
 		scrollbar-width: thin;
 		scrollbar-color: var(--color-cta) transparent;
 
-		@apply w-full h-full p-std pr-0.5 bg-z2
+		@apply w-full p-std pr-0.5 bg-z2
 		field-sizing-content resize-none
 		text-left
 		border-2 border-b rounded-t-lg
@@ -93,8 +93,8 @@
 	}
 
 	.resize {
-		@apply w-full bg-z2
-		flex justify-center
+		@apply w-full h-15
+		flex justify-center items-center
 		border-2 border-t-0 rounded-b-lg
 		transition-std border-dark peer-focus:border-cta
 		hover:cursor-ns-resize
