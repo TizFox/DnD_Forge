@@ -39,7 +39,7 @@
 
 		const delta = e.clientY - startY;
 
-		const newHeight = Math.max(20, startHeight + delta);
+		const newHeight = startHeight + delta;
 		textArea.style.height = `${newHeight}px`;
 	}
 
