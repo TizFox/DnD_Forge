@@ -16,6 +16,9 @@ const config = {
 			assets: "build",
 			fallback: "404.html",
 		}),
+		prerender: {
+			handleUnseenRoutes: "ignore",
+		},
 		paths: {
 			base: "/DnD_Forge",
 		},
