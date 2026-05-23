@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Plus, Minus, X, Divide, Equal, Delete } from "@lucide/svelte";
 
-	import { showKeyboard } from "$lib/keyboard.svelte";
+	import { showKeyboard } from "$lib/global.svelte";
 
 	type NumberInputPropsType = {
 		wClass?: string;
