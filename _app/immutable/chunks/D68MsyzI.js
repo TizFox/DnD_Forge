@@ -1,0 +1,1 @@
+import{C as e,H as t,v as n,w as r}from"./CCoOQd-L.js";import"./Cfug8aQt.js";function i(i,a){var o=r();n(t(o),()=>a.children),e(i,o)}export{i as t};
