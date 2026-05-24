@@ -78,6 +78,7 @@
 <!------------------------------------------>
 
 <svelte:head>
+	<meta name="viewport" content="width=1280" />
 	<title>
 		{(character && character.info.name != ""
 			? character.info.name + " - "

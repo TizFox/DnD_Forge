@@ -53,6 +53,7 @@
 <!------------------------------------------>
 
 <svelte:head>
+	<meta name="viewport" content="width=1280" />
 	<link rel="icon" href={logo} />
 	<title>
 		{(dndChar && dndChar.info.name != "" ? dndChar.info.name + " - " : "") +
