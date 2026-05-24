@@ -1,1 +1,0 @@
-import{G as e,K as t,j as n}from"./CCoOQd-L.js";var r=``+new URL(`../assets/logo1000.BuL9uiz_.png`,import.meta.url).href,i=`D&D Forge`,a=`/DnD_Forge`,o=t(!0),s=()=>n(o),c=()=>{e(o,!n(o))};export{r as a,c as i,a as n,s as r,i as t};
