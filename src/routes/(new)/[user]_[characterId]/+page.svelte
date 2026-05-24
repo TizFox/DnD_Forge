@@ -2,9 +2,9 @@
 	import { onMount } from "svelte";
 	import type { PageProps } from "./$types";
 
-	import logo from "$lib/assets/logo1000.png";
 	import { NAME } from "$lib/global.svelte";
 	import { getCharacter, saveCharacter } from "$lib/supabase";
+	import { getColor } from "$lib/classes";
 
 	let { params }: PageProps = $props();
 	let user = $derived(params.user);
@@ -12,7 +12,6 @@
 
 	let loading = $state(true);
 	let character = $state<Character | null>(null);
-	let autoSave: ReturnType<typeof setTimeout>;
 	onMount(async () => {
 		let data = await getCharacter(user, characterId);
 		if (data) {
@@ -30,7 +29,7 @@
 		await saveCharacter(user, characterId, character);
 	};
 
-	import { getColor } from "$lib/classes";
+	let autoSave: ReturnType<typeof setTimeout>;
 	$effect(() => {
 		$state.snapshot(character);
 		clearTimeout(autoSave);
@@ -79,7 +78,6 @@
 <!------------------------------------------>
 
 <svelte:head>
-	<link rel="icon" href={logo} />
 	<title>
 		{(character && character.info.name != ""
 			? character.info.name + " - "
