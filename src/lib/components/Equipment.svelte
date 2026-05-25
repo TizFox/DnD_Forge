@@ -2,7 +2,7 @@
 	import type { CharacterType } from "$lib/character.svelte";
 	import { Character } from "$lib/character.svelte";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Container from "$lib/baseComponents/Container.svelte";
 	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 
@@ -22,7 +22,7 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses="{wClass} flex flex-col gap-3">
+<Container extraClasses="{wClass} flex flex-col gap-3">
 	<AreaInput
 		title="equipment"
 		value={character.equipment.inventory}
@@ -40,7 +40,7 @@
 			/>
 		{/each}
 	</div>
-</BaseContainer>
+</Container>
 
 <!------------------------------------------>
 

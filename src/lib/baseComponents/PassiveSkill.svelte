@@ -2,7 +2,7 @@
 	import { Character } from "$lib/character.svelte";
 	import type { AbilitiesType, SkillsType } from "$lib/types";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Container from "$lib/baseComponents/Container.svelte";
 	import Value from "$lib/baseComponents/Value.svelte";
 
 	type PassiveSkillPropsType = {
@@ -24,10 +24,10 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses="{wClass} flex flex-col">
+<Container extraClasses="{wClass} flex flex-col">
 	<h3 class="main-text">Passive<br />{skill.toUpperCase()}</h3>
 	<Value value={passiveSkill} />
-</BaseContainer>
+</Container>
 
 <!------------------------------------------>
 

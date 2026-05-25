@@ -2,7 +2,7 @@
 	import { Character } from "$lib/character.svelte";
 	import { ALL_SKILLS, type AbilitiesType } from "$lib/types";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Container from "$lib/baseComponents/Container.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import Skill from "$lib/baseComponents/Skill.svelte";
 
@@ -20,7 +20,7 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses="{wClass} flex flex-col items-center gap-3">
+<Container extraClasses="{wClass} flex flex-col items-center gap-3">
 	<h2 class="main-text">{ability.toUpperCase()}</h2>
 
 	<h1 class="ability-mod main-text">
@@ -42,7 +42,7 @@
 			<Skill {character} {ability} {skill} />
 		{/each}
 	{/if}
-</BaseContainer>
+</Container>
 
 <!------------------------------------------>
 

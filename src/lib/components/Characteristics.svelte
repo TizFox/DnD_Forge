@@ -2,7 +2,7 @@
 	import type { CharacterType } from "$lib/character.svelte";
 	import { Character } from "$lib/character.svelte";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Container from "$lib/baseComponents/Container.svelte";
 	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
 
 	type CharacteristicsPropsType = {
@@ -15,7 +15,7 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses="{wClass} grid grid-cols-2 gap-3">
+<Container extraClasses="{wClass} grid grid-cols-2 gap-3">
 	{#each Object.entries(character.info.characteristics) as [key, value]}
 		<AreaInput
 			wClass={key === "backstory" ? "col-span-2" : ""}
@@ -28,7 +28,7 @@
 			}}
 		/>
 	{/each}
-</BaseContainer>
+</Container>
 
 <!------------------------------------------>
 

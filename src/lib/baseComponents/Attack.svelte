@@ -150,10 +150,6 @@
 		.attack-actions {
 			@apply flex-1
 			flex justify-end;
-
-			.std-btn {
-				@apply max-h-none p-half;
-			}
 		}
 	}
 

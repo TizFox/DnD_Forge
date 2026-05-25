@@ -2,7 +2,7 @@
 	import type { CharacterType } from "$lib/character.svelte";
 	import { Character } from "$lib/character.svelte";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Container from "$lib/baseComponents/Container.svelte";
 	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
 
 	type FeaturesPropsType = {
@@ -15,7 +15,7 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses="{wClass} flex flex-col gap-3">
+<Container extraClasses="{wClass} flex flex-col gap-3">
 	{#each Object.entries(character.features) as [key, value]}
 		<AreaInput
 			title={key.split("_").join(" ")}
@@ -25,7 +25,7 @@
 			}}
 		/>
 	{/each}
-</BaseContainer>
+</Container>
 
 <!------------------------------------------>
 

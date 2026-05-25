@@ -7,11 +7,16 @@
 	import { NAME, PATH } from "$lib/global.svelte";
 
 	import { type CharacterType, Character } from "$lib/character.svelte";
-	import { getCharacters, createCharacter } from "$lib/supabase";
+	import { getColor } from "$lib/classes";
+	import {
+		getCharacters,
+		createCharacter,
+		deleteCharacter,
+	} from "$lib/supabase";
 
 	import TextInput from "$lib/baseComponents/TextInput.svelte";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import CharacterDescriptor from "$lib/components/CharacterDescriptor.svelte";
 	import Loading from "$lib/components/Loading.svelte";
 	import Empty from "$lib/components/Empty.svelte";
 
@@ -19,9 +24,16 @@
 	let user = $state("");
 
 	onMount(async () => {
+		// Get last user used
 		let lastUser = localStorage.getItem("lastUser");
 		inputUser = lastUser ? lastUser : "";
 		await loadData();
+
+		// Set Base Color
+		document.documentElement.style.setProperty(
+			"--color-cta",
+			getColor("default"),
+		);
 	});
 
 	let loading = $state(false);
@@ -48,8 +60,6 @@
 			});
 		}
 
-		inputUser = data.length !== 0 ? "" : inputUser;
-
 		loading = false;
 	};
 
@@ -65,6 +75,11 @@
 		localStorage.setItem("lastUser", user);
 		goto(`${PATH}/${user}_${id}`);
 	};
+	const removeCharacter = async (id: string) => {
+		await deleteCharacter(user, id);
+		const thisPage = window.location.pathname;
+		goto("/").then(() => goto(thisPage));
+	};
 </script>
 
 <!------------------------------------------>
@@ -78,7 +93,7 @@
 
 <div class="w-full flex flex-col items-center gap-5">
 	<form onsubmit={loadData} class="flex items-center">
-		<h3 class="main-text h-min p-half">USER:</h3>
+		<h3 class="main-text h-min">USER:</h3>
 		<TextInput
 			rClass="rounded-l-lg"
 			value={inputUser}
@@ -86,43 +101,40 @@
 		/>
 		<button
 			type="submit"
-			class="std-btn rounded-none rounded-r-lg"
+			class="std-btn h-8 rounded-l-none"
 			disabled={loading || inputUser === ""}
 		>
 			CONFIRM
 		</button>
 	</form>
 
-	{#if user !== ""}
-		{#if loading}
-			<Loading />
-		{:else}
-			<div class="w-full md:w-1/2 flex flex-col gap-3">
-				<div class="flex justify-between items-center">
-					<h1 class="main-text h-min">
-						{user.toUpperCase()}'s CHARACTERS
-					</h1>
-					<button onclick={newCharacter} class="std-btn p-std">
-						<Plus />
-					</button>
-				</div>
-
-				<hr />
-
-				{#each data as d}
-					<button onclick={() => openCharacter(d.id)}>
-						<BaseContainer
-							extraClasses="border-2 transition-std border-dark hover:border-cta"
-						>
-							{d.character.info.name}
-							{d.character.info.level}
-						</BaseContainer>
-					</button>
-				{:else}
-					<Empty msg="NO CHARACTERS" />
-				{/each}
+	{#if user === ""}
+		<Empty msg="INSERT USER" />
+	{:else if loading}
+		<Loading />
+	{:else}
+		<div class="w-full md:w-1/2 flex flex-col gap-3">
+			<div class="flex justify-between items-center">
+				<h1 class="main-text h-min">
+					{user.toUpperCase()}'s CHARACTERS
+				</h1>
+				<button onclick={newCharacter} class="std-btn p-std">
+					<Plus />
+				</button>
 			</div>
-		{/if}
+
+			<hr />
+
+			{#each data as d}
+				<CharacterDescriptor
+					data={d}
+					openFun={openCharacter}
+					removeFun={removeCharacter}
+				/>
+			{:else}
+				<Empty msg="NO CHARACTERS" />
+			{/each}
+		</div>
 	{/if}
 </div>
 

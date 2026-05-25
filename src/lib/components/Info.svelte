@@ -2,7 +2,7 @@
 	import { Character } from "$lib/character.svelte";
 	import { getClassNames } from "$lib/classes";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Container from "$lib/baseComponents/Container.svelte";
 	import TextInput from "$lib/baseComponents/TextInput.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import Value from "$lib/baseComponents/Value.svelte";
@@ -21,7 +21,7 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses="{wClass} grid grid-cols-2 items-center gap-2">
+<Container extraClasses="{wClass} grid grid-cols-2 items-center gap-2">
 	<div class="info-section">
 		<div class="info-subsection">
 			<h3>NAME</h3>
@@ -105,7 +105,7 @@
 			</span>
 		</div>
 	</div>
-</BaseContainer>
+</Container>
 
 <!------------------------------------------>
 

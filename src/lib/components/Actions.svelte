@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Container from "$lib/baseComponents/Container.svelte";
 	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
 	import TextInput from "$lib/baseComponents/TextInput.svelte";
 	import Attack from "$lib/baseComponents/Attack.svelte";
@@ -22,7 +22,7 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses="{wClass} flex flex-col items-center gap-3">
+<Container extraClasses="{wClass} flex flex-col items-center gap-3">
 	<AreaInput
 		{wClass}
 		title="Actions"
@@ -49,7 +49,7 @@
 					newAttackName = "";
 				}}
 				disabled={newAttackName === ""}
-				class="std-btn rounded-l-none flex-1"
+				class="std-btn flex-1 h-8 rounded-l-none"
 			>
 				ADD
 			</button>
@@ -65,7 +65,7 @@
 			<h3 class="main-text">NO ATTACKS</h3>
 		{/each}
 	</div>
-</BaseContainer>
+</Container>
 
 <!------------------------------------------>
 

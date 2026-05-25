@@ -22,6 +22,7 @@ export const getCharacters = async (
 
 	return data ?? [];
 };
+
 export const getCharacter = async (
 	user: string,
 	characterId: string,
@@ -90,5 +91,21 @@ export const saveCharacter = async (
 		.eq("id", characterId);
 	if (updateError) {
 		console.log("ERROR: " + updateError.message);
+	}
+};
+
+export const deleteCharacter = async (
+	user: string,
+	characterId: string,
+): Promise<void> => {
+	user = user.toLowerCase();
+
+	let { error } = await supabase
+		.from("characters")
+		.delete()
+		.eq("user", user)
+		.eq("id", characterId);
+	if (error) {
+		console.log("ERROR: " + error.message);
 	}
 };

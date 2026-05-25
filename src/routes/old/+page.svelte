@@ -7,47 +7,13 @@
 	import { FILE_EXTENTION, load, save } from "$lib/fileHandler";
 	import { Character, type CharacterType } from "$lib/character.svelte";
 	import { showKeyboard, toggleKeyboard } from "$lib/global.svelte";
-	import { getColor } from "$lib/classes";
 
-	// full
-	import Info from "$lib/components/Info.svelte";
-
-	// 1/3
-	import Stats from "$lib/components/Stats.svelte";
-
-	// 2/3
-	import Ca from "$lib/components/Ca.svelte";
-	import Hp from "$lib/components/Hp.svelte";
-	import Actions from "$lib/components/Actions.svelte";
-	import Passive from "$lib/components/Passive.svelte";
-	import Equipment from "$lib/components/Equipment.svelte";
-
-	// 3/3
-	import Features from "$lib/components/Features.svelte";
-	import Characteristics from "$lib/components/Characteristics.svelte";
-	import Description from "$lib/components/Description.svelte";
-
-	// 2-3/3
-	import Spellcasting from "$lib/components/Spellcasting.svelte";
+	import CharacterSheet from "$lib/components/CharacterSheet.svelte";
+	import Empty from "$lib/components/Empty.svelte";
 
 	let fileInput = $state<HTMLInputElement | null>(null);
 	let fileName = $state<string | null>(null);
 	let dndChar = $state<Character | null>(null);
-
-	$effect(() => {
-		if (!dndChar) {
-			document.documentElement.style.setProperty(
-				"--color-cta",
-				getColor("default"),
-			);
-			return;
-		}
-
-		document.documentElement.style.setProperty(
-			"--color-cta",
-			getColor(dndChar.info.class),
-		);
-	});
 </script>
 
 <!------------------------------------------>
@@ -137,27 +103,9 @@
 	<div class="w-full max-w-7xl min-h-(--main-size) p-5 flex flex-col gap-5">
 		<!--min-w-7xl-->
 		{#if dndChar}
-			<Info character={dndChar} />
-			<div class="w-full flex gap-5">
-				<Stats wClass="flex-1" character={dndChar} />
-				<div class="flex-2 grid grid-cols-2 auto-rows-fr gap-5">
-					<div class="flex flex-col gap-5">
-						<Ca character={dndChar} />
-						<Hp character={dndChar} />
-						<Actions character={dndChar} />
-						<Passive character={dndChar} />
-						<Equipment character={dndChar} />
-					</div>
-					<div class="flex flex-col gap-5">
-						<Features character={dndChar} />
-						<Characteristics character={dndChar} />
-						<Description character={dndChar} />
-					</div>
-					<Spellcasting wClass="col-span-2" character={dndChar} />
-				</div>
-			</div>
-
-			<p>{JSON.stringify(dndChar)}</p>
+			<CharacterSheet character={dndChar} />
+		{:else}
+			<Empty msg="LOAD CHARACTER" />
 		{/if}
 	</div>
 </main>

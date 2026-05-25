@@ -3,7 +3,7 @@
 	import { Character } from "$lib/character.svelte";
 	import { getSpellNames } from "$lib/spells";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Container from "$lib/baseComponents/Container.svelte";
 	import Value from "$lib/baseComponents/Value.svelte";
 	import TextInput from "$lib/baseComponents/TextInput.svelte";
 	import Spell from "$lib/baseComponents/Spell.svelte";
@@ -29,7 +29,7 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses="{wClass} flex flex-col gap-3">
+<Container extraClasses="{wClass} flex flex-col gap-3">
 	<h2 class="main-text">SPELLCASTING</h2>
 	<div class="flex gap-2">
 		<div class="flex-2">
@@ -74,7 +74,7 @@
 					}
 				}}
 				disabled={newSpellName === ""}
-				class="std-btn rounded-l-none flex-1"
+				class="std-btn flex-1 h-8 rounded-l-none"
 			>
 				ADD
 			</button>
@@ -99,7 +99,7 @@
 			<h3 class="main-text">NO SPELLS</h3>
 		{/each}
 	</div>
-</BaseContainer>
+</Container>
 
 <!------------------------------------------>
 

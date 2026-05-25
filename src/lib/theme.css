@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-	--main-size: 86vh;
-	--bars-size: 7vh;
+	--main-size: 86dvh;
+	--bars-size: 7dvh;
 
-	--max-btn-h: calc(var(--bars-size) / 2);
 	--color-disabled: var(--color-red-300);
 
 	--color-dark: var(--color-slate-50);
@@ -96,7 +95,7 @@
 		hover:text-cta hover:border-cta;
 	}
 	.std-btn {
-		@apply h-full max-h-(--max-btn-h) px-std
+		@apply p-std
 		flex items-center justify-center
 		transition-std
 		rounded-lg

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Container from "$lib/baseComponents/Container.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import CheckboxInput from "$lib/baseComponents/CheckboxInput.svelte";
 
@@ -15,7 +15,7 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses={wClass}>
+<Container extraClasses={wClass}>
 	<div class="flex flex-col gap-3">
 		<div class="flex gap-1">
 			<NumberInput
@@ -57,7 +57,7 @@
 			</div>
 		</div>
 	</div>
-</BaseContainer>
+</Container>
 
 <!------------------------------------------>
 

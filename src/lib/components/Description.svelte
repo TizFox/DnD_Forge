@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Container from "$lib/baseComponents/Container.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import TextInput from "$lib/baseComponents/TextInput.svelte";
 	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
@@ -16,7 +16,7 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses="{wClass} grid grid-cols-2 gap-3">
+<Container extraClasses="{wClass} grid grid-cols-2 gap-3">
 	<NumberInput
 		title="age"
 		value={character.info.description.age}
@@ -67,7 +67,7 @@
 			character.info.description.other = s;
 		}}
 	/>
-</BaseContainer>
+</Container>
 
 <!------------------------------------------>
 

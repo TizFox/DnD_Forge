@@ -6,7 +6,7 @@
 	import { Character } from "$lib/character.svelte";
 	import { DEATH_TS_TYPES, type DeathTS } from "$lib/types";
 
-	import BaseContainer from "$lib/baseComponents/BaseContainer.svelte";
+	import Container from "$lib/baseComponents/Container.svelte";
 	import Value from "$lib/baseComponents/Value.svelte";
 	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
 	import CheckboxInput from "$lib/baseComponents/CheckboxInput.svelte";
@@ -26,7 +26,7 @@
 
 <!------------------------------------------>
 
-<BaseContainer extraClasses="{wClass} flex flex-col gap-3">
+<Container extraClasses="{wClass} flex flex-col gap-3">
 	<div class="hp-multi">
 		<NumberInput
 			title="max hp"
@@ -105,7 +105,7 @@
 			{/each}
 		</div>
 	</div>
-</BaseContainer>
+</Container>
 
 <!------------------------------------------>
 

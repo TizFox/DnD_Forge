@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 
-	type BaseContainerPropsType = {
+	type ContainerPropsType = {
 		children: Snippet;
 		extraClasses?: string;
 	};
 
-	let { children, extraClasses = "" }: BaseContainerPropsType = $props();
+	let { children, extraClasses = "" }: ContainerPropsType = $props();
 </script>
 
 <!------------------------------------------>
