@@ -18,10 +18,13 @@
 	let inputUser = $state("");
 	let user = $state("");
 
-	let loading = $state(true);
+	let loading = $state(false);
 	let data = $state<Array<{ id: any; character: CharacterType }>>([]);
 	const loadData = async () => {
+		loading = true;
+
 		user = inputUser;
+		data = [];
 
 		let rowData = await getCharacters(user);
 
@@ -30,6 +33,10 @@
 				id: d.id,
 				character: JSON.parse(d.character) as CharacterType,
 			});
+		}
+
+		if (data.length === 0) {
+			inputUser = "";
 		}
 
 		loading = false;
@@ -52,17 +59,21 @@
 <!------------------------------------------>
 
 <div class="w-full flex flex-col items-center gap-5">
-	<div class="flex items-center">
-		<h3 class="main-text h-min">USER:</h3>
+	<form onsubmit={loadData} class="flex items-center">
+		<h3 class="main-text h-min p-half">USER:</h3>
 		<TextInput
 			rClass="rounded-l-lg"
 			value={inputUser}
 			onChange={(s: string) => (inputUser = s)}
 		/>
-		<button onclick={loadData} class="std-btn rounded-none rounded-r-lg">
+		<button
+			type="submit"
+			class="std-btn rounded-none rounded-r-lg"
+			disabled={loading || inputUser === ""}
+		>
 			CONFIRM
 		</button>
-	</div>
+	</form>
 
 	{#if user !== ""}
 		{#if loading}
