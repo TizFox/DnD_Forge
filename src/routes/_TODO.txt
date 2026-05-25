@@ -1,2 +1,0 @@
-TODO:
-- [SVELTE] Finish Character List in "/"

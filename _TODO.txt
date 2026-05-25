@@ -1,0 +1,5 @@
+TODO:
+- [SVELTE] Add visualizer if the data is saved or not
+- [SVELTE] Add manual save button
+- [  TS  ] Add .dndchar.json => supabase
+- [  TS  ] Add supabase => .dndchar.json

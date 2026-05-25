@@ -83,8 +83,7 @@
 		);
 		if (confirm && confirm.toLowerCase() === CONFIRM_TEXT.toLowerCase()) {
 			await deleteCharacter(user, id);
-			const thisPage = window.location.pathname;
-			goto("/").then(() => goto(thisPage));
+			goto("/").then(() => goto(`${PATH}/${user}`));
 		}
 	};
 </script>
