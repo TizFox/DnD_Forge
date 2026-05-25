@@ -81,9 +81,12 @@
 		let confirm = prompt(
 			`Are you sure?\nWrite: "${CONFIRM_TEXT.toUpperCase()}" to delete it.\n(Not case sensitive)`,
 		);
-		if (confirm && confirm.toLowerCase() === CONFIRM_TEXT.toLowerCase()) {
+		if (
+			confirm &&
+			confirm.trim().toLowerCase() === CONFIRM_TEXT.toLowerCase()
+		) {
 			await deleteCharacter(user, id);
-			goto(getPath()).then(() => goto(getPath(user)));
+			goto(getPath(user, "tmp")).then(() => goto(getPath()));
 		}
 	};
 </script>

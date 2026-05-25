@@ -4,9 +4,6 @@ export const getPath = (user?: string, id?: string): string => {
 	if (user && id) {
 		return PATH + "/" + user + "_" + id;
 	}
-	if (user) {
-		return PATH + "/" + user;
-	}
 	return PATH;
 };
 
