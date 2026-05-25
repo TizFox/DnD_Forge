@@ -32,6 +32,9 @@
 			<p class="flex-1 text-left">
 				{data.character.info.name}
 			</p>
+			<p class="flex-1 text-left">
+				{data.character.info.campaign}
+			</p>
 		</Container>
 	</button>
 	<button onclick={() => removeFun(data.id)} class="std-btn rounded-l-none">

@@ -49,6 +49,7 @@
 		loading = true;
 
 		user = inputUser;
+		localStorage.setItem("lastUser", user);
 		data = [];
 
 		let rowData = await getCharacters(user);
@@ -72,13 +73,19 @@
 	};
 
 	const openCharacter = (id: string) => {
-		localStorage.setItem("lastUser", user);
 		goto(`${PATH}/${user}_${id}`);
 	};
 	const removeCharacter = async (id: string) => {
-		await deleteCharacter(user, id);
-		const thisPage = window.location.pathname;
-		goto("/").then(() => goto(thisPage));
+		const CONFIRM_TEXT = "i want to delete this character";
+
+		let confirm = prompt(
+			`Are you sure?\nWrite: "${CONFIRM_TEXT.toUpperCase()}" to delete it.\n(Not case sensitive)`,
+		);
+		if (confirm && confirm.toLowerCase() === CONFIRM_TEXT.toLowerCase()) {
+			await deleteCharacter(user, id);
+			const thisPage = window.location.pathname;
+			goto("/").then(() => goto(thisPage));
+		}
 	};
 </script>
 
