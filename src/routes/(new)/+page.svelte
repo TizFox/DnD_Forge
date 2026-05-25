@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import { goto } from "$app/navigation";
 
 	import { Plus } from "@lucide/svelte";
 
-	import logo from "$lib/assets/logo1000.png";
 	import { NAME, PATH } from "$lib/global.svelte";
 
 	import { type CharacterType, Character } from "$lib/character.svelte";
@@ -18,9 +18,22 @@
 	let inputUser = $state("");
 	let user = $state("");
 
+	onMount(async () => {
+		let lastUser = localStorage.getItem("lastUser");
+		inputUser = lastUser ? lastUser : "";
+		await loadData();
+	});
+
 	let loading = $state(false);
 	let data = $state<Array<{ id: any; character: CharacterType }>>([]);
 	const loadData = async () => {
+		if (
+			inputUser === "" ||
+			inputUser.toLowerCase() === user.toLowerCase()
+		) {
+			return;
+		}
+
 		loading = true;
 
 		user = inputUser;
@@ -35,9 +48,7 @@
 			});
 		}
 
-		if (data.length === 0) {
-			inputUser = "";
-		}
+		inputUser = data.length !== 0 ? "" : inputUser;
 
 		loading = false;
 	};
@@ -45,7 +56,14 @@
 	const newCharacter = async () => {
 		let char = new Character();
 		let id = await createCharacter(user, char);
-		goto(PATH + "/" + user + "_" + id);
+		if (id) {
+			openCharacter(id);
+		}
+	};
+
+	const openCharacter = (id: string) => {
+		localStorage.setItem("lastUser", user);
+		goto(`${PATH}/${user}_${id}`);
 	};
 </script>
 
@@ -92,14 +110,14 @@
 				<hr />
 
 				{#each data as d}
-					<a href="{PATH}/{user}_{d.id}">
+					<button onclick={() => openCharacter(d.id)}>
 						<BaseContainer
 							extraClasses="border-2 transition-std border-dark hover:border-cta"
 						>
 							{d.character.info.name}
 							{d.character.info.level}
 						</BaseContainer>
-					</a>
+					</button>
 				{:else}
 					<Empty msg="NO CHARACTERS" />
 				{/each}
