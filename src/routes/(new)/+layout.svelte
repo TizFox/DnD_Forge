@@ -6,7 +6,7 @@
 	import logo from "$lib/assets/logo1000.png";
 	import {
 		NAME,
-		PATH,
+		getPath,
 		showKeyboard,
 		toggleKeyboard,
 	} from "$lib/global.svelte";
@@ -23,7 +23,7 @@
 <!------------------------------------------>
 
 <nav class="bar-container navbar">
-	<a href={PATH} class="h-full">
+	<a href={getPath()} class="h-full">
 		<img src={logo} alt="Logo" class="h-full" />
 	</a>
 	<div class="user-actions">

@@ -4,7 +4,7 @@
 
 	import { Plus } from "@lucide/svelte";
 
-	import { NAME, PATH } from "$lib/global.svelte";
+	import { NAME, getPath } from "$lib/global.svelte";
 
 	import { type CharacterType, Character } from "$lib/character.svelte";
 	import { getColor } from "$lib/classes";
@@ -73,7 +73,7 @@
 	};
 
 	const openCharacter = (id: string) => {
-		goto(`${PATH}/${user}_${id}`);
+		goto(getPath(user, id));
 	};
 	const removeCharacter = async (id: string) => {
 		const CONFIRM_TEXT = "i want to delete this character";
@@ -83,7 +83,7 @@
 		);
 		if (confirm && confirm.toLowerCase() === CONFIRM_TEXT.toLowerCase()) {
 			await deleteCharacter(user, id);
-			goto("/").then(() => goto(`${PATH}/${user}`));
+			goto(getPath()).then(() => goto(getPath(user)));
 		}
 	};
 </script>
