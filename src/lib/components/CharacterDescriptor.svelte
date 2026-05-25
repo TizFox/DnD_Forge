@@ -24,15 +24,15 @@
 		<Container
 			extraClasses="
 				w-full
-				flex justify-start gap-3
+				flex justify-start items-center gap-3
 				rounded-r-none border-2 transition-std border-dark hover:border-cta
 			"
 		>
 			<Value wClass="w-fit" value={data.character.info.level} />
-			<p class="flex-1 text-left">
+			<p class="flex-1 h-min text-left">
 				{data.character.info.name}
 			</p>
-			<p class="flex-1 text-left">
+			<p class="flex-1 h-min text-left">
 				{data.character.info.campaign}
 			</p>
 		</Container>
