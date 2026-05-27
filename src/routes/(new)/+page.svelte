@@ -14,9 +14,13 @@
 		deleteCharacter,
 	} from "$lib/supabase";
 
-	import TextInput from "$lib/baseComponents/TextInput.svelte";
+	import Header from "$lib/components/Header.svelte";
+	import Main from "$lib/components/Main.svelte";
+	import Footer from "$lib/components/Footer.svelte";
 
+	import TextInput from "$lib/components/base/TextInput.svelte";
 	import CharacterDescriptor from "$lib/components/CharacterDescriptor.svelte";
+
 	import Loading from "$lib/components/Loading.svelte";
 	import Empty from "$lib/components/Empty.svelte";
 
@@ -68,10 +72,13 @@
 		let char = new Character();
 		let id = await createCharacter(user, char);
 		if (id) {
-			openCharacter(id);
+			data.push({
+				id: id,
+				character: char,
+			});
+			//openCharacter(id);
 		}
 	};
-
 	const openCharacter = (id: string) => {
 		goto(getPath(user, id));
 	};
@@ -85,8 +92,13 @@
 			confirm &&
 			confirm.trim().toLowerCase() === CONFIRM_TEXT.toLowerCase()
 		) {
-			await deleteCharacter(user, id);
-			goto(getPath(user, "tmp")).then(() => goto(getPath()));
+			let ok = await deleteCharacter(user, id);
+			if (ok) {
+				let deleteIndex = data.findIndex((i) => i.id === id);
+				if (deleteIndex !== -1) {
+					data.splice(deleteIndex, 1);
+				}
+			}
 		}
 	};
 </script>
@@ -100,52 +112,58 @@
 
 <!------------------------------------------>
 
-<div class="w-full flex flex-col items-center gap-5">
-	<form onsubmit={loadData} class="flex items-center">
-		<h3 class="main-text h-min">USER:</h3>
-		<TextInput
-			rClass="rounded-l-lg"
-			value={inputUser}
-			onChange={(s: string) => (inputUser = s)}
-		/>
-		<button
-			type="submit"
-			class="std-btn h-8 rounded-l-none"
-			disabled={loading || inputUser === ""}
-		>
-			CONFIRM
-		</button>
-	</form>
+<Header />
 
-	{#if user === ""}
-		<Empty msg="INSERT USER" />
-	{:else if loading}
-		<Loading />
-	{:else}
-		<div class="w-full md:w-1/2 flex flex-col gap-3">
-			<div class="flex justify-between items-center">
-				<h1 class="main-text h-min">
-					{user.toUpperCase()}'s CHARACTERS
-				</h1>
-				<button onclick={newCharacter} class="std-btn p-std">
-					<Plus />
-				</button>
+<Main>
+	<div class="w-full flex flex-col items-center gap-5">
+		<form onsubmit={loadData} class="flex items-center">
+			<h3 class="main-text h-min">USER:</h3>
+			<TextInput
+				rClass="rounded-l-lg"
+				value={inputUser}
+				onChange={(s: string) => (inputUser = s)}
+			/>
+			<button
+				type="submit"
+				class="std-btn h-8 rounded-l-none"
+				disabled={loading || inputUser === ""}
+			>
+				CONFIRM
+			</button>
+		</form>
+
+		{#if user === ""}
+			<Empty msg="INSERT USER" />
+		{:else if loading}
+			<Loading />
+		{:else}
+			<div class="w-full md:w-1/2 flex flex-col gap-3">
+				<div class="flex justify-between items-center">
+					<h1 class="main-text h-min">
+						{user.toUpperCase()}'s CHARACTERS
+					</h1>
+					<button onclick={newCharacter} class="std-btn p-std">
+						<Plus />
+					</button>
+				</div>
+
+				<hr />
+
+				{#each data as d}
+					<CharacterDescriptor
+						data={d}
+						openFun={openCharacter}
+						removeFun={removeCharacter}
+					/>
+				{:else}
+					<Empty msg="NO CHARACTERS" />
+				{/each}
 			</div>
+		{/if}
+	</div>
+</Main>
 
-			<hr />
-
-			{#each data as d}
-				<CharacterDescriptor
-					data={d}
-					openFun={openCharacter}
-					removeFun={removeCharacter}
-				/>
-			{:else}
-				<Empty msg="NO CHARACTERS" />
-			{/each}
-		</div>
-	{/if}
-</div>
+<Footer />
 
 <!------------------------------------------>
 

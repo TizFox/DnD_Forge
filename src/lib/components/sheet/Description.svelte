@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
 
-	import Container from "$lib/baseComponents/Container.svelte";
-	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
-	import TextInput from "$lib/baseComponents/TextInput.svelte";
-	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
+	import Container from "$lib/components/base/Container.svelte";
+	import NumberInput from "$lib/components/base/NumberInput.svelte";
+	import TextInput from "$lib/components/base/TextInput.svelte";
+	import AreaInput from "$lib/components/base/AreaInput.svelte";
 
 	type DescriptionPropsType = {
 		wClass?: string;

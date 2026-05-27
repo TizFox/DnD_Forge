@@ -6,10 +6,10 @@
 	import { Character } from "$lib/character.svelte";
 	import { DEATH_TS_TYPES, type DeathTS } from "$lib/types";
 
-	import Container from "$lib/baseComponents/Container.svelte";
-	import Value from "$lib/baseComponents/Value.svelte";
-	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
-	import CheckboxInput from "$lib/baseComponents/CheckboxInput.svelte";
+	import Container from "$lib/components/base/Container.svelte";
+	import Value from "$lib/components/base/Value.svelte";
+	import NumberInput from "$lib/components/base/NumberInput.svelte";
+	import CheckboxInput from "$lib/components/base/CheckboxInput.svelte";
 
 	type HpPropsType = {
 		wClass?: string;

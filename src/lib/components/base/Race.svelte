@@ -2,7 +2,7 @@
 	import { Character } from "$lib/character.svelte";
 	import { Sizes } from "$lib/types";
 
-	import TextInput from "$lib/baseComponents/TextInput.svelte";
+	import TextInput from "$lib/components/base/TextInput.svelte";
 
 	type RacePropsType = {
 		wClass?: string;

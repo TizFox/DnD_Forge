@@ -2,6 +2,7 @@ import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_KEY } from "$env/static/public";
 import { createClient } from "@supabase/supabase-js";
 
 import { Character } from "./character.svelte";
+import { ReceiptTurkishLiraIcon } from "@lucide/svelte";
 
 const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_KEY);
 
@@ -66,8 +67,12 @@ export const createCharacter = async (
 export const saveCharacter = async (
 	user: string,
 	characterId: string,
-	newCharacter: Character,
-): Promise<void> => {
+	newCharacter?: Character,
+): Promise<boolean> => {
+	if (!newCharacter) {
+		return true;
+	}
+
 	user = user.toLowerCase();
 
 	let { data, error: selectError } = await supabase
@@ -81,7 +86,7 @@ export const saveCharacter = async (
 			"ERROR: " +
 				(selectError ? selectError.message : "Character Not Found"),
 		);
-		return;
+		return false;
 	}
 
 	let { error: updateError } = await supabase
@@ -91,13 +96,15 @@ export const saveCharacter = async (
 		.eq("id", characterId);
 	if (updateError) {
 		console.log("ERROR: " + updateError.message);
+		return false;
 	}
+	return true;
 };
 
 export const deleteCharacter = async (
 	user: string,
 	characterId: string,
-): Promise<void> => {
+): Promise<boolean> => {
 	user = user.toLowerCase();
 
 	let { error } = await supabase
@@ -107,5 +114,7 @@ export const deleteCharacter = async (
 		.eq("id", characterId);
 	if (error) {
 		console.log("ERROR: " + error.message);
+		return false;
 	}
+	return true;
 };

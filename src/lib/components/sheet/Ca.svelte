@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
 
-	import Container from "$lib/baseComponents/Container.svelte";
-	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
-	import CheckboxInput from "$lib/baseComponents/CheckboxInput.svelte";
+	import Container from "$lib/components/base/Container.svelte";
+	import NumberInput from "$lib/components/base/NumberInput.svelte";
+	import CheckboxInput from "$lib/components/base/CheckboxInput.svelte";
 
 	type CaPropsType = {
 		wClass?: string;

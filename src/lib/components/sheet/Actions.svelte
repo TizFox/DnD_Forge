@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
 
-	import Container from "$lib/baseComponents/Container.svelte";
-	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
-	import TextInput from "$lib/baseComponents/TextInput.svelte";
-	import Attack from "$lib/baseComponents/Attack.svelte";
+	import Container from "$lib/components/base/Container.svelte";
+	import AreaInput from "$lib/components/base/AreaInput.svelte";
+	import TextInput from "$lib/components/base/TextInput.svelte";
+	import Attack from "$lib/components/base/Attack.svelte";
 
 	type ActionsPropsType = {
 		wClass?: string;

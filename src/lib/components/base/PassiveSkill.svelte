@@ -2,8 +2,8 @@
 	import { Character } from "$lib/character.svelte";
 	import type { AbilitiesType, SkillsType } from "$lib/types";
 
-	import Container from "$lib/baseComponents/Container.svelte";
-	import Value from "$lib/baseComponents/Value.svelte";
+	import Container from "$lib/components/base/Container.svelte";
+	import Value from "$lib/components/base/Value.svelte";
 
 	type PassiveSkillPropsType = {
 		wClass?: string;

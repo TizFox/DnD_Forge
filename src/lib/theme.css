@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-	--main-size: 86dvh;
-	--bars-size: 7dvh;
+	--main-size: 86vh;
+	--bars-size: 7vh;
 
 	--color-disabled: var(--color-red-300);
 
@@ -88,6 +88,15 @@
 }
 
 @layer components {
+	.bar-container {
+		@apply w-full h-(--bars-size) bg-z2
+		flex justify-center items-center gap-5;
+
+		.bar {
+			@apply w-full max-w-7xl h-full px-5 py-2
+			flex justify-center;
+		}
+	}
 	.link {
 		@apply font-bold
 		transition-std

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Character } from "$lib/character.svelte";
 
-	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
+	import NumberInput from "$lib/components/base/NumberInput.svelte";
 
 	type SpellSlotPropsType = {
 		wClass?: string;

@@ -16,6 +16,10 @@ import {
 
 import { getSpell } from "./spells";
 
+export const getAbilityOfSkill = (skill: string): AbilitiesType => {
+	return "charisma";
+};
+
 export type CharacterType = InstanceType<typeof Character>;
 
 export class Character {
@@ -111,7 +115,7 @@ export class Character {
 	constructor() {
 		this.info = $state({
 			player: "",
-			name: "",
+			name: "New Character",
 			campaign: "",
 			alignment: { morality: Morality.Neutral, order: Order.Neutral },
 

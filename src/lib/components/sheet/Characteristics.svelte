@@ -2,8 +2,8 @@
 	import type { CharacterType } from "$lib/character.svelte";
 	import { Character } from "$lib/character.svelte";
 
-	import Container from "$lib/baseComponents/Container.svelte";
-	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
+	import Container from "$lib/components/base/Container.svelte";
+	import AreaInput from "$lib/components/base/AreaInput.svelte";
 
 	type CharacteristicsPropsType = {
 		wClass?: string;

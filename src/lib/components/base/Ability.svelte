@@ -2,9 +2,9 @@
 	import { Character } from "$lib/character.svelte";
 	import { ALL_SKILLS, type AbilitiesType } from "$lib/types";
 
-	import Container from "$lib/baseComponents/Container.svelte";
-	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
-	import Skill from "$lib/baseComponents/Skill.svelte";
+	import Container from "$lib/components/base/Container.svelte";
+	import NumberInput from "$lib/components/base/NumberInput.svelte";
+	import Skill from "$lib/components/base/Skill.svelte";
 
 	type AbilityPropsType = {
 		wClass?: string;

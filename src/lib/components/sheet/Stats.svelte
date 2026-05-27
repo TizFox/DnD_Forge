@@ -2,7 +2,7 @@
 	import { Character } from "$lib/character.svelte";
 	import { ALL_ABILITIES } from "$lib/types";
 
-	import Ability from "$lib/baseComponents/Ability.svelte";
+	import Ability from "$lib/components/base/Ability.svelte";
 
 	type StatsPropsType = {
 		wClass?: string;

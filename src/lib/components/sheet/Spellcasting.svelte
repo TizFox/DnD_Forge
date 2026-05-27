@@ -3,11 +3,11 @@
 	import { Character } from "$lib/character.svelte";
 	import { getSpellNames } from "$lib/spells";
 
-	import Container from "$lib/baseComponents/Container.svelte";
-	import Value from "$lib/baseComponents/Value.svelte";
-	import TextInput from "$lib/baseComponents/TextInput.svelte";
-	import Spell from "$lib/baseComponents/Spell.svelte";
-	import SpellSlot from "$lib/baseComponents/SpellSlot.svelte";
+	import Container from "$lib/components/base/Container.svelte";
+	import Value from "$lib/components/base/Value.svelte";
+	import TextInput from "$lib/components/base/TextInput.svelte";
+	import Spell from "$lib/components/base/Spell.svelte";
+	import SpellSlot from "$lib/components/base/SpellSlot.svelte";
 
 	type SpellcastingInfoPropsType = {
 		wClass?: string;

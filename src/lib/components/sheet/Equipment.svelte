@@ -2,9 +2,9 @@
 	import type { CharacterType } from "$lib/character.svelte";
 	import { Character } from "$lib/character.svelte";
 
-	import Container from "$lib/baseComponents/Container.svelte";
-	import AreaInput from "$lib/baseComponents/AreaInput.svelte";
-	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
+	import Container from "$lib/components/base/Container.svelte";
+	import AreaInput from "$lib/components/base/AreaInput.svelte";
+	import NumberInput from "$lib/components/base/NumberInput.svelte";
 
 	type EquipmentPropsType = {
 		wClass?: string;

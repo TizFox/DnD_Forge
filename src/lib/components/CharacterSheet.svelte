@@ -1,53 +1,36 @@
 <script lang="ts">
-	import { saveCharacter } from "$lib/supabase";
 	import { getColor } from "$lib/classes";
 
 	import type { Character } from "$lib/character.svelte";
 
 	// 1-2-3
-	import Info from "$lib/components/Info.svelte";
+	import Info from "$lib/components/sheet/Info.svelte";
 
 	// 1
-	import Stats from "$lib/components/Stats.svelte";
+	import Stats from "$lib/components/sheet/Stats.svelte";
 
 	// 2
-	import Ca from "$lib/components/Ca.svelte";
-	import Hp from "$lib/components/Hp.svelte";
-	import Actions from "$lib/components/Actions.svelte";
-	import Passive from "$lib/components/Passive.svelte";
-	import Equipment from "$lib/components/Equipment.svelte";
+	import Ca from "$lib/components/sheet/Ca.svelte";
+	import Hp from "$lib/components/sheet/Hp.svelte";
+	import Actions from "$lib/components/sheet/Actions.svelte";
+	import Passive from "$lib/components/sheet/Passive.svelte";
+	import Equipment from "$lib/components/sheet/Equipment.svelte";
 
 	// 3
-	import Features from "$lib/components/Features.svelte";
-	import Characteristics from "$lib/components/Characteristics.svelte";
-	import Description from "$lib/components/Description.svelte";
+	import Features from "$lib/components/sheet/Features.svelte";
+	import Characteristics from "$lib/components/sheet/Characteristics.svelte";
+	import Description from "$lib/components/sheet/Description.svelte";
 
 	// 2-3
-	import Spellcasting from "$lib/components/Spellcasting.svelte";
+	import Spellcasting from "$lib/components/sheet/Spellcasting.svelte";
 
 	let {
-		user,
-		id,
 		character,
 	}: {
-		user?: string;
-		id?: string;
 		character: Character;
 	} = $props();
 
-	const handleSave = async () => {
-		if (user && id) {
-			await saveCharacter(user, id, character);
-		}
-	};
-
-	let autoSave: ReturnType<typeof setTimeout>;
 	$effect(() => {
-		// Save 1.5s after last edit
-		$state.snapshot(character);
-		clearTimeout(autoSave);
-		autoSave = setTimeout(handleSave, 1500);
-
 		// Set Class Color
 		document.documentElement.style.setProperty(
 			"--color-cta",

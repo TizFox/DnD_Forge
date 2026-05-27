@@ -2,12 +2,12 @@
 	import { Character } from "$lib/character.svelte";
 	import { getClassNames } from "$lib/classes";
 
-	import Container from "$lib/baseComponents/Container.svelte";
-	import TextInput from "$lib/baseComponents/TextInput.svelte";
-	import NumberInput from "$lib/baseComponents/NumberInput.svelte";
-	import Value from "$lib/baseComponents/Value.svelte";
-	import Alignment from "$lib/baseComponents/Alignment.svelte";
-	import Race from "$lib/baseComponents/Race.svelte";
+	import Container from "$lib/components/base/Container.svelte";
+	import TextInput from "$lib/components/base/TextInput.svelte";
+	import NumberInput from "$lib/components/base/NumberInput.svelte";
+	import Value from "$lib/components/base/Value.svelte";
+	import Alignment from "$lib/components/base/Alignment.svelte";
+	import Race from "$lib/components/base/Race.svelte";
 
 	type InfoPropsType = {
 		wClass?: string;

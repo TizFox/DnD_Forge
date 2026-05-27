@@ -3,8 +3,8 @@
 
 	import type { Character } from "$lib/character.svelte";
 
-	import Container from "$lib/baseComponents/Container.svelte";
-	import Value from "$lib/baseComponents/Value.svelte";
+	import Container from "$lib/components/base/Container.svelte";
+	import Value from "$lib/components/base/Value.svelte";
 
 	let {
 		data,
