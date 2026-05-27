@@ -51,11 +51,11 @@
 			<Actions {character} />
 			<Passive {character} />
 			<Equipment {character} />
+			<Characteristics {character} />
+			<Description {character} />
 		</div>
 		<div class="flex flex-col gap-5">
 			<Features {character} />
-			<Characteristics {character} />
-			<Description {character} />
 		</div>
 		<Spellcasting wClass="col-span-2" {character} />
 	</div>

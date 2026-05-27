@@ -50,14 +50,13 @@ export class Character {
 			other: string;
 		};
 		characteristics: {
+			languages: string;
 			personality: string;
 			ideals: string;
 			bonds: string;
 			flaws: string;
 			backstory: string;
 		};
-
-		actions: string;
 	};
 
 	hp: {
@@ -77,13 +76,13 @@ export class Character {
 		class_traits: string;
 		subclass_traits: string;
 		race_and_background_traits: string;
-		proficiencies: string;
-		languages: string;
 	};
 
 	equipment: {
 		coins: { [key in CoinsEnum]: number };
 		inventory: string;
+		proficiencies: string;
+		actions: string;
 		attacks: Record<string, Attack>;
 	};
 
@@ -142,14 +141,13 @@ export class Character {
 				other: "",
 			},
 			characteristics: {
+				languages: "",
 				personality: "",
 				ideals: "",
 				bonds: "",
 				flaws: "",
 				backstory: "",
 			},
-
-			actions: "",
 		});
 		this.hp = $state({
 			current: 0,
@@ -223,8 +221,6 @@ export class Character {
 			class_traits: "",
 			subclass_traits: "",
 			race_and_background_traits: "",
-			proficiencies: "",
-			languages: "",
 		});
 		this.equipment = $state({
 			coins: {
@@ -235,6 +231,8 @@ export class Character {
 				pp: 0,
 			},
 			inventory: "",
+			proficiencies: "",
+			actions: "",
 			attacks: {},
 		});
 		this.magic = $state({

@@ -30,6 +30,11 @@
 			<NumberInput title={c} bind:value={character.equipment.coins[c]} />
 		{/each}
 	</div>
+
+	<AreaInput
+		title="proficiencies"
+		bind:value={character.equipment.proficiencies}
+	/>
 </Container>
 
 <!------------------------------------------>
