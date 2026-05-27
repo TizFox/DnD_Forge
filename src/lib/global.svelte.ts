@@ -7,6 +7,8 @@ export const getPath = (user?: string, id?: string): string => {
 	return PATH;
 };
 
+export const STORAGE_CHARACTER = "currentCharacter";
+
 let keyboard = $state<boolean>(true);
 export const showKeyboard = () => {
 	return keyboard;

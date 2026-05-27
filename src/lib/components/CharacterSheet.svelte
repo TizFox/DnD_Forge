@@ -24,11 +24,7 @@
 	// 2-3
 	import Spellcasting from "$lib/components/sheet/Spellcasting.svelte";
 
-	let {
-		character,
-	}: {
-		character: Character;
-	} = $props();
+	let { character }: { character: Character } = $props();
 
 	$effect(() => {
 		// Set Class Color

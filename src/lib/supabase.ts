@@ -1,10 +1,13 @@
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_KEY } from "$env/static/public";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { logger } from "./logs";
 
 import { Character } from "./character.svelte";
-import { ReceiptTurkishLiraIcon } from "@lucide/svelte";
 
-const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_KEY);
+const supabase: SupabaseClient = createClient(
+	PUBLIC_SUPABASE_URL,
+	PUBLIC_SUPABASE_KEY,
+);
 
 export const getCharacters = async (
 	user: string,
@@ -17,7 +20,7 @@ export const getCharacters = async (
 		.eq("user", user);
 
 	if (error) {
-		console.log("ERROR: " + error.message);
+		logger.error(user, "SUPABASE ", error.message);
 		return [];
 	}
 
@@ -38,8 +41,10 @@ export const getCharacter = async (
 		.single();
 
 	if (error || !data) {
-		console.log(
-			"ERROR: " + (error ? error.message : "Character Not Found"),
+		logger.error(
+			user,
+			"SUPABASE ",
+			error ? error.message : "Character not found",
 		);
 		return null;
 	}
@@ -59,7 +64,11 @@ export const createCharacter = async (
 		.select("id")
 		.single();
 	if (error || !data) {
-		console.log("ERROR: " + (error ? error.message : "Can't Insert"));
+		logger.error(
+			user,
+			"SUPABASE ",
+			error ? error.message : "Can't create new Character",
+		);
 	}
 	return data?.id;
 };
@@ -82,9 +91,10 @@ export const saveCharacter = async (
 		.eq("id", characterId)
 		.single();
 	if (selectError || !data) {
-		console.log(
-			"ERROR: " +
-				(selectError ? selectError.message : "Character Not Found"),
+		logger.error(
+			user,
+			"SUPABASE ",
+			selectError ? selectError.message : "Character not found",
 		);
 		return false;
 	}
@@ -95,7 +105,7 @@ export const saveCharacter = async (
 		.eq("user", user)
 		.eq("id", characterId);
 	if (updateError) {
-		console.log("ERROR: " + updateError.message);
+		logger.error(user, "SUPABASE ", updateError.message);
 		return false;
 	}
 	return true;
@@ -113,7 +123,7 @@ export const deleteCharacter = async (
 		.eq("user", user)
 		.eq("id", characterId);
 	if (error) {
-		console.log("ERROR: " + error.message);
+		logger.error(user, "SUPABASE ", error.message);
 		return false;
 	}
 	return true;

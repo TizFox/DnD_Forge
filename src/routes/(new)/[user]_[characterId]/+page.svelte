@@ -4,8 +4,14 @@
 
 	import { Keyboard, KeyboardOff, Save } from "@lucide/svelte";
 
-	import { NAME, showKeyboard, toggleKeyboard } from "$lib/global.svelte";
+	import {
+		NAME,
+		showKeyboard,
+		STORAGE_CHARACTER,
+		toggleKeyboard,
+	} from "$lib/global.svelte";
 	import { getCharacter, saveCharacter } from "$lib/supabase";
+	import { logger } from "$lib/logs";
 	import { type CharacterType, Character } from "$lib/character.svelte";
 
 	import Header from "$lib/components/Header.svelte";
@@ -22,21 +28,51 @@
 	let characterId = untrack(() => params.characterId);
 
 	// Loading Character
+	let loading = $state(true);
 	let ready = false;
 	let character = $state<Character>();
-	let characterPromise = getCharacter(user, characterId).then(
-		async (data) => {
-			if (!data) {
-				return false;
-			}
-			character = Character.from(
-				JSON.parse(data.character) as CharacterType,
+
+	onMount(async () => {
+		let jsonChar = sessionStorage.getItem(STORAGE_CHARACTER);
+		if (jsonChar) {
+			character = Character.from(JSON.parse(jsonChar)) as CharacterType;
+			logger.info(
+				user,
+				"CHARACTER",
+				`Character (${characterId}) found in Storage`,
 			);
-			await tick();
-			ready = true;
-			return true;
-		},
-	);
+		} else {
+			// Do supabase request only if character is not found in sessionStorage
+			let data = await getCharacter(user, characterId);
+			if (data) {
+				character = Character.from(
+					JSON.parse(data.character),
+				) as CharacterType;
+				logger.warn(
+					user,
+					"CHARACTER",
+					`Character (${characterId}) found in Supabase`,
+				);
+
+				sessionStorage.setItem(
+					STORAGE_CHARACTER,
+					JSON.stringify(character),
+				);
+			}
+		}
+
+		if (!character) {
+			logger.error(
+				user,
+				"CHARACTER",
+				`Character (${characterId}) not found`,
+			);
+		}
+
+		await tick();
+		loading = false;
+		ready = true;
+	});
 
 	// Auto Save
 	let saved = $state<boolean>(true);
@@ -62,8 +98,22 @@
 
 		let ok = await saveCharacter(user, characterId, character);
 		if (ok) {
+			logger.success(
+				user,
+				"CHARACTER",
+				`Character (${characterId}) saved`,
+			);
+			sessionStorage.setItem(
+				STORAGE_CHARACTER,
+				JSON.stringify(character),
+			);
 			saved = true;
 		} else {
+			logger.error(
+				user,
+				"CHARACTER",
+				`Character (${characterId}) not saved`,
+			);
 			autoSave = setTimeout(handleSave, 1500);
 		}
 	};
@@ -100,15 +150,13 @@
 </Header>
 
 <Main>
-	{#await characterPromise}
+	{#if loading}
 		<Loading />
-	{:then success}
-		{#if success && character}
-			<CharacterSheet {character} />
-		{:else}
-			<Empty msg="CHARACTER NOT FOUND" />
-		{/if}
-	{/await}
+	{:else if character}
+		<CharacterSheet {character} />
+	{:else}
+		<Empty msg="CHARACTER NOT FOUND" />
+	{/if}
 </Main>
 
 <Footer />

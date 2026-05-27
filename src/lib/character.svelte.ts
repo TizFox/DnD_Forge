@@ -253,30 +253,30 @@ export class Character {
 	}
 
 	getSizeElusion(): number {
-		console.log(`getSizeElusion()`);
+		//console.log(`getSizeElusion()`);
 		return SIZES_ELUSION[this.info.size];
 	}
 
 	getProficiencyBonus(): number {
-		console.log(`getProficiencyBonus()`);
+		//console.log(`getProficiencyBonus()`);
 		return Math.floor((this.info.level - 1) / 4) + 2;
 	}
 
 	// Abilities
 	getAbilityProficiency(ab: AbilitiesType): boolean {
-		console.log(`getAbilityProficiency("${ab}")`);
+		//console.log(`getAbilityProficiency("${ab}")`);
 		return this.stats[ab].proficiency;
 	}
 	getAbilityValue(ab: AbilitiesType): number {
-		console.log(`getAbilityValue("${ab}")`);
+		//console.log(`getAbilityValue("${ab}")`);
 		return this.stats[ab].value;
 	}
 	getAbilityModifier(ab: AbilitiesType): number {
-		console.log(`getAbilityModifier("${ab}")`);
+		//console.log(`getAbilityModifier("${ab}")`);
 		return Math.floor((this.getAbilityValue(ab) - 10) / 2);
 	}
 	getAbilitySaveThrow(ab: AbilitiesType): number {
-		console.log(`getAbilitySaveThrow("${ab}")`);
+		//console.log(`getAbilitySaveThrow("${ab}")`);
 		return (
 			this.getAbilityModifier(ab) +
 			(this.getAbilityProficiency(ab) ? this.getProficiencyBonus() : 0)
@@ -288,21 +288,21 @@ export class Character {
 		ab: Ab,
 		sk: SkillsType[Ab],
 	): boolean {
-		console.log(`getSkillProficiency("${ab}", "${sk}")`);
+		//console.log(`getSkillProficiency("${ab}", "${sk}")`);
 		return this.stats[ab].skills[sk].proficiency ?? false;
 	}
 	getSkillExpertise<Ab extends AbilitiesType>(
 		ab: Ab,
 		sk: SkillsType[Ab],
 	): boolean {
-		console.log(`getSkillExpertise("${ab}", "${sk}")`);
+		//console.log(`getSkillExpertise("${ab}", "${sk}")`);
 		return this.stats[ab].skills[sk]?.expertise ?? false;
 	}
 	getSkillValue<Ab extends AbilitiesType>(
 		ab: Ab,
 		sk: SkillsType[Ab],
 	): number {
-		console.log(`getSkillValue("${ab}", "${sk}")`);
+		//console.log(`getSkillValue("${ab}", "${sk}")`);
 		return (
 			this.getAbilityModifier(ab) +
 			(this.getSkillProficiency(ab, sk)
@@ -315,7 +315,7 @@ export class Character {
 		ability: Ab,
 		skill: SkillsType[Ab],
 	): number {
-		console.log(`getPassivePerception()`);
+		//console.log(`getPassivePerception()`);
 		return 10 + this.getSkillValue(ability, skill);
 	}
 
@@ -327,7 +327,7 @@ export class Character {
 			return -1;
 		}
 
-		console.log(`getAttackModifier("${attackName}")`);
+		//console.log(`getAttackModifier("${attackName}")`);
 		return (
 			this.getAbilityModifier(attack.ability) +
 			(attack.proficient ? this.getProficiencyBonus() : 0) +
@@ -336,7 +336,7 @@ export class Character {
 	}
 	addAttack(attackName: string): void {
 		attackName = attackName.toUpperCase();
-		console.log(`addAttack("${attackName}")`);
+		//console.log(`addAttack("${attackName}")`);
 
 		this.equipment.attacks[attackName] = {
 			name: attackName,
@@ -349,30 +349,26 @@ export class Character {
 	}
 	removeAttack(attackName: string): void {
 		attackName = attackName.toUpperCase();
-		console.log(`removeWeapon("${attackName}")`);
+		//console.log(`removeWeapon("${attackName}")`);
 
 		delete this.equipment.attacks[attackName];
 	}
 
 	// Spellcasting
 	getSpellcastingModifier(): number {
-		console.log(
-			`getSpellcastingModifier("${this.magic.spellcastingAbility}")`,
-		);
+		//console.log(`getSpellcastingModifier("${this.magic.spellcastingAbility}")`);
 		return (
 			this.getAbilityModifier(this.magic.spellcastingAbility) +
 			this.getProficiencyBonus()
 		);
 	}
 	getSpellcastingDC(): number {
-		console.log(
-			`getAbilityProficiency("${this.magic.spellcastingAbility}")`,
-		);
+		//console.log(`getAbilityProficiency("${this.magic.spellcastingAbility}")`);
 
 		return 8 + this.getSpellcastingModifier();
 	}
 	getSpellList(): Spell[] {
-		console.log(`getSpellList()`);
+		//console.log(`getSpellList()`);
 
 		let spellNullList = Object.values(this.magic.spells);
 		let spellList = spellNullList.filter((s) => s) as Spell[];
@@ -382,7 +378,7 @@ export class Character {
 	}
 	addSpell(spellName: string): boolean {
 		spellName = spellName.toUpperCase();
-		console.log(`addSpell("${spellName}")`);
+		//console.log(`addSpell("${spellName}")`);
 
 		let spell: Spell | null = getSpell(spellName);
 		if (!spell || this.magic.spells[spellName]) {
@@ -395,7 +391,7 @@ export class Character {
 	}
 	removeSpell(spellName: string): void {
 		spellName = spellName.toUpperCase();
-		console.log(`removeSpell("${spellName}")`);
+		//console.log(`removeSpell("${spellName}")`);
 
 		let spell: Spell | null = getSpell(spellName);
 		if (!spell || !this.magic.spells[spellName]) {

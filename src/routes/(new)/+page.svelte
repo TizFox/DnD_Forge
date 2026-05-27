@@ -4,7 +4,7 @@
 
 	import { Plus } from "@lucide/svelte";
 
-	import { NAME, getPath } from "$lib/global.svelte";
+	import { NAME, getPath, STORAGE_CHARACTER } from "$lib/global.svelte";
 
 	import { type CharacterType, Character } from "$lib/character.svelte";
 	import { getColor } from "$lib/classes";
@@ -23,6 +23,7 @@
 
 	import Loading from "$lib/components/Loading.svelte";
 	import Empty from "$lib/components/Empty.svelte";
+	import { logger } from "$lib/logs";
 
 	let inputUser = $state("");
 	let user = $state("");
@@ -32,6 +33,7 @@
 		let lastUser = localStorage.getItem("lastUser");
 		inputUser = lastUser ? lastUser : "";
 		await loadData();
+		sessionStorage.removeItem(STORAGE_CHARACTER);
 
 		// Set Base Color
 		document.documentElement.style.setProperty(
@@ -65,6 +67,10 @@
 			});
 		}
 
+		if (data.length === 0) {
+			logger.error(user, "USER     ", `User (${user}) not found`);
+		}
+
 		loading = false;
 	};
 
@@ -76,10 +82,17 @@
 				id: id,
 				character: char,
 			});
-			//openCharacter(id);
+			logger.success(user, "USER     ", `Character (${id}) created`);
 		}
 	};
 	const openCharacter = (id: string) => {
+		let openIndex = data.findIndex((i) => i.id === id);
+		if (openIndex !== -1) {
+			sessionStorage.setItem(
+				STORAGE_CHARACTER,
+				JSON.stringify(data[openIndex].character),
+			);
+		}
 		goto(getPath(user, id));
 	};
 	const removeCharacter = async (id: string) => {
@@ -98,6 +111,7 @@
 				if (deleteIndex !== -1) {
 					data.splice(deleteIndex, 1);
 				}
+				logger.success(user, "USER     ", `Character (${id}) deleated`);
 			}
 		}
 	};
