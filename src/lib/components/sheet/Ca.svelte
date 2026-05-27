@@ -3,6 +3,7 @@
 
 	import Container from "$lib/components/base/Container.svelte";
 	import NumberInput from "$lib/components/base/NumberInput.svelte";
+	import Value from "$lib/components/base/Value.svelte";
 	import CheckboxInput from "$lib/components/base/CheckboxInput.svelte";
 
 	type CaPropsType = {
@@ -17,41 +18,61 @@
 
 <Container extraClasses={wClass}>
 	<div class="flex flex-col gap-3">
-		<div class="flex gap-1">
+		<div class="flex">
 			<NumberInput
+				wClass="flex-1"
+				rClass="rounded-l-lg"
 				title="initiative"
-				value={character.info.initiative}
-				onChange={(n: number) => (character.info.initiative = n)}
+				bind:value={character.info.initiative}
 			/>
 
-			<NumberInput
+			<Value
+				wClass="flex-1"
+				rClass=""
 				title="ca"
-				value={character.info.ca +
+				value={(character.info.armor.worn
+					? character.info.armor.value
+					: 0) +
 					(character.info.shield.worn
 						? character.info.shield.value
 						: 0)}
-				onChange={(n: number) => (character.info.ca = n)}
 			/>
 
 			<NumberInput
+				wClass="flex-1"
+				rClass="rounded-r-lg"
 				title="speed"
-				value={character.info.speed}
-				onChange={(n: number) => (character.info.speed = n)}
+				bind:value={character.info.speed}
 			/>
 		</div>
-		<div class="w-full flex flex-col">
-			<span class="main-text">SHIELD</span>
-			<div class="flex">
+		<div class="flex">
+			<div class="flex-1 flex flex-col">
+				<div class="flex justify-between">
+					<span class="main-text flex-2">ARMOR</span>
+					<CheckboxInput
+						wClass="flex-1"
+						rClass="rounded-tl-lg"
+						bind:checked={character.info.armor.worn}
+					/>
+				</div>
 				<NumberInput
-					wClass="flex-6"
 					rClass="rounded-l-lg"
-					value={character.info.shield.value}
-					onChange={(n: number) => (character.info.shield.value = n)}
+					bind:value={character.info.armor.value}
 				/>
-				<CheckboxInput
-					wClass="flex-1"
+			</div>
+
+			<div class="flex-1 flex flex-col">
+				<div class="flex justify-between">
+					<CheckboxInput
+						wClass="flex-1"
+						rClass="rounded-tr-lg"
+						bind:checked={character.info.shield.worn}
+					/>
+					<span class="main-text flex-2">SHIELD</span>
+				</div>
+				<NumberInput
 					rClass="rounded-r-lg"
-					bind:checked={character.info.shield.worn}
+					bind:value={character.info.shield.value}
 				/>
 			</div>
 		</div>

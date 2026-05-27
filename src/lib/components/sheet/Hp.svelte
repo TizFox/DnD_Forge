@@ -35,42 +35,32 @@
 	<div class="hp-multi">
 		<NumberInput
 			title="max hp"
-			value={character.hp.max}
+			bind:value={character.hp.max}
 			minValue={1}
-			onChange={(n: number) => (character.hp.max = n)}
 		/>
 
-		<NumberInput
-			title="temp hp"
-			value={character.hp.temp}
-			onChange={(n: number) => (character.hp.temp = n)}
-		/>
+		<NumberInput title="temp hp" bind:value={character.hp.temp} />
 	</div>
 
 	<NumberInput
 		title="current hp"
-		value={character.hp.current}
+		bind:value={character.hp.current}
 		maxValue={character.hp.max}
-		onChange={(n: number) => (character.hp.current = n)}
 	/>
 
 	<div class="hp-multi">
 		<div class="hp-item">
 			<span class="main-text">HIT DICE</span>
 			<div class="hp-multi">
-				<Value pClass="p-0" value={character.hp.hitDice.max} />
+				<Value pClass="p-0" value={character.info.level} />
 
 				<p class="font-bold">d</p>
 
-				<NumberInput
-					value={character.hp.hitDice.type}
-					onChange={(n: number) => (character.hp.hitDice.type = n)}
-				/>
+				<NumberInput bind:value={character.hp.hitDice.type} />
 			</div>
 			<NumberInput
-				value={character.hp.hitDice.spent}
-				maxValue={character.hp.hitDice.max}
-				onChange={(n: number) => (character.hp.hitDice.spent = n)}
+				bind:value={character.hp.hitDice.spent}
+				maxValue={character.info.level}
 			></NumberInput>
 		</div>
 

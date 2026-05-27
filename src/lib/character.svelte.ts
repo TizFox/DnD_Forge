@@ -31,7 +31,10 @@ export class Character {
 		speed: number;
 		initiative: number;
 		level: number;
-		ca: number;
+		armor: {
+			value: number;
+			worn: boolean;
+		};
 		shield: {
 			value: number;
 			worn: boolean;
@@ -62,7 +65,6 @@ export class Character {
 		max: number;
 		temp: number;
 		hitDice: {
-			max: number;
 			type: number;
 			spent: number;
 		};
@@ -121,7 +123,10 @@ export class Character {
 			speed: 0,
 			initiative: 0,
 			level: 1,
-			ca: 0,
+			armor: {
+				value: 0,
+				worn: false,
+			},
 			shield: {
 				value: 0,
 				worn: false,
@@ -151,7 +156,6 @@ export class Character {
 			max: 1,
 			temp: 0,
 			hitDice: {
-				max: 1,
 				type: 0,
 				spent: 0,
 			},

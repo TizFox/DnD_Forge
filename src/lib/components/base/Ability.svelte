@@ -30,8 +30,7 @@
 	<NumberInput
 		wClass="w-1/4"
 		minValue={1}
-		{value}
-		onChange={(n: number) => (character.stats[ability].value = n)}
+		bind:value={character.stats[ability].value}
 	/>
 
 	<Skill {character} {ability} isSaveThrow={true} />

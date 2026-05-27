@@ -45,14 +45,8 @@
 				</select>
 			</div>
 		</div>
-		<div class="flex-1">
-			<h3 class="main-text">SPELL BONUS</h3>
-			<Value value={spellBonus} />
-		</div>
-		<div class="flex-1">
-			<h3 class="main-text">SPELL DC</h3>
-			<Value value={spellDC} />
-		</div>
+		<Value wClass="flex-1" title="spell bonus" value={spellBonus} />
+		<Value wClass="flex-1" title="spell dc" value={spellDC} />
 	</div>
 
 	<div class="flex flex-col gap-1">

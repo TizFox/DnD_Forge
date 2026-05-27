@@ -17,26 +17,14 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} grid grid-cols-2 gap-3">
-	<NumberInput
-		title="age"
-		value={character.info.description.age}
-		onChange={(n: number) => {
-			character.info.description.age = n;
-		}}
-	/>
+	<NumberInput title="age" bind:value={character.info.description.age} />
 	<NumberInput
 		title="height (cm)"
-		value={character.info.description.height}
-		onChange={(n: number) => {
-			character.info.description.height = n;
-		}}
+		bind:value={character.info.description.height}
 	/>
 	<NumberInput
 		title="weight (kg)"
-		value={character.info.description.weight}
-		onChange={(n: number) => {
-			character.info.description.weight = n;
-		}}
+		bind:value={character.info.description.weight}
 	/>
 	<TextInput
 		title="eye color"

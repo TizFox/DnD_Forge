@@ -27,11 +27,7 @@
 
 	<div class="flex justify-between gap-1">
 		{#each coinNames as c}
-			<NumberInput
-				title={c}
-				value={character.equipment.coins[c]}
-				onChange={(n: number) => (character.equipment.coins[c] = n)}
-			/>
+			<NumberInput title={c} bind:value={character.equipment.coins[c]} />
 		{/each}
 	</div>
 </Container>

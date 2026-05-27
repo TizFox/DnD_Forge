@@ -46,14 +46,7 @@
 		<div class="info-subsection">
 			<h3>LEVEL</h3>
 			<span>
-				<NumberInput
-					minValue={1}
-					value={character.info.level}
-					onChange={(n: number) => {
-						character.info.level = n;
-						character.hp.hitDice.max = n;
-					}}
-				/>
+				<NumberInput minValue={1} bind:value={character.info.level} />
 			</span>
 		</div>
 		<div class="info-subsection">

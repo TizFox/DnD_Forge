@@ -10,7 +10,6 @@
 		minValue?: number;
 		value: number;
 		maxValue?: number;
-		onChange: (n: number) => void;
 	};
 
 	let {
@@ -18,13 +17,12 @@
 		rClass = "rounded-lg",
 		title = "",
 		minValue = 0,
-		value,
+		value = $bindable(0),
 		maxValue,
-		onChange,
 	}: NumberInputPropsType = $props();
 
 	let lastValue = $state(0); // When error in evaluating expression return to last valid value
-	let textInput = $derived<string>(String(value));
+	let textInput = $state<string>(String(value));
 
 	const handleChange = () => {
 		lastValue = value;
@@ -34,14 +32,10 @@
 		value = isNaN(input) ? lastValue : input;
 		value = Math.max(value, minValue);
 		value = maxValue ? Math.min(value, maxValue) : value;
+		value = Math.floor(value);
 
-		// "textInput" autoupdates given that is "$derived"
-		onChange(value);
-
-		// Weird Cases (?)
-		if (textInput === "" || isNaN(Number(textInput))) {
-			textInput = String(value);
-		}
+		// Update textInput in case of an expression
+		textInput = String(value);
 	};
 
 	const evalInput = (): number | null => {

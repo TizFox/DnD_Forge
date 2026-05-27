@@ -98,8 +98,7 @@
 				<NumberInput
 					wClass="flex-1"
 					rClass="rounded-tr-lg"
-					value={attack.bonus}
-					onChange={(n: number) => (attack.bonus = n)}
+					bind:value={attack.bonus}
 				/>
 			</div>
 

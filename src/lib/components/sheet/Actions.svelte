@@ -23,7 +23,7 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} flex flex-col items-center gap-3">
-	<AreaInput {wClass} title="Actions" bind:value={character.info.actions} />
+	<AreaInput {wClass} title="actions" bind:value={character.info.actions} />
 
 	<div class="w-full flex flex-col gap-1">
 		<div class="flex">
