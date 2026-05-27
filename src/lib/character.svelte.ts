@@ -16,10 +16,6 @@ import {
 
 import { getSpell } from "./spells";
 
-export const getAbilityOfSkill = (skill: string): AbilitiesType => {
-	return "charisma";
-};
-
 export type CharacterType = InstanceType<typeof Character>;
 
 export class Character {
@@ -70,7 +66,7 @@ export class Character {
 			type: number;
 			spent: number;
 		};
-		deathTS: Record<DeathTS, number>;
+		deathTS: Record<DeathTS, [boolean, boolean, boolean]>;
 	};
 
 	stats: { [Ab in AbilitiesType]: Ability<Ab> };
@@ -160,8 +156,8 @@ export class Character {
 				spent: 0,
 			},
 			deathTS: {
-				success: 0,
-				failure: 0,
+				success: [false, false, false],
+				failure: [false, false, false],
 			},
 		});
 		this.stats = $state({
@@ -269,10 +265,6 @@ export class Character {
 		console.log(`getAbilityProficiency("${ab}")`);
 		return this.stats[ab].proficiency;
 	}
-	setAbilityProficiency(ab: AbilitiesType, val: boolean): void {
-		console.log(`setAbilityProficiency("${ab}", ${val})`);
-		this.stats[ab].proficiency = val;
-	}
 	getAbilityValue(ab: AbilitiesType): number {
 		console.log(`getAbilityValue("${ab}")`);
 		return this.stats[ab].value;
@@ -297,36 +289,12 @@ export class Character {
 		console.log(`getSkillProficiency("${ab}", "${sk}")`);
 		return this.stats[ab].skills[sk].proficiency ?? false;
 	}
-	setSkillProficiency<Ab extends AbilitiesType>(
-		ab: Ab,
-		sk: SkillsType[Ab],
-		val: boolean,
-	): void {
-		console.log(`setSkillProficiency("${ab}", "${sk}", ${val})`);
-		this.stats[ab].skills[sk].proficiency = val;
-
-		if (!val) {
-			this.setSkillExpertise(ab, sk, false);
-		}
-	}
 	getSkillExpertise<Ab extends AbilitiesType>(
 		ab: Ab,
 		sk: SkillsType[Ab],
 	): boolean {
 		console.log(`getSkillExpertise("${ab}", "${sk}")`);
 		return this.stats[ab].skills[sk]?.expertise ?? false;
-	}
-	setSkillExpertise<Ab extends AbilitiesType>(
-		ab: Ab,
-		sk: SkillsType[Ab],
-		val: boolean,
-	): void {
-		console.log(`setSkillExpertise("${ab}", "${sk}", ${val})`);
-		this.stats[ab].skills[sk].expertise = val;
-
-		if (val) {
-			this.setSkillProficiency(ab, sk, true);
-		}
 	}
 	getSkillValue<Ab extends AbilitiesType>(
 		ab: Ab,

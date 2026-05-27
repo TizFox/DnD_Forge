@@ -118,11 +118,7 @@
 	<div class="w-full flex flex-col items-center gap-5">
 		<form onsubmit={loadData} class="flex items-center">
 			<h3 class="main-text h-min">USER:</h3>
-			<TextInput
-				rClass="rounded-l-lg"
-				value={inputUser}
-				onChange={(s: string) => (inputUser = s)}
-			/>
+			<TextInput rClass="rounded-l-lg" bind:value={inputUser} />
 			<button
 				type="submit"
 				class="std-btn h-8 rounded-l-none"

@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { onMount, tick, untrack } from "svelte";
 	import type { PageProps } from "./$types";
+
+	import { Keyboard, KeyboardOff, Save } from "@lucide/svelte";
 
 	import { NAME, showKeyboard, toggleKeyboard } from "$lib/global.svelte";
 	import { getCharacter, saveCharacter } from "$lib/supabase";
@@ -16,27 +18,43 @@
 	import Empty from "$lib/components/Empty.svelte";
 
 	let { params }: PageProps = $props();
-	let user = $derived(params.user);
-	let characterId = $derived(params.characterId);
+	let user = untrack(() => params.user);
+	let characterId = untrack(() => params.characterId);
 
 	// Loading Character
-	let loading = $state(true);
+	let ready = false;
 	let character = $state<Character>();
-	onMount(async () => {
-		let data = await getCharacter(user, characterId);
-		if (data) {
+	let characterPromise = getCharacter(user, characterId).then(
+		async (data) => {
+			if (!data) {
+				return false;
+			}
 			character = Character.from(
 				JSON.parse(data.character) as CharacterType,
 			);
+			await tick();
+			ready = true;
+			return true;
+		},
+	);
+
+	// Auto Save
+	let saved = $state<boolean>(true);
+	let autoSave: ReturnType<typeof setTimeout>;
+	$effect(() => {
+		$state.snapshot(character); // Check if character is changed
+
+		if (!ready) {
+			return;
 		}
-		loading = false;
+
+		// Save 1.5s after last edit
+		clearTimeout(autoSave);
+		saved = false;
+		autoSave = setTimeout(handleSave, 1500);
 	});
 
 	// Header Actions
-	import { Keyboard, KeyboardOff, Save } from "@lucide/svelte";
-
-	let justMounted = true;
-	let saved = $state<boolean>(true);
 	const handleSave = async () => {
 		if (saved) {
 			return;
@@ -49,20 +67,6 @@
 			autoSave = setTimeout(handleSave, 1500);
 		}
 	};
-
-	let autoSave: ReturnType<typeof setTimeout>;
-	$effect(() => {
-		if (justMounted) {
-			justMounted = false;
-			return;
-		}
-
-		// Save 1.5s after last edit
-		$state.snapshot(character);
-		clearTimeout(autoSave);
-		saved = false;
-		autoSave = setTimeout(handleSave, 1500);
-	});
 </script>
 
 <!------------------------------------------>
@@ -96,13 +100,15 @@
 </Header>
 
 <Main>
-	{#if loading}
+	{#await characterPromise}
 		<Loading />
-	{:else if character}
-		<CharacterSheet {character} />
-	{:else}
-		<Empty msg="CHARACTER NOT FOUND" />
-	{/if}
+	{:then success}
+		{#if success && character}
+			<CharacterSheet {character} />
+		{:else}
+			<Empty msg="CHARACTER NOT FOUND" />
+		{/if}
+	{/await}
 </Main>
 
 <Footer />

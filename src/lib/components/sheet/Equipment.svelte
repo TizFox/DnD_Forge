@@ -23,13 +23,7 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} flex flex-col gap-3">
-	<AreaInput
-		title="equipment"
-		value={character.equipment.inventory}
-		onChange={(s: string) => {
-			character.equipment.inventory = s;
-		}}
-	/>
+	<AreaInput title="equipment" bind:value={character.equipment.inventory} />
 
 	<div class="flex justify-between gap-1">
 		{#each coinNames as c}

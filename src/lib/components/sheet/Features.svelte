@@ -16,13 +16,12 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} flex flex-col gap-3">
-	{#each Object.entries(character.features) as [key, value]}
+	{#each Object.keys(character.features) as key}
 		<AreaInput
 			title={key.split("_").join(" ")}
-			{value}
-			onChange={(s: string) => {
-				character.features[key as keyof CharacterType["features"]] = s;
-			}}
+			bind:value={
+				character.features[key as keyof CharacterType["features"]]
+			}
 		/>
 	{/each}
 </Container>

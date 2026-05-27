@@ -40,32 +40,20 @@
 	/>
 	<TextInput
 		title="eye color"
-		value={character.info.description.eyeColor}
-		onChange={(s: string) => {
-			character.info.description.eyeColor = s;
-		}}
+		bind:value={character.info.description.eyeColor}
 	/>
 	<TextInput
 		title="skin color"
-		value={character.info.description.skinColor}
-		onChange={(s: string) => {
-			character.info.description.skinColor = s;
-		}}
+		bind:value={character.info.description.skinColor}
 	/>
 	<TextInput
 		title="hair color"
-		value={character.info.description.hairColor}
-		onChange={(s: string) => {
-			character.info.description.hairColor = s;
-		}}
+		bind:value={character.info.description.hairColor}
 	/>
 	<AreaInput
 		wClass="col-span-2"
 		title="other"
-		value={character.info.description.other}
-		onChange={(s: string) => {
-			character.info.description.other = s;
-		}}
+		bind:value={character.info.description.other}
 	/>
 </Container>
 

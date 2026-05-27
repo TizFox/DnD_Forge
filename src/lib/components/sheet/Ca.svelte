@@ -51,8 +51,7 @@
 				<CheckboxInput
 					wClass="flex-1"
 					rClass="rounded-r-lg"
-					checked={character.info.shield.worn}
-					onChange={(b: boolean) => (character.info.shield.worn = b)}
+					bind:checked={character.info.shield.worn}
 				/>
 			</div>
 		</div>

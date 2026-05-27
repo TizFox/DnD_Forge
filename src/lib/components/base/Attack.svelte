@@ -85,10 +85,7 @@
 			<div class="flex">
 				<CheckboxInput
 					rClass="rounded-tl-lg"
-					checked={attack.proficient}
-					onChange={(b: boolean) => {
-						attack.proficient = b;
-					}}
+					bind:checked={attack.proficient}
 				/>
 				<select
 					class="attack-ability-select"
@@ -108,15 +105,13 @@
 
 			<TextInput
 				rClass="rounded-none"
-				value={attack.damage}
+				bind:value={attack.damage}
 				placeholder="Attack Damage"
-				onChange={(s: string) => (attack.damage = s)}
 			/>
 			<TextInput
 				rClass="rounded-b-lg"
-				value={attack.range}
+				bind:value={attack.range}
 				placeholder="Attack Range"
-				onChange={(s: string) => (attack.range = s)}
 			/>
 		</div>
 	{/if}

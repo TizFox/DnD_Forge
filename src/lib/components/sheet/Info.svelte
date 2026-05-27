@@ -27,9 +27,8 @@
 			<h3>NAME</h3>
 			<span>
 				<TextInput
-					value={character.info.name}
+					bind:value={character.info.name}
 					placeholder="Character Name"
-					onChange={(s: string) => (character.info.name = s)}
 				/>
 			</span>
 		</div>
@@ -38,9 +37,8 @@
 			<h3>PLAYER</h3>
 			<span>
 				<TextInput
-					value={character.info.player}
+					bind:value={character.info.player}
 					placeholder="Player Name"
-					onChange={(s: string) => (character.info.player = s)}
 				/>
 			</span>
 		</div>
@@ -71,9 +69,8 @@
 			<h3>CAMPAIGN</h3>
 			<span>
 				<TextInput
-					value={character.info.campaign}
+					bind:value={character.info.campaign}
 					placeholder="Campaign Name"
-					onChange={(s: string) => (character.info.campaign = s)}
 				/>
 			</span>
 		</div>
@@ -88,13 +85,12 @@
 			<h3>CLASS</h3>
 			<span>
 				<TextInput
-					value={character.info.class}
+					bind:value={character.info.class}
 					placeholder="Character Class"
 					suggestions={{
 						id: "classesList",
 						options: getClassNames(),
 					}}
-					onChange={(s: string) => (character.info.class = s)}
 				/>
 			</span>
 		</div>

@@ -4,15 +4,13 @@
 		rClass?: string;
 		visible?: boolean;
 		checked: boolean;
-		onChange: (b: boolean) => void;
 	};
 
 	let {
 		wClass = "w-8",
 		rClass = "rounded-lg",
 		visible = true,
-		checked,
-		onChange,
+		checked = $bindable(false),
 	}: CheckboxInputPropsType = $props();
 </script>
 
@@ -20,10 +18,7 @@
 
 <input
 	class="{wClass} {rClass} checkbox-input {visible ? '' : 'invisible'}"
-	{checked}
-	onchange={(e) => {
-		onChange(e.currentTarget.checked);
-	}}
+	bind:checked
 	type="checkbox"
 />
 

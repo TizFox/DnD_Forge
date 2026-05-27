@@ -23,25 +23,15 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} flex flex-col items-center gap-3">
-	<AreaInput
-		{wClass}
-		title="Actions"
-		value={character.info.actions}
-		onChange={(s: string) => {
-			character.info.actions = s;
-		}}
-	/>
+	<AreaInput {wClass} title="Actions" bind:value={character.info.actions} />
 
 	<div class="w-full flex flex-col gap-1">
 		<div class="flex">
 			<TextInput
 				wClass="flex-2"
 				rClass="rounded-l-lg"
-				value={newAttackName}
+				bind:value={newAttackName}
 				placeholder="New Attack Name"
-				onChange={(a: string) => {
-					newAttackName = a;
-				}}
 			/>
 			<button
 				onclick={() => {

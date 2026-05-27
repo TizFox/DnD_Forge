@@ -5,14 +5,12 @@
 		wClass?: string;
 		title?: string;
 		value: string;
-		onChange: (s: string) => void;
 	};
 
 	let {
 		wClass = "w-full",
 		title = "",
-		value,
-		onChange,
+		value = $bindable(""),
 	}: AreaInputPropsType = $props();
 
 	let textArea: HTMLTextAreaElement;
@@ -54,12 +52,7 @@
 	{#if title !== ""}
 		<h2 class="main-text">{title.toUpperCase()}</h2>
 	{/if}
-	<textarea
-		bind:this={textArea}
-		bind:value
-		onchange={() => onChange(value)}
-		class="peer area-input"
-	>
+	<textarea bind:this={textArea} bind:value class="peer area-input">
 	</textarea>
 	<div
 		class="resize {resizing ? 'bg-z1' : 'bg-z2'}"

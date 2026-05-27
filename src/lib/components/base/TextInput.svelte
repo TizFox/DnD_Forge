@@ -6,17 +6,15 @@
 		value: string;
 		placeholder?: string;
 		suggestions?: { id: string; options: string[] };
-		onChange: (s: string) => void;
 	};
 
 	let {
 		wClass = "w-full",
 		rClass = "rounded-lg",
 		title = "",
-		value,
+		value = $bindable(""),
 		placeholder = "",
 		suggestions = { id: "", options: [] },
-		onChange,
 	}: TextInputPropsType = $props();
 </script>
 
@@ -32,7 +30,6 @@
 		bind:value
 		{placeholder}
 		type="text"
-		onchange={() => onChange(value)}
 	/>
 
 	{#if suggestions.id != ""}

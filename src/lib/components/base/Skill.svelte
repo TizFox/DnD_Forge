@@ -30,21 +30,24 @@
 
 <div class="skill-container">
 	<div class="skill-checks">
-		<CheckboxInput
-			visible={!isSaveThrow}
-			checked={character.getSkillExpertise(ability, skill)}
-			onChange={(b: boolean) =>
-				character.setSkillExpertise(ability, skill, b)}
-		/>
-		<CheckboxInput
-			checked={isSaveThrow
-				? character.getAbilityProficiency(ability)
-				: character.getSkillProficiency(ability, skill)}
-			onChange={(b: boolean) =>
-				isSaveThrow
-					? character.setAbilityProficiency(ability, b)
-					: character.setSkillProficiency(ability, skill, b)}
-		/>
+		{#if isSaveThrow}
+			<CheckboxInput
+				visible={false}
+				bind:checked={character.stats[ability].proficiency}
+			/>
+			<CheckboxInput
+				bind:checked={character.stats[ability].proficiency}
+			/>
+		{:else}
+			<CheckboxInput
+				bind:checked={character.stats[ability].skills[skill].expertise}
+			/>
+			<CheckboxInput
+				bind:checked={
+					character.stats[ability].skills[skill].proficiency
+				}
+			/>
+		{/if}
 	</div>
 
 	<Value wClass="flex-1" {value} />

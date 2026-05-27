@@ -60,12 +60,9 @@
 			<TextInput
 				wClass="flex-2"
 				rClass="rounded-l-lg"
-				value={newSpellName}
+				bind:value={newSpellName}
 				placeholder="New Spell Name"
 				suggestions={{ id: "spellList", options: getSpellNames() }}
-				onChange={(s: string) => {
-					newSpellName = s;
-				}}
 			/>
 			<button
 				onclick={() => {

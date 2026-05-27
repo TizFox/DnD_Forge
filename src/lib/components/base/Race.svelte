@@ -17,9 +17,8 @@
 <div class="{wClass} flex">
 	<TextInput
 		rClass="rounded-l-lg"
-		value={character.info.race}
+		bind:value={character.info.race}
 		placeholder="Character Race"
-		onChange={(s: string) => (character.info.race = s)}
 	/>
 	<select class="race-select" bind:value={character.info.size}>
 		{#each Object.values(Sizes) as m}
