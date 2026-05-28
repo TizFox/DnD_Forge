@@ -113,7 +113,8 @@
 					{:else}
 						<button
 							onclick={() => keyboard[row1]()}
-							class="col-span-3 std-btn rounded-none {row1 === '1'
+							class="col-span-3 base-button rounded-none {row1 ===
+							'1'
 								? 'rounded-tl-lg'
 								: row1 === '3'
 									? 'rounded-tr-lg'
@@ -138,7 +139,7 @@
 					{:else}
 						<button
 							onclick={() => keyboard[row2]()}
-							class="col-span-3 std-btn rounded-none"
+							class="col-span-3 base-button rounded-none"
 						>
 							<h1>
 								{#if row2 === "-"}
@@ -157,7 +158,7 @@
 					{:else}
 						<button
 							onclick={() => keyboard[row3]()}
-							class="col-span-3 std-btn rounded-none"
+							class="col-span-3 base-button rounded-none"
 						>
 							<h1>
 								{#if row3 === "*"}
@@ -176,7 +177,7 @@
 					{:else}
 						<button
 							onclick={() => keyboard[row4]()}
-							class="col-span-3 std-btn rounded-none"
+							class="col-span-3 base-button rounded-none"
 						>
 							<h1>
 								{#if row4 === "/"}
@@ -191,14 +192,14 @@
 
 				<button
 					onclick={() => keyboard.enter()}
-					class="col-span-10 std-btn rounded-none rounded-bl-lg"
+					class="col-span-10 base-button rounded-none rounded-bl-lg"
 				>
 					<Equal />
 				</button>
 
 				<button
 					onclick={() => keyboard.del()}
-					class="col-span-4 std-btn p-std rounded-none rounded-br-lg"
+					class="col-span-4 base-button base-p rounded-none rounded-br-lg"
 				>
 					<Delete />
 				</button>
@@ -213,10 +214,10 @@
 	@import "$lib/theme.css";
 
 	.number-input {
-		@apply w-full h-8 px-std bg-z2
+		@apply w-full h-8 base-px bg-z2
 		text-center
-		border-2 border-dark
-		transition-std
+		base-border
+		base-transition
 		focus:border-cta
 		focus:outline-none
 		focus:shadow-none;
@@ -234,7 +235,7 @@
 	.keyboard-container {
 		@apply absolute z-99
 		top-full left-1/2 -translate-x-1/2
-		w-fit h-fit p-std bg-z2 rounded-xl
+		w-fit h-fit base-p bg-z2 rounded-xl
 		flex justify-center items-center
 		border-3 border-z0
 		shadow-2xl

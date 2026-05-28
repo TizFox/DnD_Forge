@@ -2,7 +2,7 @@
 	import { onMount, tick, untrack } from "svelte";
 	import type { PageProps } from "./$types";
 
-	import { Keyboard, KeyboardOff, Save } from "@lucide/svelte";
+	import { LoaderCircle, Save, Keyboard, KeyboardOff } from "@lucide/svelte";
 
 	import {
 		NAME,
@@ -134,13 +134,13 @@
 <Header>
 	<div class="flex items-center gap-2">
 		{#if saved}
-			<span class="text-green-400">Saved.</span>
+			<span class="text-cta">Saved.</span>
 		{:else}
-			<span class="text-yellow-400">Saving...</span>
+			<LoaderCircle size="2rem" class="text-cta animate-spin" />
 		{/if}
-		<button onclick={handleSave} class="std-btn"><Save /></button>
+		<button onclick={handleSave} class="base-button"><Save /></button>
 	</div>
-	<button onclick={toggleKeyboard} class="std-btn">
+	<button onclick={toggleKeyboard} class="base-button">
 		{#if showKeyboard()}
 			<Keyboard />
 		{:else}

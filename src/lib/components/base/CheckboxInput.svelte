@@ -29,8 +29,8 @@
 
 	.checkbox-input {
 		@apply h-8 appearance-none
-		bg-z2 border-2 border-dark
-		transition-std
+		bg-z2 base-border
+		base-transition
 		checked:bg-cta checked:border-cta
 		hover:cursor-pointer;
 	}

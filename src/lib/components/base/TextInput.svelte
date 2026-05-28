@@ -47,10 +47,10 @@
 	@import "$lib/theme.css";
 
 	.text-input {
-		@apply h-8 px-std bg-z2
+		@apply h-8 base-px bg-z2
 		text-left
-		border-2 border-dark
-		transition-std
+		base-border
+		base-transition
 		focus:border-cta
 		focus:outline-none
 		focus:shadow-none;

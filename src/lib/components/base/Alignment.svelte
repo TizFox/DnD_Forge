@@ -35,9 +35,8 @@
 
 	select {
 		@apply flex-1 h-8 px-3 bg-z2 text-left
-		border-2 border-dark
-		transition-std
-		focus:border-cta
+		base-border
+		base-transition focus:border-cta
 		focus:outline-none
 		focus:shadow-none;
 

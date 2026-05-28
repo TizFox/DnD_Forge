@@ -41,7 +41,7 @@
 	@import "$lib/theme.css";
 
 	.spell-slot-container {
-		@apply bg-z2 p-std
+		@apply bg-z2 base-p
 		flex flex-col gap-1
 		rounded-lg;
 	}

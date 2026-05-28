@@ -6,7 +6,7 @@
 
 <div class="loading-message">
 	<LoaderCircle size="100px" class="text-cta animate-spin" />
-	<h1 class="main-text p-std">Loading...</h1>
+	<h1 class="main-text base-p">Loading...</h1>
 </div>
 
 <!------------------------------------------>

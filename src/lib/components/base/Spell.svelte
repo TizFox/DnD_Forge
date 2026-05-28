@@ -23,7 +23,7 @@
 			<h3 class="main-text">{spell.name.toUpperCase()}</h3>
 			<div class="spell-subinfo">
 				<span
-					class="flex-1 border-dark border-2
+					class="flex-1 base-border
 						{showBody ? 'rounded-tl-lg' : 'rounded-l-lg'}"
 				>
 					{#if spell.level === 0}
@@ -33,25 +33,25 @@
 					{/if}
 				</span>
 
-				<span class="flex-2 border-dark border-2">
+				<span class="flex-2 base-border">
 					{spell.castingTime}
 					{#if spell.castingTime === "Bonus"}
 						Action
 					{/if}
 				</span>
 
-				<span class="flex-3 border-dark border-2">
+				<span class="flex-3 base-border">
 					{spell.duration}
 				</span>
 
-				<span class="flex-1 border-dark border-2">{spell.range}</span>
+				<span class="flex-1 base-border">{spell.range}</span>
 			</div>
 		</div>
 
 		<div class="spell-actions">
 			<button
 				onclick={() => (showBody = !showBody)}
-				class="std-btn rounded-none rounded-tl-lg"
+				class="base-button rounded-none rounded-tl-lg"
 			>
 				{#if showBody}
 					<EyeOff />
@@ -61,7 +61,7 @@
 			</button>
 			<button
 				onclick={() => character.removeSpell(spell.name)}
-				class="std-btn rounded-none
+				class="base-button rounded-none
 					{showBody ? 'rounded-tr-lg' : 'rounded-r-lg'}"
 			>
 				<Trash2 />
@@ -87,7 +87,7 @@
 	@import "$lib/theme.css";
 
 	.spell-container {
-		@apply bg-z2 p-half
+		@apply bg-z2 half-p
 		flex flex-col
 		rounded-lg;
 	}
@@ -110,14 +110,14 @@
 			@apply flex-1
 			flex justify-end;
 
-			.std-btn {
+			.base-button {
 				@apply flex-1 max-h-none;
 			}
 		}
 	}
 
 	.spell-body {
-		@apply p-half
-		border-dark border-2 rounded-b-lg;
+		@apply half-p
+		base-border rounded-b-lg;
 	}
 </style>

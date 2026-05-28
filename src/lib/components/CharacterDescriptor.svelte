@@ -25,7 +25,7 @@
 			extraClasses="
 				w-full
 				flex justify-start items-center gap-3
-				rounded-r-none border-2 transition-std border-dark hover:border-cta
+				rounded-r-none base-border base-transition hover:border-cta
 			"
 		>
 			<Value wClass="w-fit" value={data.character.info.level} />
@@ -37,7 +37,10 @@
 			</p>
 		</Container>
 	</button>
-	<button onclick={() => removeFun(data.id)} class="std-btn rounded-l-none">
+	<button
+		onclick={() => removeFun(data.id)}
+		class="base-button rounded-l-none"
+	>
 		<Trash />
 	</button>
 </div>

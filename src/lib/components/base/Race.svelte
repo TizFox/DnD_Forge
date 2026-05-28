@@ -33,9 +33,9 @@
 	@import "$lib/theme.css";
 
 	.race-select {
-		@apply w-min h-8 px-std bg-z2 text-left
-		border-2 border-dark rounded-r-lg
-		transition-std
+		@apply w-min h-8 base-px bg-z2 text-left
+		base-border rounded-r-lg
+		base-transition
 		focus:border-cta
 		focus:outline-none
 		focus:shadow-none;

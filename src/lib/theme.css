@@ -4,12 +4,14 @@
 	--main-size: 86vh;
 	--bars-size: 7vh;
 
-	--color-disabled: var(--color-red-300);
+	--color-std: var(--color-slate-50);
+	--color-inv: var(--color-slate-950);
+	--color-cta: "";
 
-	--color-dark: var(--color-slate-50);
-	--color-light: var(--color-slate-950);
-	--color-cta: var(--color-slate-400);
-	--color-err: var(--color-red-600);
+	--color-success: var(--color-emerald-300);
+	--color-warn: var(--color-amber-400);
+	--color-error: var(--color-rose-500);
+	--color-disabled: var(--color-red-300);
 
 	/* Follow the z-index */
 	--color-z0: var(--color-zinc-900);
@@ -34,29 +36,33 @@
 	@apply font-bold text-cta text-center;
 }
 @utility place-text {
-	@apply text-dark/30;
+	@apply text-std/30;
 }
 @utility place-placeholder {
-	@apply placeholder-dark/30;
+	@apply placeholder-std/30;
 }
 @utility error-text {
-	@apply font-bold text-err text-center p-std;
+	@apply font-bold text-error text-center base-p;
 }
 
-@utility p-double {
+@utility double-p {
 	@apply p-6;
 }
-@utility p-std {
+@utility base-p {
 	@apply p-3;
 }
-@utility px-std {
+@utility base-px {
 	@apply px-3;
 }
-@utility p-half {
+@utility half-p {
 	@apply p-1.5;
 }
 
-@utility transition-std {
+@utility base-border {
+	@apply border-2 border-std;
+}
+
+@utility base-transition {
 	@apply transition-colors duration-200 ease-in-out;
 }
 
@@ -64,7 +70,7 @@
 	body {
 		@apply overflow-x-hidden
 		bg-z0
-		text-dark
+		text-std
 		base-text;
 	}
 
@@ -83,7 +89,7 @@
 	}
 
 	hr {
-		@apply w-full border-dark;
+		@apply w-full border-std;
 	}
 }
 
@@ -94,32 +100,32 @@
 
 		.bar {
 			@apply w-full max-w-7xl h-full px-5 py-2
-			flex justify-center;
+			flex justify-center items-center;
 		}
 	}
 	.link {
 		@apply font-bold
-		transition-std
+		base-transition
 		border-b-2 border-transparent
 		hover:text-cta hover:border-cta;
 	}
-	.std-btn {
-		@apply p-std
+	.base-button {
+		@apply base-p
 		flex items-center justify-center
-		transition-std
+		base-transition
 		rounded-lg
-		border-2 border-dark;
+		base-border;
 
 		&:hover {
-			@apply text-light
+			@apply text-inv
 			border-cta bg-cta
 			cursor-pointer;
 		}
 
 		&:disabled {
-			@apply text-light border-disabled bg-disabled;
+			@apply text-inv border-disabled bg-disabled;
 			&:hover {
-				@apply text-light border-disabled bg-disabled
+				@apply text-inv border-disabled bg-disabled
 				cursor-default;
 			}
 		}

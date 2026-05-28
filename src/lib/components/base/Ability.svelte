@@ -49,7 +49,7 @@
 	@import "$lib/theme.css";
 
 	.ability-mod {
-		@apply w-fit p-std bg-z2
+		@apply w-fit base-p bg-z2
 		text-center rounded-lg;
 	}
 </style>

@@ -43,7 +43,7 @@
 					newAttackName = "";
 				}}
 				disabled={newAttackName === ""}
-				class="std-btn flex-1 h-8 rounded-l-none"
+				class="base-button flex-1 h-8 rounded-l-none"
 			>
 				ADD
 			</button>

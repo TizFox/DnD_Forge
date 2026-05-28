@@ -77,19 +77,19 @@
 		scrollbar-width: thin;
 		scrollbar-color: var(--color-cta) transparent;
 
-		@apply w-full p-std pr-0.5 bg-z2
+		@apply w-full base-p pr-0.5 bg-z2
 		field-sizing-content resize-none
 		text-left
-		border-2 border-b rounded-t-lg
-		transition-std border-dark focus:border-cta
+		base-border border-b rounded-t-lg
+		base-transition focus:border-cta
 		focus:outline-none focus:shadow-none;
 	}
 
 	.resize {
 		@apply w-full h-15
 		flex justify-center items-center
-		border-2 border-t-0 rounded-b-lg
-		transition-std border-dark peer-focus:border-cta
+		base-border border-t-0 rounded-b-lg
+		base-transition peer-focus:border-cta
 		hover:cursor-ns-resize
 		select-none touch-none;
 	}

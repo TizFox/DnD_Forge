@@ -37,7 +37,7 @@ const getTrueClass = (rawClass: string): Classes | undefined => {
 	];
 };
 
-const BASE_COLOR = "var(--color-slate-400)";
+const BASE_COLOR = "var(--color-fuchsia-300)";
 const colorMap: Record<Classes, string> = {
 	[Classes.Artificer]: "var(--color-orange-400)",
 	[Classes.Barbarian]: "var(--color-red-400)",
@@ -48,7 +48,7 @@ const colorMap: Record<Classes, string> = {
 	[Classes.Monk]: "var(--color-sky-300)",
 	[Classes.Paladin]: "var(--color-amber-400)",
 	[Classes.Ranger]: "var(--color-teal-500)",
-	[Classes.Rogue]: "var(--color-lime-200)",
+	[Classes.Rogue]: "var(--color-slate-400)",
 	[Classes.Sorcerer]: "var(--color-purple-400)",
 	[Classes.Warlock]: "var(--color-violet-400)",
 	[Classes.Wizard]: "var(--color-indigo-400)",

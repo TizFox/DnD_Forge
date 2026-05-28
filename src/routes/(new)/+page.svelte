@@ -120,7 +120,6 @@
 <!------------------------------------------>
 
 <svelte:head>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>{user !== "" ? user : "Login"} - {NAME}</title>
 </svelte:head>
 
@@ -135,7 +134,7 @@
 			<TextInput rClass="rounded-l-lg" bind:value={inputUser} />
 			<button
 				type="submit"
-				class="std-btn h-8 rounded-l-none"
+				class="base-button h-8 rounded-l-none"
 				disabled={loading || inputUser === ""}
 			>
 				CONFIRM
@@ -152,7 +151,7 @@
 					<h1 class="main-text h-min">
 						{user.toUpperCase()}'s CHARACTERS
 					</h1>
-					<button onclick={newCharacter} class="std-btn p-std">
+					<button onclick={newCharacter} class="base-button base-p">
 						<Plus />
 					</button>
 				</div>

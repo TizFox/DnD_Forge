@@ -65,7 +65,7 @@
 					}
 				}}
 				disabled={newSpellName === ""}
-				class="std-btn flex-1 h-8 rounded-l-none"
+				class="base-button flex-1 h-8 rounded-l-none"
 			>
 				ADD
 			</button>
@@ -98,9 +98,9 @@
 	@import "$lib/theme.css";
 
 	.spellcasting-ability-select {
-		@apply flex-1 h-8 px-std bg-z2 text-left
-			border-2 border-dark rounded-lg
-			transition-std
+		@apply flex-1 h-8 base-px bg-z2 text-left
+			base-border rounded-lg
+			base-transition
 			focus:border-cta
 			focus:outline-none
 			focus:shadow-none;

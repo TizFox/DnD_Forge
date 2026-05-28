@@ -32,7 +32,7 @@
 <nav class="bar-container navbar">
 	<img src={logo} alt="Logo" class="h-full" />
 	<div class="user-actions">
-		<button onclick={toggleKeyboard} class="std-btn">
+		<button onclick={toggleKeyboard} class="base-button">
 			{#if showKeyboard()}
 				<KeyboardOff />
 			{:else}
@@ -47,7 +47,7 @@
 				}
 				dndChar = new Character();
 			}}
-			class="std-btn"
+			class="base-button"
 		>
 			New Character
 		</button>
@@ -59,7 +59,7 @@
 				}
 			}}
 			disabled={dndChar === null}
-			class="std-btn"
+			class="base-button"
 		>
 			Save
 		</button>
@@ -70,13 +70,14 @@
 				type="button"
 				onclick={() => fileInput?.click()}
 				class="w-full h-full px-10 bg-z2 rounded-lg
-						border-2 border-dark transition-std
+						base-border
+						base-transition
 						hover:border-cta
 						text-left truncate
-						{fileName ? 'text-dark' : 'place-text'}"
+						{fileName ? 'text-std' : 'place-text'}"
 			>
 				<FileUser
-					class="h-1/2 absolute top-1/4 left-3 transition-std text-dark group-hover:text-cta"
+					class="h-1/2 absolute top-1/4 left-3 base-transition text-std group-hover:text-cta"
 				/>
 				{fileName ?? "Character FIle"}
 			</button>

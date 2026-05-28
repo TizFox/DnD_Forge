@@ -35,7 +35,7 @@
 				<div class="attack-actions">
 					<button
 						onclick={() => (showBody = !showBody)}
-						class="std-btn rounded-none rounded-tl-lg"
+						class="base-button rounded-none rounded-tl-lg"
 					>
 						{#if showBody}
 							<EyeOff />
@@ -45,7 +45,7 @@
 					</button>
 					<button
 						onclick={() => character.removeAttack(attack.name)}
-						class="std-btn rounded-none rounded-tr-lg"
+						class="base-button rounded-none rounded-tr-lg"
 					>
 						<Trash2 />
 					</button>
@@ -53,13 +53,13 @@
 			</div>
 
 			<div class="attack-subinfo">
-				<span class="flex-1 border-dark border-2 rounded-l-lg">
+				<span class="flex-1 base-border rounded-l-lg">
 					TpC: {#if character.getAttackModifier(attack.name) > 0}+{/if}{character.getAttackModifier(
 						attack.name,
 					)}
 				</span>
 
-				<span class="flex-2 border-dark border-2">
+				<span class="flex-2 base-border">
 					{#if attack.damage !== ""}
 						{attack.damage}
 						{#if attack.bonus !== 0}
@@ -69,7 +69,7 @@
 						<span class="place-text">Damage</span>
 					{/if}
 				</span>
-				<span class="flex-1 border-dark border-2 rounded-br-lg">
+				<span class="flex-1 base-border rounded-br-lg">
 					{#if attack.range !== ""}
 						{attack.range}
 					{:else}
@@ -122,7 +122,7 @@
 	@import "$lib/theme.css";
 
 	.attack-container {
-		@apply bg-z2 p-half
+		@apply bg-z2 half-p
 		flex flex-col
 		rounded-lg;
 	}
@@ -149,9 +149,9 @@
 
 	.attack-body {
 		.attack-ability-select {
-			@apply flex-1 h-8 px-std bg-z2 text-left
-			border-2 border-dark
-			transition-std
+			@apply flex-1 h-8 base-px bg-z2 text-left
+			base-border
+			base-transition
 			focus:border-cta
 			focus:outline-none
 			focus:shadow-none;

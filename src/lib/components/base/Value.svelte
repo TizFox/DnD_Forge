@@ -10,7 +10,7 @@
 	let {
 		wClass = "w-full",
 		rClass = "rounded-lg",
-		pClass = "px-std",
+		pClass = "base-px",
 		title = "",
 		value,
 	}: ValuePropsType = $props();
