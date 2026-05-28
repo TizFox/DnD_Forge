@@ -8,11 +8,6 @@
 	--color-inv: var(--color-slate-950);
 	--color-cta: "";
 
-	--color-success: var(--color-emerald-300);
-	--color-warn: var(--color-amber-400);
-	--color-error: var(--color-rose-500);
-	--color-disabled: var(--color-red-300);
-
 	/* Follow the z-index */
 	--color-z0: var(--color-zinc-900);
 	--color-z1: var(--color-zinc-700);
@@ -40,9 +35,6 @@
 }
 @utility place-placeholder {
 	@apply placeholder-std/30;
-}
-@utility error-text {
-	@apply font-bold text-error text-center base-p;
 }
 
 @utility double-p {
@@ -123,10 +115,10 @@
 		}
 
 		&:disabled {
-			@apply text-inv border-disabled bg-disabled;
+			@apply text-std
+			bg-cta/10 border-cta/10;
 			&:hover {
-				@apply text-inv border-disabled bg-disabled
-				cursor-default;
+				@apply cursor-default;
 			}
 		}
 	}

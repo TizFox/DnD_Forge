@@ -14,6 +14,7 @@ import {
 	SIZES_ELUSION,
 } from "./types";
 
+import { BASE_COLOR } from "./global.svelte";
 import { getSpell } from "./spells";
 
 export type CharacterType = InstanceType<typeof Character>;
@@ -21,6 +22,7 @@ export type CharacterType = InstanceType<typeof Character>;
 export class Character {
 	info: {
 		player: string;
+		color: string;
 		name: string;
 		campaign: string;
 		alignment: Alignments;
@@ -112,6 +114,7 @@ export class Character {
 	constructor() {
 		this.info = $state({
 			player: "",
+			color: BASE_COLOR,
 			name: "New Character",
 			campaign: "",
 			alignment: { morality: Morality.Neutral, order: Order.Neutral },

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
-	import { getClassNames } from "$lib/classes";
+	import { getClassNames } from "$lib/types";
 
 	import Container from "$lib/components/base/Container.svelte";
 	import TextInput from "$lib/components/base/TextInput.svelte";

@@ -8,11 +8,11 @@ export const getPath = (user?: string, id?: string): string => {
 };
 
 export const STORAGE_CHARACTER = "currentCharacter";
-
+export const BASE_COLOR = "#f0abfc";
 let keyboard = $state<boolean>(true);
-export const showKeyboard = () => {
-	return keyboard;
-};
 export const toggleKeyboard = () => {
 	keyboard = !keyboard;
+};
+export const showKeyboard = () => {
+	return keyboard;
 };

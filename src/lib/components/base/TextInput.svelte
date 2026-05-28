@@ -25,11 +25,11 @@
 		<span class="main-text">{title.toUpperCase()}</span>
 	{/if}
 	<input
-		list={suggestions.id}
-		class="{rClass} text-input"
+		type="text"
 		bind:value
 		{placeholder}
-		type="text"
+		list={suggestions.id}
+		class="{rClass} text-input"
 	/>
 
 	{#if suggestions.id != ""}

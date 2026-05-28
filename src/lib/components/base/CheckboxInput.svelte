@@ -17,9 +17,9 @@
 <!------------------------------------------>
 
 <input
-	class="{wClass} {rClass} checkbox-input {visible ? '' : 'invisible'}"
-	bind:checked
 	type="checkbox"
+	bind:checked
+	class="{wClass} {rClass} checkbox-input {visible ? '' : 'invisible'}"
 />
 
 <!------------------------------------------>

@@ -128,3 +128,37 @@ export const EMPTY_SPELL: Spell = {
 	description: "",
 	higherLevels: "",
 };
+
+// Classes
+enum Classes {
+	Artificer = "artificer",
+	Barbarian = "barbarian",
+	Bard = "bard",
+	Cleric = "cleric",
+	Druid = "druid",
+	Fighter = "fighter",
+	Monk = "monk",
+	Paladin = "paladin",
+	Ranger = "ranger",
+	Rogue = "rogue",
+	Sorcerer = "sorcerer",
+	Warlock = "warlock",
+	Wizard = "wizard",
+	Multiclass = "multiclass",
+	// Lingue
+	Artefice = Artificer,
+	Barbaro = Barbarian,
+	Bardo = Bard,
+	Chierico = Cleric,
+	Druido = Druid,
+	Guerriero = Fighter,
+	Monaco = Monk,
+	Paladino = Paladin,
+	Ladro = Rogue,
+	Stregone = Sorcerer,
+	Mago = Wizard,
+	Multiclasse = Multiclass,
+}
+export const getClassNames = (): string[] => {
+	return Object.keys(Classes).sort();
+};

@@ -6,7 +6,7 @@
 
 	import { FILE_EXTENTION, load, save } from "$lib/fileHandler";
 	import { Character, type CharacterType } from "$lib/character.svelte";
-	import { showKeyboard, toggleKeyboard } from "$lib/global.svelte";
+	import { toggleKeyboard, showKeyboard } from "$lib/global.svelte";
 
 	import CharacterSheet from "$lib/components/CharacterSheet.svelte";
 	import Empty from "$lib/components/Empty.svelte";

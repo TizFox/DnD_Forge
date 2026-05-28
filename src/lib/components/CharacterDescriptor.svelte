@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Trash } from "@lucide/svelte";
+	import { Download, Trash } from "@lucide/svelte";
 
 	import type { Character } from "$lib/character.svelte";
 
@@ -19,27 +19,52 @@
 
 <!------------------------------------------>
 
-<div class="w-full h-full flex justify-between">
+<div
+	class="w-full h-full flex justify-between"
+	style="--hover-color: {data.character.info.color}"
+>
 	<button onclick={() => openFun(data.id)} class="flex-1">
 		<Container
 			extraClasses="
-				w-full
+				group w-full
 				flex justify-start items-center gap-3
-				rounded-r-none base-border base-transition hover:border-cta
+				rounded-r-none base-border
+				base-transition hover:border-(--hover-color)
 			"
 		>
-			<Value wClass="w-fit" value={data.character.info.level} />
-			<p class="flex-1 h-min text-left">
+			<Value
+				wClass="w-fit group-hover:text-(--hover-color)"
+				value={data.character.info.level}
+			/>
+			<p
+				class="flex-1 h-min text-left
+				group-hover:text-(--hover-color)"
+			>
 				{data.character.info.name}
 			</p>
-			<p class="flex-1 h-min text-left">
+			<p
+				class="flex-1 h-min text-left
+				group-hover:text-(--hover-color)"
+			>
 				{data.character.info.campaign}
 			</p>
 		</Container>
 	</button>
 	<button
+		onclick={() => {}}
+		class="base-button rounded-none
+			hover:bg-(--hover-color)
+			hover:border-(--hover-color)
+		"
+	>
+		<Download />
+	</button>
+	<button
 		onclick={() => removeFun(data.id)}
-		class="base-button rounded-l-none"
+		class="base-button rounded-l-none
+			hover:bg-(--hover-color)
+			hover:border-(--hover-color)
+		"
 	>
 		<Trash />
 	</button>

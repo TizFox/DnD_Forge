@@ -6,9 +6,10 @@
 
 	import {
 		NAME,
-		showKeyboard,
 		STORAGE_CHARACTER,
 		toggleKeyboard,
+		showKeyboard,
+		BASE_COLOR,
 	} from "$lib/global.svelte";
 	import { getCharacter, saveCharacter } from "$lib/supabase";
 	import { logger } from "$lib/logs";
@@ -22,6 +23,7 @@
 
 	import Loading from "$lib/components/Loading.svelte";
 	import Empty from "$lib/components/Empty.svelte";
+	import ColorInput from "$lib/components/base/ColorInput.svelte";
 
 	let { params }: PageProps = $props();
 	let user = untrack(() => params.user);
@@ -67,6 +69,8 @@
 				"CHARACTER",
 				`Character (${characterId}) not found`,
 			);
+		} else {
+			newColor = character.info.color;
 		}
 
 		await tick();
@@ -91,6 +95,13 @@
 	});
 
 	// Header Actions
+	let newColor = $state(BASE_COLOR);
+	const handleColor = async () => {
+		if (!character) {
+			return;
+		}
+		character.info.color = newColor;
+	};
 	const handleSave = async () => {
 		if (saved) {
 			return;
@@ -140,13 +151,19 @@
 		{/if}
 		<button onclick={handleSave} class="base-button"><Save /></button>
 	</div>
-	<button onclick={toggleKeyboard} class="base-button">
+	<button
+		onclick={() => {
+			toggleKeyboard();
+		}}
+		class="base-button"
+	>
 		{#if showKeyboard()}
 			<Keyboard />
 		{:else}
 			<KeyboardOff />
 		{/if}
 	</button>
+	<ColorInput bind:value={newColor} onChange={handleColor} />
 </Header>
 
 <Main>

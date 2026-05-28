@@ -92,12 +92,12 @@
 		<span class="main-text">{title.toUpperCase()}</span>
 	{/if}
 	<input
-		class="peer {rClass} number-input no-spinner"
+		type="text"
 		bind:value={textInput}
 		onchange={() => handleChange()}
 		onblur={() => handleChange()}
-		inputmode="none"
-		type="text"
+		class="peer {rClass} number-input no-spinner"
+		inputmode={showKeyboard() ? "none" : "text"}
 	/>
 
 	{#if showKeyboard()}

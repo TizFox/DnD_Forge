@@ -4,10 +4,14 @@
 
 	import { Plus } from "@lucide/svelte";
 
-	import { NAME, getPath, STORAGE_CHARACTER } from "$lib/global.svelte";
+	import {
+		NAME,
+		getPath,
+		STORAGE_CHARACTER,
+		BASE_COLOR,
+	} from "$lib/global.svelte";
 
 	import { type CharacterType, Character } from "$lib/character.svelte";
-	import { getColor } from "$lib/classes";
 	import {
 		getCharacters,
 		createCharacter,
@@ -36,10 +40,7 @@
 		sessionStorage.removeItem(STORAGE_CHARACTER);
 
 		// Set Base Color
-		document.documentElement.style.setProperty(
-			"--color-cta",
-			getColor("default"),
-		);
+		document.documentElement.style.setProperty("--color-cta", BASE_COLOR);
 	});
 
 	let loading = $state(false);

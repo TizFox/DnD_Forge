@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { getColor } from "$lib/classes";
-
 	import type { Character } from "$lib/character.svelte";
 
 	// 1-2-3
@@ -30,7 +28,7 @@
 		// Set Class Color
 		document.documentElement.style.setProperty(
 			"--color-cta",
-			getColor(character.info.class),
+			character.info.color,
 		);
 	});
 </script>
