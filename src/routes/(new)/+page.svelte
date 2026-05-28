@@ -96,6 +96,10 @@
 		}
 		goto(getPath(user, id));
 	};
+	const downloadCharacter = (id: string) => {
+		alert("Character: " + id);
+		// TODO ------------------------------------------------------------------------
+	};
 	const removeCharacter = async (id: string) => {
 		const CONFIRM_TEXT = "i want to delete this character";
 
@@ -135,7 +139,7 @@
 			<TextInput rClass="rounded-l-lg" bind:value={inputUser} />
 			<button
 				type="submit"
-				class="base-button h-8 rounded-l-none"
+				class="base-button h-8 bg-z2 rounded-l-none hover:bg-cta"
 				disabled={loading || inputUser === ""}
 			>
 				CONFIRM
@@ -163,6 +167,7 @@
 					<CharacterDescriptor
 						data={d}
 						openFun={openCharacter}
+						downloadFun={downloadCharacter}
 						removeFun={removeCharacter}
 					/>
 				{:else}

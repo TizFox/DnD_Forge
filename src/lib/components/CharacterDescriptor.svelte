@@ -9,10 +9,12 @@
 	let {
 		data,
 		openFun,
+		downloadFun,
 		removeFun,
 	}: {
 		data: { id: string; character: Character };
 		openFun: (id: string) => void;
+		downloadFun: (id: string) => void;
 		removeFun: (id: string) => void;
 	} = $props();
 </script>
@@ -33,26 +35,26 @@
 			"
 		>
 			<Value
-				wClass="w-fit group-hover:text-(--hover-color)"
+				wClass="w-fit base-transition group-hover:text-(--hover-color)"
 				value={data.character.info.level}
 			/>
 			<p
 				class="flex-1 h-min text-left
-				group-hover:text-(--hover-color)"
+				base-transition group-hover:text-(--hover-color)"
 			>
 				{data.character.info.name}
 			</p>
 			<p
 				class="flex-1 h-min text-left
-				group-hover:text-(--hover-color)"
+				base-transition group-hover:text-(--hover-color)"
 			>
 				{data.character.info.campaign}
 			</p>
 		</Container>
 	</button>
 	<button
-		onclick={() => {}}
-		class="base-button rounded-none
+		onclick={() => downloadFun(data.id)}
+		class="base-button bg-z1 rounded-none
 			hover:bg-(--hover-color)
 			hover:border-(--hover-color)
 		"
@@ -61,7 +63,7 @@
 	</button>
 	<button
 		onclick={() => removeFun(data.id)}
-		class="base-button rounded-l-none
+		class="base-button bg-z1 rounded-l-none
 			hover:bg-(--hover-color)
 			hover:border-(--hover-color)
 		"

@@ -1,4 +1,4 @@
 TODO:
 - [  TS  ] Add .dndchar.json => supabase
-- [  TS  ] Add supabase => .dndchar.json
-- [  TS  ] Add a wrapper for toUpperCase() to easily change it out
+- [  TS  ] (WIP) Add supabase => .dndchar.json
+- [  TS  ] (WIP) Add a wrapper for toUpperCase() to easily change it out

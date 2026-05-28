@@ -8,7 +8,12 @@ export const getPath = (user?: string, id?: string): string => {
 };
 
 export const STORAGE_CHARACTER = "currentCharacter";
-export const BASE_COLOR = "#f0abfc";
+export const BASE_COLOR = "#ef4444"; //"#f0abfc";
+
+export const formatText = (s: string): string => {
+	return s.toUpperCase();
+};
+
 let keyboard = $state<boolean>(true);
 export const toggleKeyboard = () => {
 	keyboard = !keyboard;
