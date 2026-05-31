@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import { goto } from "$app/navigation";
 
-	import { Plus } from "@lucide/svelte";
+	import { Upload, Plus } from "@lucide/svelte";
 
 	import {
 		NAME,
@@ -10,6 +10,8 @@
 		STORAGE_CHARACTER,
 		BASE_COLOR,
 	} from "$lib/global.svelte";
+
+	import { save } from "$lib/fileHandler";
 
 	import { type CharacterType, Character } from "$lib/character.svelte";
 	import {
@@ -75,6 +77,7 @@
 		loading = false;
 	};
 
+	const uploadCharacter = async () => {};
 	const newCharacter = async () => {
 		let char = new Character();
 		let id = await createCharacter(user, char);
@@ -97,8 +100,10 @@
 		goto(getPath(user, id));
 	};
 	const downloadCharacter = (id: string) => {
-		alert("Character: " + id);
-		// TODO ------------------------------------------------------------------------
+		let downloadIndex = data.findIndex((i) => i.id === id);
+		if (downloadIndex !== -1) {
+			save(data[downloadIndex].character);
+		}
 	};
 	const removeCharacter = async (id: string) => {
 		const CONFIRM_TEXT = "i want to delete this character";
@@ -156,9 +161,20 @@
 					<h1 class="main-text h-min">
 						{user.toUpperCase()}'s CHARACTERS
 					</h1>
-					<button onclick={newCharacter} class="base-button base-p">
-						<Plus />
-					</button>
+					<div class="flex">
+						<button
+							onclick={uploadCharacter}
+							class="base-button base-p rounded-r-none"
+						>
+							<Upload />
+						</button>
+						<button
+							onclick={newCharacter}
+							class="base-button base-p rounded-l-none"
+						>
+							<Plus />
+						</button>
+					</div>
 				</div>
 
 				<hr />
