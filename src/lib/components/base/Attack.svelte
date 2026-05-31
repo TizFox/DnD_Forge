@@ -23,6 +23,8 @@
 	let attack = $derived(character.equipment.attacks[attackName]);
 
 	let showBody = $state<boolean>(false);
+
+	let attackMod = $derived(character.getAttackModifier(attack.name));
 </script>
 
 <!------------------------------------------>
@@ -54,17 +56,12 @@
 
 			<div class="attack-subinfo">
 				<span class="flex-1 base-border rounded-l-lg">
-					TpC: {#if character.getAttackModifier(attack.name) > 0}+{/if}{character.getAttackModifier(
-						attack.name,
-					)}
+					TpC: {#if attackMod > 0}+{/if}{attackMod}
 				</span>
 
 				<span class="flex-2 base-border">
 					{#if attack.damage !== ""}
 						{attack.damage}
-						{#if attack.bonus !== 0}
-							{#if attack.bonus > 0}+{/if}{attack.bonus}
-						{/if}
 					{:else}
 						<span class="place-text">Damage</span>
 					{/if}
@@ -98,7 +95,7 @@
 				<NumberInput
 					wClass="flex-1"
 					rClass="rounded-tr-lg"
-					bind:value={attack.bonus}
+					bind:value={attack.bonusTpC}
 				/>
 			</div>
 

@@ -12,6 +12,7 @@ import {
 	Order,
 	Sizes,
 	SIZES_ELUSION,
+	getEmptyAttack,
 } from "./types";
 
 import { BASE_COLOR } from "./global.svelte";
@@ -334,21 +335,14 @@ export class Character {
 		return (
 			this.getAbilityModifier(attack.ability) +
 			(attack.proficient ? this.getProficiencyBonus() : 0) +
-			(attack.bonus != null ? attack.bonus : 0)
+			(attack.bonusTpC != null ? attack.bonusTpC : 0)
 		);
 	}
 	addAttack(attackName: string): void {
 		attackName = attackName.toUpperCase();
 		//console.log(`addAttack("${attackName}")`);
 
-		this.equipment.attacks[attackName] = {
-			name: attackName,
-			ability: "strength",
-			proficient: false,
-			bonus: 0,
-			damage: "",
-			range: "",
-		};
+		this.equipment.attacks[attackName] = getEmptyAttack(attackName);
 	}
 	removeAttack(attackName: string): void {
 		attackName = attackName.toUpperCase();

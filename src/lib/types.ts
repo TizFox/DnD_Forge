@@ -81,10 +81,20 @@ export interface Attack {
 	name: string;
 	ability: AbilitiesType;
 	proficient: boolean;
-	bonus: number;
+	bonusTpC: number;
 	damage: string;
 	range: string;
 }
+export const getEmptyAttack = (name: string): Attack => {
+	return {
+		name: name,
+		ability: "strength",
+		proficient: false,
+		bonusTpC: 0,
+		damage: "",
+		range: "",
+	};
+};
 
 // Spellcasting
 export type SpellLevels = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
