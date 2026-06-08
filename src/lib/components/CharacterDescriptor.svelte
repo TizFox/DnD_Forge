@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Download, Trash } from "@lucide/svelte";
+	import { Download, Trash2 } from "@lucide/svelte";
 
 	import type { Character } from "$lib/character.svelte";
 
@@ -38,37 +38,31 @@
 				wClass="w-fit base-transition group-hover:text-(--hover-color)"
 				value={data.character.info.level}
 			/>
-			<p
-				class="flex-1 h-min text-left
-				base-transition group-hover:text-(--hover-color)"
-			>
+			<p class="character-details">
 				{data.character.info.name}
 			</p>
-			<p
-				class="flex-1 h-min text-left
-				base-transition group-hover:text-(--hover-color)"
-			>
+			<p class="character-details">
 				{data.character.info.campaign}
 			</p>
 		</Container>
 	</button>
 	<button
 		onclick={() => downloadFun(data.id)}
-		class="base-button bg-z1 rounded-none
-			hover:bg-(--hover-color)
-			hover:border-(--hover-color)
-		"
+		class="group base-button bg-z1 rounded-none
+			hover:border-(--hover-color)"
 	>
-		<Download />
+		<div class="character-buttons">
+			<Download />
+		</div>
 	</button>
 	<button
 		onclick={() => removeFun(data.id)}
-		class="base-button bg-z1 rounded-l-none
-			hover:bg-(--hover-color)
-			hover:border-(--hover-color)
-		"
+		class="group base-button bg-z1 rounded-l-none
+			hover:border-(--hover-color)"
 	>
-		<Trash />
+		<div class="character-buttons">
+			<Trash2 />
+		</div>
 	</button>
 </div>
 
@@ -76,4 +70,16 @@
 
 <style lang="postcss">
 	@import "$lib/theme.css";
+
+	.character-details {
+		@apply flex-1 h-min text-left
+		px-1 border-b-2 border-(--hover-color) rounded-lg
+		base-transition
+		group-hover:text-(--hover-color) group-hover:border-none;
+	}
+	.character-buttons {
+		@apply text-std px-1 pb-1 border-b-2 border-(--hover-color) rounded-lg
+		base-transition
+		group-hover:text-(--hover-color) group-hover:border-none;
+	}
 </style>

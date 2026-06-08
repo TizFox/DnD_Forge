@@ -43,7 +43,7 @@
 	</div>
 
 	<NumberInput
-		title="current hp"
+		title="current hp / damage taken"
 		bind:value={character.hp.current}
 		maxValue={character.hp.max}
 	/>

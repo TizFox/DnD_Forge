@@ -34,24 +34,16 @@
 		<div class="attack-info">
 			<div class="w-full flex items-center justify-between">
 				<h3 class="h-fit main-text">{attack.name}</h3>
-				<div class="attack-actions">
-					<button
-						onclick={() => (showBody = !showBody)}
-						class="base-button rounded-none rounded-tl-lg"
-					>
-						{#if showBody}
-							<EyeOff />
-						{:else}
-							<Eye />
-						{/if}
-					</button>
-					<button
-						onclick={() => character.removeAttack(attack.name)}
-						class="base-button rounded-none rounded-tr-lg"
-					>
-						<Trash2 />
-					</button>
-				</div>
+				<button
+					onclick={() => (showBody = !showBody)}
+					class="base-button w-1/2 rounded-b-none"
+				>
+					{#if showBody}
+						<EyeOff />
+					{:else}
+						<Eye />
+					{/if}
+				</button>
 			</div>
 
 			<div class="attack-subinfo">
@@ -105,10 +97,17 @@
 				placeholder="Attack Damage"
 			/>
 			<TextInput
-				rClass="rounded-b-lg"
+				rClass="rounded-bl-lg"
 				bind:value={attack.range}
 				placeholder="Attack Range"
 			/>
+
+			<button
+				onclick={() => character.removeAttack(attack.name)}
+				class="base-button w-1/2 rounded-t-none"
+			>
+				<Trash2 />
+			</button>
 		</div>
 	{/if}
 </div>
@@ -137,14 +136,11 @@
 				text-center;
 			}
 		}
-
-		.attack-actions {
-			@apply flex-1
-			flex justify-end;
-		}
 	}
 
 	.attack-body {
+		@apply flex flex-col items-end;
+
 		.attack-ability-select {
 			@apply flex-1 h-8 base-px bg-z2 text-left
 			base-border

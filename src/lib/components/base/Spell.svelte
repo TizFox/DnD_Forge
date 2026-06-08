@@ -48,29 +48,22 @@
 			</div>
 		</div>
 
-		<div class="spell-actions">
-			<button
-				onclick={() => (showBody = !showBody)}
-				class="base-button rounded-none rounded-tl-lg"
-			>
-				{#if showBody}
-					<EyeOff />
-				{:else}
-					<Eye />
-				{/if}
-			</button>
-			<button
-				onclick={() => character.removeSpell(spell.name)}
-				class="base-button rounded-none
-					{showBody ? 'rounded-tr-lg' : 'rounded-r-lg'}"
-			>
-				<Trash2 />
-			</button>
-		</div>
+		<button
+			onclick={() => (showBody = !showBody)}
+			class="base-button flex-1 max-h-none {showBody
+				? 'rounded-b-none'
+				: 'rounded-bl-none'}"
+		>
+			{#if showBody}
+				<EyeOff />
+			{:else}
+				<Eye />
+			{/if}
+		</button>
 	</div>
 
 	{#if showBody}
-		<div class="spell-body">
+		<div class="half-p base-border rounded-bl-lg">
 			{spell.manual}<br />
 			{spell.school}, {spell.components}<br /><br />
 			{spell.description}
@@ -78,6 +71,12 @@
 				{spell.higherLevels}
 			{/if}
 		</div>
+		<button
+			onclick={() => character.removeSpell(spell.name)}
+			class="w-1/2 ml-auto base-button rounded-t-none"
+		>
+			<Trash2 />
+		</button>
 	{/if}
 </div>
 
@@ -105,19 +104,5 @@
 				text-center;
 			}
 		}
-
-		.spell-actions {
-			@apply flex-1
-			flex justify-end;
-
-			.base-button {
-				@apply flex-1 max-h-none;
-			}
-		}
-	}
-
-	.spell-body {
-		@apply half-p
-		base-border rounded-b-lg;
 	}
 </style>
