@@ -38,19 +38,19 @@
 <Info {character} />
 <div class="w-full flex gap-5">
 	<Stats wClass="flex-1" {character} />
-	<div class="flex-2 grid grid-cols-2 auto-rows-fr gap-5">
+	<div class="flex-2 grid grid-cols-2 gap-5">
 		<div class="flex flex-col gap-5">
 			<Ca {character} />
 			<Hp {character} />
 			<Actions {character} />
-			<Passive {character} />
-			<Equipment {character} />
-			<Characteristics {character} />
 			<Description {character} />
 		</div>
 		<div class="flex flex-col gap-5">
-			<Features {character} />
+			<Passive {character} />
+			<Equipment {character} />
+			<Characteristics {character} />
 		</div>
+		<Features wClass="col-span-2" {character} />
 		<Spellcasting wClass="col-span-2" {character} />
 	</div>
 </div>
