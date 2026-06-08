@@ -10,6 +10,7 @@
 		minValue?: number;
 		value: number;
 		maxValue?: number;
+		decimal?: boolean;
 	};
 
 	let {
@@ -19,6 +20,7 @@
 		minValue = 0,
 		value = $bindable(0),
 		maxValue,
+		decimal = false,
 	}: NumberInputPropsType = $props();
 
 	let lastValue = $state(0); // When error in evaluating expression return to last valid value
@@ -32,7 +34,9 @@
 		value = isNaN(input) ? lastValue : input;
 		value = Math.max(value, minValue);
 		value = maxValue ? Math.min(value, maxValue) : value;
-		value = Math.floor(value);
+		if (!decimal) {
+			value = Math.floor(value);
+		}
 
 		// Update textInput in case of an expression
 		textInput = String(value);

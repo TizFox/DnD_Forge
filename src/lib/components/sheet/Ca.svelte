@@ -43,6 +43,7 @@
 				rClass="rounded-r-lg"
 				title="speed"
 				bind:value={character.info.speed}
+				decimal={true}
 			/>
 		</div>
 		<div class="flex">
