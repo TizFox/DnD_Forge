@@ -36,7 +36,7 @@
 				<h3 class="h-fit main-text">{attack.name}</h3>
 				<button
 					onclick={() => (showBody = !showBody)}
-					class="base-button w-1/2 rounded-b-none"
+					class="base-button w-1/3 rounded-b-none"
 				>
 					{#if showBody}
 						<EyeOff />
