@@ -367,7 +367,12 @@ export class Character {
 	getSpellcastingDC(): number {
 		//console.log(`getAbilityProficiency("${this.magic.spellcastingAbility}")`);
 
-		return 8 + this.getSpellcastingModifier() + this.magic.bonusDC;
+		return (
+			8 +
+			this.getAbilityModifier(this.magic.spellcastingAbility) +
+			this.getProficiencyBonus() +
+			this.magic.bonusDC
+		);
 	}
 	getSpellList(): Spell[] {
 		//console.log(`getSpellList()`);
