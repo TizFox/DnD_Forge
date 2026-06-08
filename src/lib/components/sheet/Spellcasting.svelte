@@ -26,10 +26,6 @@
 	);
 
 	let newSpellName = $state("");
-
-	$effect(() => {
-		console.log(bonusTpC, spellBonus);
-	});
 </script>
 
 <!------------------------------------------>
