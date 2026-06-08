@@ -91,6 +91,8 @@ export class Character {
 
 	magic: {
 		spellcastingAbility: AbilitiesType;
+		bonusTpC: number;
+		bonusDC: number;
 		spells: Record<string, Spell>;
 		spellSlots: SpellSlot[];
 	};
@@ -241,6 +243,8 @@ export class Character {
 		});
 		this.magic = $state({
 			spellcastingAbility: "strength",
+			bonusTpC: 0,
+			bonusDC: 0,
 			spells: {},
 			spellSlots: [
 				{ level: 1, total: 0, used: 0 },
@@ -356,13 +360,14 @@ export class Character {
 		//console.log(`getSpellcastingModifier("${this.magic.spellcastingAbility}")`);
 		return (
 			this.getAbilityModifier(this.magic.spellcastingAbility) +
-			this.getProficiencyBonus()
+			this.getProficiencyBonus() +
+			this.magic.bonusTpC
 		);
 	}
 	getSpellcastingDC(): number {
 		//console.log(`getAbilityProficiency("${this.magic.spellcastingAbility}")`);
 
-		return 8 + this.getSpellcastingModifier();
+		return 8 + this.getSpellcastingModifier() + this.magic.bonusDC;
 	}
 	getSpellList(): Spell[] {
 		//console.log(`getSpellList()`);

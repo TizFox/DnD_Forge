@@ -8,6 +8,7 @@
 	import TextInput from "$lib/components/base/TextInput.svelte";
 	import Spell from "$lib/components/base/Spell.svelte";
 	import SpellSlot from "$lib/components/base/SpellSlot.svelte";
+	import NumberInput from "../base/NumberInput.svelte";
 
 	type SpellcastingInfoPropsType = {
 		wClass?: string;
@@ -25,6 +26,10 @@
 	);
 
 	let newSpellName = $state("");
+
+	$effect(() => {
+		console.log(bonusTpC, spellBonus);
+	});
 </script>
 
 <!------------------------------------------>
@@ -45,8 +50,34 @@
 				</select>
 			</div>
 		</div>
-		<Value wClass="flex-1" title="spell bonus" value={spellBonus} />
-		<Value wClass="flex-1" title="spell dc" value={spellDC} />
+
+		<div class="flex-1 flex flex-col">
+			<span class="main-text">SPELL BONUS</span>
+			<div class="flex">
+				<Value
+					wClass="flex-1"
+					rClass="rounded-l-lg"
+					value={spellBonus}
+				/>
+				<NumberInput
+					wClass="flex-1"
+					rClass="rounded-r-lg"
+					bind:value={character.magic.bonusTpC}
+				/>
+			</div>
+		</div>
+
+		<div class="flex-1 flex flex-col">
+			<span class="main-text">SPELL DC</span>
+			<div class="flex">
+				<Value wClass="flex-1" rClass="rounded-l-lg" value={spellDC} />
+				<NumberInput
+					wClass="flex-1"
+					rClass="rounded-r-lg"
+					bind:value={character.magic.bonusDC}
+				/>
+			</div>
+		</div>
 	</div>
 
 	<div class="flex flex-col gap-1">
