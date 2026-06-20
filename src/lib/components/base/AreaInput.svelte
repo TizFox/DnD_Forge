@@ -52,8 +52,10 @@
 	{#if title !== ""}
 		<h2 class="main-text">{title.toUpperCase()}</h2>
 	{/if}
-	<textarea bind:this={textArea} bind:value class="peer area-input">
-	</textarea>
+	<textarea
+		bind:this={textArea}
+		bind:value
+		class="peer area-input"></textarea>
 	<div
 		class="resize {resizing ? 'bg-z1' : 'bg-z2'}"
 		role="separator"
