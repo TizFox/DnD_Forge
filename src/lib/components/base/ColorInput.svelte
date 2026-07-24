@@ -16,11 +16,11 @@
 <button onclick={() => colorInput?.click()} class="relative base-button">
 	<Paintbrush />
 	<input
-		type="color"
 		bind:this={colorInput}
 		bind:value
 		onchange={onChange}
 		class="absolute top-full right-full w-0 h-0 opacity-0 pointer-events-none"
+		type="color"
 	/>
 </button>
 

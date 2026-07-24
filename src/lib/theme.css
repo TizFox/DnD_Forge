@@ -116,7 +116,7 @@
 
 		&:disabled {
 			@apply text-std
-			bg-cta/10 border-cta/10;
+			bg-cta/10 border-z0;
 			&:hover {
 				@apply cursor-default;
 			}

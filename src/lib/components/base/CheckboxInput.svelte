@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { lockInput } from "$lib/global.svelte";
+
 	type CheckboxInputPropsType = {
 		wClass?: string;
 		rClass?: string;
@@ -17,9 +19,10 @@
 <!------------------------------------------>
 
 <input
-	type="checkbox"
 	bind:checked
+	disabled={lockInput()}
 	class="{wClass} {rClass} checkbox-input {visible ? '' : 'invisible'}"
+	type="checkbox"
 />
 
 <!------------------------------------------>
@@ -32,6 +35,7 @@
 		bg-z2 base-border
 		base-transition
 		checked:bg-cta checked:border-cta
-		hover:cursor-pointer;
+		hover:cursor-pointer
+		disabled:border-z0;
 	}
 </style>

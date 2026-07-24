@@ -17,31 +17,34 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} grid grid-cols-2 gap-3">
-	<NumberInput title="age" bind:value={character.info.description.age} />
 	<NumberInput
-		title="height (cm)"
+		bind:value={character.info.description.age}
+		title="age"
+	/>
+	<NumberInput
 		bind:value={character.info.description.height}
+		title="height (cm)"
 	/>
 	<NumberInput
-		title="weight (kg)"
 		bind:value={character.info.description.weight}
+		title="weight (kg)"
 	/>
 	<TextInput
-		title="eye color"
 		bind:value={character.info.description.eyeColor}
+		title="eye color"
 	/>
 	<TextInput
-		title="skin color"
 		bind:value={character.info.description.skinColor}
+		title="skin color"
 	/>
 	<TextInput
-		title="hair color"
 		bind:value={character.info.description.hairColor}
+		title="hair color"
 	/>
 	<AreaInput
+		bind:value={character.info.description.other}
 		wClass="col-span-2"
 		title="other"
-		bind:value={character.info.description.other}
 	/>
 </Container>
 

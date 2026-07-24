@@ -141,7 +141,10 @@
 	<div class="w-full flex flex-col items-center gap-5">
 		<form onsubmit={loadData} class="flex items-center">
 			<h3 class="main-text h-min">USER:</h3>
-			<TextInput rClass="rounded-l-lg" bind:value={inputUser} />
+			<TextInput
+				bind:value={inputUser}
+				rClass="rounded-l-lg"
+			/>
 			<button
 				type="submit"
 				class="base-button h-8 bg-z2 rounded-l-none hover:bg-cta"

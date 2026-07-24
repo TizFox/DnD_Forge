@@ -18,15 +18,15 @@
 <Container extraClasses="{wClass} grid grid-cols-2 gap-3">
 	{#each Object.keys(character.info.characteristics) as key}
 		<AreaInput
-			wClass={key === "languages" || key === "backstory"
-				? "col-span-2"
-				: "col-span-1"}
-			title={key.split("_").join(" ")}
 			bind:value={
 				character.info.characteristics[
 					key as keyof CharacterType["info"]["characteristics"]
 				]
 			}
+			wClass={key === "languages" || key === "backstory"
+				? "col-span-2"
+				: "col-span-1"}
+			title={key.split("_").join(" ")}
 		/>
 	{/each}
 </Container>

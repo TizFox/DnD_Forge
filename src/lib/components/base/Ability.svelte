@@ -28,9 +28,9 @@
 	</h1>
 
 	<NumberInput
-		wClass="w-1/4"
-		minValue={1}
 		bind:value={character.stats[ability].value}
+		minValue={1}
+		wClass="w-1/4"
 	/>
 
 	<Skill {character} {ability} isSaveThrow={true} />

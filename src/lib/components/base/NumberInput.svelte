@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Plus, Minus, X, Divide, Equal, Delete } from "@lucide/svelte";
 
-	import { showKeyboard } from "$lib/global.svelte";
+	import { lockInput, showKeyboard } from "$lib/global.svelte";
 
 	type NumberInputPropsType = {
 		wClass?: string;
@@ -96,12 +96,13 @@
 		<span class="main-text">{title.toUpperCase()}</span>
 	{/if}
 	<input
-		type="text"
 		bind:value={textInput}
 		onchange={() => handleChange()}
 		onblur={() => handleChange()}
-		class="peer {rClass} number-input no-spinner"
+		disabled={lockInput()}
 		inputmode={showKeyboard() ? "none" : "text"}
+		class="peer {rClass} number-input no-spinner"
+		type="text"
 	/>
 
 	{#if showKeyboard()}
@@ -224,7 +225,8 @@
 		base-transition
 		focus:border-cta
 		focus:outline-none
-		focus:shadow-none;
+		focus:shadow-none
+		disabled:border-z0;
 	}
 	.no-spinner::-webkit-inner-spin-button,
 	.no-spinner::-webkit-outer-spin-button {

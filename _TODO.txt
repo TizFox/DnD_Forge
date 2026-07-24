@@ -1,3 +1,4 @@
 TODO:
 - [  TS  ] Add .dndchar.json => supabase
 - [  TS  ] (WIP) Add a wrapper for toUpperCase() to easily change it out
+- [SVELTE] add link to wiki for every spell

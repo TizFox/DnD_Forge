@@ -2,6 +2,8 @@
 	import { Character } from "$lib/character.svelte";
 	import { Morality, Order } from "$lib/types";
 
+    import { lockInput } from "$lib/global.svelte";
+
 	type AlignmentPropsType = {
 		wClass?: string;
 		character: Character;
@@ -14,14 +16,19 @@
 
 <div class="{wClass} flex">
 	<select
-		class="morality-select"
 		bind:value={character.info.alignment.morality}
+		disabled={lockInput()}
+		class="morality-select"
 	>
 		{#each Object.values(Morality) as m}
 			<option value={m}>{m.toUpperCase()}</option>
 		{/each}
 	</select>
-	<select class="order-select" bind:value={character.info.alignment.order}>
+	<select
+		bind:value={character.info.alignment.order}
+		disabled={lockInput()}
+		class="order-select"
+	>
 		{#each Object.values(Order) as o}
 			<option value={o}>{o.toUpperCase()}</option>
 		{/each}
@@ -38,7 +45,8 @@
 		base-border
 		base-transition focus:border-cta
 		focus:outline-none
-		focus:shadow-none;
+		focus:shadow-none
+		disabled:border-z0;
 
 		&.morality-select {
 			@apply rounded-l-lg;

@@ -2,11 +2,13 @@
 	import { onMount, tick, untrack } from "svelte";
 	import type { PageProps } from "./$types";
 
-	import { LoaderCircle, Save, Keyboard, KeyboardOff } from "@lucide/svelte";
+	import { LoaderCircle, Save, Lock, LockOpen, Keyboard, KeyboardOff } from "@lucide/svelte";
 
 	import {
 		NAME,
 		STORAGE_CHARACTER,
+        toggleLock,
+        lockInput,
 		toggleKeyboard,
 		showKeyboard,
 		BASE_COLOR,
@@ -153,6 +155,18 @@
 	</div>
 	<button
 		onclick={() => {
+			toggleLock();
+		}}
+		class="base-button"
+	>
+		{#if lockInput()}
+			<Lock />
+		{:else}
+			<LockOpen />
+		{/if}
+	</button>
+	<button
+		onclick={() => {
 			toggleKeyboard();
 		}}
 		class="base-button"
@@ -163,7 +177,10 @@
 			<KeyboardOff />
 		{/if}
 	</button>
-	<ColorInput bind:value={newColor} onChange={handleColor} />
+	<ColorInput
+		bind:value={newColor}
+		onChange={handleColor}
+	/>
 </Header>
 
 <Main>

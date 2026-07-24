@@ -32,8 +32,8 @@
 	<div class="skill-checks">
 		{#if isSaveThrow}
 			<CheckboxInput
-				visible={false}
 				bind:checked={character.stats[ability].proficiency}
+				visible={false}
 			/>
 			<CheckboxInput
 				bind:checked={character.stats[ability].proficiency}

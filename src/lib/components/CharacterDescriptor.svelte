@@ -35,8 +35,8 @@
 			"
 		>
 			<Value
-				wClass="w-fit base-transition group-hover:text-(--hover-color)"
 				value={data.character.info.level}
+				wClass="w-fit base-transition group-hover:text-(--hover-color)"
 			/>
 			<p class="character-details">
 				{data.character.info.name}

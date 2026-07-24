@@ -24,17 +24,17 @@
 
 <Container extraClasses="{wClass} flex flex-col items-center gap-3">
 	<AreaInput
+		bind:value={character.equipment.actions}
 		{wClass}
 		title="actions"
-		bind:value={character.equipment.actions}
 	/>
 
 	<div class="w-full flex flex-col gap-1">
 		<div class="flex">
 			<TextInput
+				bind:value={newAttackName}
 				wClass="flex-2"
 				rClass="rounded-l-lg"
-				bind:value={newAttackName}
 				placeholder="New Attack Name"
 			/>
 			<button

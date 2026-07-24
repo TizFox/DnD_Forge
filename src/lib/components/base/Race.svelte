@@ -2,6 +2,8 @@
 	import { Character } from "$lib/character.svelte";
 	import { Sizes } from "$lib/types";
 
+    import { lockInput } from "$lib/global.svelte";
+
 	import TextInput from "$lib/components/base/TextInput.svelte";
 
 	type RacePropsType = {
@@ -16,11 +18,15 @@
 
 <div class="{wClass} flex">
 	<TextInput
-		rClass="rounded-l-lg"
 		bind:value={character.info.race}
+		rClass="rounded-l-lg"
 		placeholder="Character Race"
 	/>
-	<select class="race-select" bind:value={character.info.size}>
+	<select
+		bind:value={character.info.size}
+		disabled={lockInput()}
+		class="race-select"
+	>
 		{#each Object.values(Sizes) as m}
 			<option value={m}>{m.toUpperCase()}</option>
 		{/each}
@@ -38,6 +44,7 @@
 		base-transition
 		focus:border-cta
 		focus:outline-none
-		focus:shadow-none;
+		focus:shadow-none
+		disabled:border-z0;
 	}
 </style>

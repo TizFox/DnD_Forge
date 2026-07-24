@@ -21,16 +21,16 @@
 	<p class="spell-slot-input">
 		<span class="text-right">TOT:</span>
 		<NumberInput
-			wClass="col-span-2"
 			bind:value={character.magic.spellSlots[level - 1].total}
+			wClass="col-span-2"
 		/>
 	</p>
 	<p class="spell-slot-input">
 		<span class="text-right">USED:</span>
 		<NumberInput
-			wClass="col-span-2"
 			bind:value={character.magic.spellSlots[level - 1].used}
 			maxValue={character.magic.spellSlots[level - 1].total}
+			wClass="col-span-2"
 		/>
 	</p>
 </div>

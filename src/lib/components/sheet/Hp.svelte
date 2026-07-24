@@ -34,34 +34,39 @@
 <Container extraClasses="{wClass} flex flex-col gap-3">
 	<div class="hp-multi">
 		<NumberInput
-			title="max hp"
 			bind:value={character.hp.max}
 			minValue={1}
+			title="max hp"
 		/>
 
-		<NumberInput title="temp hp" bind:value={character.hp.temp} />
+		<NumberInput
+			bind:value={character.hp.temp}
+			title="temp hp"
+		/>
 	</div>
 
 	<NumberInput
-		title="current hp / damage taken"
 		bind:value={character.hp.current}
 		maxValue={character.hp.max}
+		title="current hp / damage taken"
 	/>
 
 	<div class="hp-multi">
 		<div class="hp-item">
 			<span class="main-text">HIT DICE</span>
 			<div class="hp-multi">
-				<Value pClass="p-0" value={character.info.level} />
+				<Value value={character.info.level} pClass="p-0" />
 
 				<p class="font-bold">d</p>
 
-				<NumberInput bind:value={character.hp.hitDice.type} />
+				<NumberInput
+					bind:value={character.hp.hitDice.type}
+				/>
 			</div>
 			<NumberInput
 				bind:value={character.hp.hitDice.spent}
 				maxValue={character.info.level}
-			></NumberInput>
+			/>
 		</div>
 
 		<div class="hp-item">
@@ -74,9 +79,9 @@
 
 					{#each character.hp.deathTS[type] as _, idx}
 						<CheckboxInput
+							bind:checked={character.hp.deathTS[type][idx]}
 							wClass="flex-1"
 							rClass={roundedDeathTS[idx]}
-							bind:checked={character.hp.deathTS[type][idx]}
 						/>
 					{/each}
 				</div>

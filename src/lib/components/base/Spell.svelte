@@ -4,6 +4,8 @@
 	import type { Character } from "$lib/character.svelte";
 	import type { Spell } from "$lib/types";
 
+    import { lockInput } from "$lib/global.svelte";
+
 	type SpellPropsType = {
 		wClass?: string;
 		character: Character;
@@ -74,6 +76,7 @@
 		<button
 			onclick={() => character.removeSpell(spell.name)}
 			class="w-1/2 ml-auto base-button rounded-t-none"
+			disabled={lockInput()}
 		>
 			<Trash2 />
 		</button>

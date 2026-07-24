@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { lockInput } from "$lib/global.svelte";
+
 	type TextInputPropsType = {
 		wClass?: string;
 		rClass?: string;
@@ -25,11 +27,12 @@
 		<span class="main-text">{title.toUpperCase()}</span>
 	{/if}
 	<input
-		type="text"
 		bind:value
-		{placeholder}
+		disabled={lockInput()}
 		list={suggestions.id}
 		class="{rClass} text-input"
+		{placeholder}
+		type="text"
 	/>
 
 	{#if suggestions.id != ""}
@@ -53,6 +56,7 @@
 		base-transition
 		focus:border-cta
 		focus:outline-none
-		focus:shadow-none;
+		focus:shadow-none
+		disabled:border-z0;
 	}
 </style>

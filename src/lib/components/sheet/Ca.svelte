@@ -20,30 +20,30 @@
 	<div class="flex flex-col gap-3">
 		<div class="flex">
 			<NumberInput
+				bind:value={character.info.initiative}
 				wClass="flex-1"
 				rClass="rounded-l-lg"
 				title="initiative"
-				bind:value={character.info.initiative}
 			/>
 
 			<Value
-				wClass="flex-1"
-				rClass=""
-				title="ca"
 				value={(character.info.armor.worn
 					? character.info.armor.value
 					: 0) +
 					(character.info.shield.worn
 						? character.info.shield.value
 						: 0)}
+				wClass="flex-1"
+				rClass=""
+				title="ca"
 			/>
 
 			<NumberInput
+				bind:value={character.info.speed}
+				decimal={true}
 				wClass="flex-1"
 				rClass="rounded-r-lg"
 				title="speed"
-				bind:value={character.info.speed}
-				decimal={true}
 			/>
 		</div>
 		<div class="flex">
@@ -51,29 +51,29 @@
 				<div class="flex justify-between">
 					<span class="main-text flex-2">ARMOR</span>
 					<CheckboxInput
+						bind:checked={character.info.armor.worn}
 						wClass="flex-1"
 						rClass="rounded-tl-lg"
-						bind:checked={character.info.armor.worn}
 					/>
 				</div>
 				<NumberInput
-					rClass="rounded-l-lg"
 					bind:value={character.info.armor.value}
+					rClass="rounded-l-lg"
 				/>
 			</div>
 
 			<div class="flex-1 flex flex-col">
 				<div class="flex justify-between">
 					<CheckboxInput
+						bind:checked={character.info.shield.worn}
 						wClass="flex-1"
 						rClass="rounded-tr-lg"
-						bind:checked={character.info.shield.worn}
 					/>
 					<span class="main-text flex-2">SHIELD</span>
 				</div>
 				<NumberInput
-					rClass="rounded-r-lg"
 					bind:value={character.info.shield.value}
+					rClass="rounded-r-lg"
 				/>
 			</div>
 		</div>

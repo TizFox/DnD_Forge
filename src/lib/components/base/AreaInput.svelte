@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Ellipsis } from "@lucide/svelte";
 
+    import { lockInput } from "$lib/global.svelte";
+
 	type AreaInputPropsType = {
 		wClass?: string;
 		title?: string;
@@ -55,7 +57,9 @@
 	<textarea
 		bind:this={textArea}
 		bind:value
-		class="peer area-input"></textarea>
+		disabled={lockInput()}
+		class="peer area-input"
+	></textarea>
 	<div
 		class="resize {resizing ? 'bg-z1' : 'bg-z2'}"
 		role="separator"
@@ -84,7 +88,8 @@
 		text-left
 		base-border border-b rounded-t-lg
 		base-transition focus:border-cta
-		focus:outline-none focus:shadow-none;
+		focus:outline-none focus:shadow-none
+		disabled:border-z0;
 	}
 
 	.resize {

@@ -4,6 +4,8 @@
 	import { ALL_ABILITIES } from "$lib/types";
 	import type { Character } from "$lib/character.svelte";
 
+    import { lockInput } from "$lib/global.svelte";
+
 	import CheckboxInput from "./CheckboxInput.svelte";
 	import NumberInput from "./NumberInput.svelte";
 	import TextInput from "./TextInput.svelte";
@@ -73,38 +75,40 @@
 		<div class="attack-body">
 			<div class="flex">
 				<CheckboxInput
-					rClass="rounded-tl-lg"
 					bind:checked={attack.proficient}
+					rClass="rounded-tl-lg"
 				/>
 				<select
-					class="attack-ability-select"
 					bind:value={attack.ability}
+					disabled={lockInput()}
+					class="attack-ability-select"
 				>
 					{#each ALL_ABILITIES as a}
 						<option value={a}>{a.toUpperCase()}</option>
 					{/each}
 				</select>
 				<NumberInput
+					bind:value={attack.bonusTpC}
 					wClass="flex-1"
 					rClass="rounded-tr-lg"
-					bind:value={attack.bonusTpC}
 				/>
 			</div>
 
 			<TextInput
-				rClass="rounded-none"
 				bind:value={attack.damage}
+				rClass="rounded-none"
 				placeholder="Attack Damage"
 			/>
 			<TextInput
-				rClass="rounded-bl-lg"
 				bind:value={attack.range}
+				rClass="rounded-bl-lg"
 				placeholder="Attack Range"
 			/>
 
 			<button
 				onclick={() => character.removeAttack(attack.name)}
 				class="base-button w-1/2 rounded-t-none"
+				disabled={lockInput()}
 			>
 				<Trash2 />
 			</button>
@@ -147,7 +151,8 @@
 			base-transition
 			focus:border-cta
 			focus:outline-none
-			focus:shadow-none;
+			focus:shadow-none
+			disabled:border-z0;
 		}
 	}
 </style>

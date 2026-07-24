@@ -18,10 +18,10 @@
 <Container extraClasses="{wClass} flex flex-col gap-3">
 	{#each Object.keys(character.features) as key}
 		<AreaInput
-			title={key.split("_").join(" ")}
 			bind:value={
 				character.features[key as keyof CharacterType["features"]]
 			}
+			title={key.split("_").join(" ")}
 		/>
 	{/each}
 </Container>

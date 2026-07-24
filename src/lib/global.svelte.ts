@@ -21,3 +21,11 @@ export const toggleKeyboard = () => {
 export const showKeyboard = () => {
 	return keyboard;
 };
+
+let lock = $state<boolean>(true);
+export const toggleLock = () => {
+	lock = !lock;
+};
+export const lockInput = () => {
+	return lock;
+};

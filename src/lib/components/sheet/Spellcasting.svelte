@@ -3,6 +3,8 @@
 	import { Character } from "$lib/character.svelte";
 	import { getSpellNames } from "$lib/spells";
 
+	import { lockInput } from "$lib/global.svelte";
+
 	import Container from "$lib/components/base/Container.svelte";
 	import Value from "$lib/components/base/Value.svelte";
 	import TextInput from "$lib/components/base/TextInput.svelte";
@@ -37,8 +39,9 @@
 			<h3 class="main-text">ABILITY</h3>
 			<div class="{wClass} flex">
 				<select
-					class="spellcasting-ability-select"
 					bind:value={character.magic.spellcastingAbility}
+					disabled={lockInput()}
+					class="spellcasting-ability-select"
 				>
 					{#each ALL_ABILITIES as a}
 						<option value={a}>{a.toUpperCase()}</option>
@@ -51,14 +54,14 @@
 			<span class="main-text">SPELL BONUS</span>
 			<div class="flex">
 				<Value
+					value={spellBonus}
 					wClass="flex-1"
 					rClass="rounded-l-lg"
-					value={spellBonus}
 				/>
 				<NumberInput
+					bind:value={character.magic.bonusTpC}
 					wClass="flex-1"
 					rClass="rounded-r-lg"
-					bind:value={character.magic.bonusTpC}
 				/>
 			</div>
 		</div>
@@ -66,11 +69,11 @@
 		<div class="flex-1 flex flex-col">
 			<span class="main-text">SPELL DC</span>
 			<div class="flex">
-				<Value wClass="flex-1" rClass="rounded-l-lg" value={spellDC} />
+				<Value value={spellDC} wClass="flex-1" rClass="rounded-l-lg" />
 				<NumberInput
+					bind:value={character.magic.bonusDC}
 					wClass="flex-1"
 					rClass="rounded-r-lg"
-					bind:value={character.magic.bonusDC}
 				/>
 			</div>
 		</div>
@@ -79,11 +82,11 @@
 	<div class="flex flex-col gap-1">
 		<div class="flex">
 			<TextInput
+				bind:value={newSpellName}
+				suggestions={{ id: "spellList", options: getSpellNames() }}
 				wClass="flex-2"
 				rClass="rounded-l-lg"
-				bind:value={newSpellName}
 				placeholder="New Spell Name"
-				suggestions={{ id: "spellList", options: getSpellNames() }}
 			/>
 			<button
 				onclick={() => {
@@ -130,6 +133,7 @@
 			base-transition
 			focus:border-cta
 			focus:outline-none
-			focus:shadow-none;
+			focus:shadow-none
+			disabled:border-z0;
 	}
 </style>

@@ -23,17 +23,23 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} flex flex-col gap-3">
-	<AreaInput title="equipment" bind:value={character.equipment.inventory} />
+	<AreaInput
+		bind:value={character.equipment.inventory}
+		title="equipment"
+	/>
 
 	<div class="flex justify-between gap-1">
 		{#each coinNames as c}
-			<NumberInput title={c} bind:value={character.equipment.coins[c]} />
+			<NumberInput
+				bind:value={character.equipment.coins[c]}
+				title={c}
+			/>
 		{/each}
 	</div>
 
 	<AreaInput
-		title="proficiencies"
 		bind:value={character.equipment.proficiencies}
+		title="proficiencies"
 	/>
 </Container>
 

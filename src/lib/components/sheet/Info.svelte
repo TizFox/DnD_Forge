@@ -46,7 +46,10 @@
 		<div class="info-subsection">
 			<h3>LEVEL</h3>
 			<span>
-				<NumberInput minValue={1} bind:value={character.info.level} />
+				<NumberInput
+					bind:value={character.info.level}
+					minValue={1}
+				/>
 			</span>
 		</div>
 		<div class="info-subsection">
@@ -79,11 +82,11 @@
 			<span>
 				<TextInput
 					bind:value={character.info.class}
-					placeholder="Character Class"
 					suggestions={{
 						id: "classesList",
 						options: getClassNames(),
 					}}
+					placeholder="Character Class"
 				/>
 			</span>
 		</div>
