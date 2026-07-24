@@ -22,7 +22,7 @@ export const showKeyboard = () => {
 	return keyboard;
 };
 
-let lock = $state<boolean>(true);
+let lock = $state<boolean>(false);
 export const toggleLock = () => {
 	lock = !lock;
 };
