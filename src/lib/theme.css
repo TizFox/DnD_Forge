@@ -61,6 +61,7 @@
 @layer base {
 	body {
 		@apply overflow-x-hidden
+		touch-manipulation
 		bg-z0
 		text-std
 		base-text;

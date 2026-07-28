@@ -8862,5 +8862,37 @@
 		"Subclasses": "",
 		"Text": "You conjure a chain and hook made of magical force, which you propel at a creature or unoccupied space you can see within range. When you target a space or a creature of Huge size or larger, your grapnel pulls you to that target in a straight line. You provoke opportunity attacks for this movement as normal. When you target a creature of Large size or smaller, you pull the target up to 10 feet towards you. A creature can make a Strength saving throw to resist this movement.",
 		"At Higher Levels": ""
+	},
+	{
+		"Name": "Creature Catapult",
+		"Source": "Spells Homebrew",
+		"Page": 1,
+		"Level": "3rd",
+		"Casting Time": "Action",
+		"Duration": "Instantaneous",
+		"School": "Transmutation",
+		"Range": "9m",
+		"Components": "S",
+		"Classes": "",
+		"Optional/Variant Classes": "",
+		"Subclasses": "",
+		"Text": "You choose a Large or smaller creature within range, if unwilling it must make a Constitution saving throw to resist this movement. If it fails it get launched in the air, it flies in a straight line up to 27m in a direction you choose before falling to the ground. While airborne it must make a Dexterity saving throw to control the flight, an unwilling creature has Disadvantage, if the creature lands against a creature of an object, both takes 3d8 force damage, otherwise, only the target takes damage. (>10: Land at the desired location. >15: Reduce falling damage by 2/3. 20: No falling damage.)",
+		"At Higher Levels": "Using a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 3."
+	},
+	{
+		"Name": "Blood Dart",
+		"Source": "Spells Homebrew",
+		"Page": 1,
+		"Level": "Cantrip",
+		"Casting Time": "Action",
+		"Duration": "Instantaneous",
+		"School": "Invocation",
+		"Range": "18m",
+		"Components": "S",
+		"Classes": "",
+		"Optional/Variant Classes": "",
+		"Subclasses": "",
+		"Text": "You fling an invisible dart at a creature within range, inflicting an internal yet visible wound. Make a ranged spell attack against the target. On a hit, the target takes 1d6 force damage, if the target has already taken damage it deals an extra 1d8 force damage.",
+		"At Higher Levels": "Cantrip Upgrade. The damage increases by 1d6 and 1d8 when you reach levels 5 (2d6, 2d8), 11 (3d6, 3d8), and 17 (4d6, 4d8)."
 	}
 ]
