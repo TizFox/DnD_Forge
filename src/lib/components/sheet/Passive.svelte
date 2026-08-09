@@ -14,10 +14,10 @@
 	const chosenSkills: Array<
 		{ [Ab in AbilitiesType]: [Ab, SkillsType[Ab]] }[AbilitiesType]
 	> = [
+		["dexterity", "stealth"],
+		["intelligence", "investigation"],
 		["wisdom", "perception"],
 		["wisdom", "insight"],
-		["wisdom", "survival"],
-		["intelligence", "investigation"],
 	];
 </script>
 
