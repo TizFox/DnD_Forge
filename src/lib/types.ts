@@ -53,13 +53,7 @@ export const ALL_SKILLS: Record<AbilitiesType, string[]> = {
 	dexterity: ["acrobatics", "sleight_of_hand", "stealth"],
 	constitution: [],
 	intelligence: ["arcana", "history", "investigation", "nature", "religion"],
-	wisdom: [
-		"animal_handling",
-		"insight",
-		"medicine",
-		"perception",
-		"survival",
-	],
+	wisdom: ["animal_handling", "insight", "medicine", "perception", "survival",],
 	charisma: ["deception", "intimidation", "performance", "persuasion"],
 } as const;
 export type SkillsType = {
@@ -155,19 +149,6 @@ enum Classes {
 	Warlock = "warlock",
 	Wizard = "wizard",
 	Multiclass = "multiclass",
-	// Lingue
-	Artefice = Artificer,
-	Barbaro = Barbarian,
-	Bardo = Bard,
-	Chierico = Cleric,
-	Druido = Druid,
-	Guerriero = Fighter,
-	Monaco = Monk,
-	Paladino = Paladin,
-	Ladro = Rogue,
-	Stregone = Sorcerer,
-	Mago = Wizard,
-	Multiclasse = Multiclass,
 }
 export const getClassNames = (): string[] => {
 	return Object.keys(Classes).sort();
