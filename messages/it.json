@@ -58,6 +58,7 @@
 	"common_confirm": "Conferma",
 	"common_add": "Aggiungi",
 
+	"empty_invalid_url": "URL Invalido",
 	"empty_insert_user": "Inserisci Utente",
 	"empty_no_characters": "Nessun Personaggio",
 	"empty_character_not_found": "Personaggio Non Trovato",

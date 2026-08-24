@@ -156,9 +156,7 @@
 		<button onclick={handleSave} class="base-button"><Save /></button>
 	</div>
 	<button
-		onclick={() => {
-			toggleLock();
-		}}
+		onclick={toggleLock}
 		class="base-button"
 	>
 		{#if lockInput()}
@@ -168,9 +166,7 @@
 		{/if}
 	</button>
 	<button
-		onclick={() => {
-			toggleKeyboard();
-		}}
+		onclick={toggleKeyboard}
 		class="base-button"
 	>
 		{#if showKeyboard()}
@@ -183,8 +179,6 @@
 		bind:value={newColor}
 		onChange={handleColor}
 	/>
-
-	<!-- TODO: Language Selector -->
 </Header>
 
 <Main>
