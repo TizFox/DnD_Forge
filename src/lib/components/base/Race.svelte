@@ -1,6 +1,8 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import { Character } from "$lib/character.svelte";
-	import { Sizes } from "$lib/types";
+	import { SizeEnum } from "$lib/types";
 
     import { lockInput } from "$lib/global.svelte";
 
@@ -9,9 +11,10 @@
 	type RacePropsType = {
 		wClass?: string;
 		character: Character;
+		placeholder: string;
 	};
 
-	let { wClass = "w-full", character }: RacePropsType = $props();
+	let { wClass = "w-full", character, placeholder }: RacePropsType = $props();
 </script>
 
 <!------------------------------------------>
@@ -20,15 +23,15 @@
 	<TextInput
 		bind:value={character.info.race}
 		rClass="rounded-l-lg"
-		placeholder="Character Race"
+		placeholder={placeholder}
 	/>
 	<select
 		bind:value={character.info.size}
 		disabled={lockInput()}
 		class="race-select"
 	>
-		{#each Object.values(Sizes) as m}
-			<option value={m}>{m.toUpperCase()}</option>
+		{#each Object.values(SizeEnum) as siz}
+			<option value={siz}>{m[siz]()}</option>
 		{/each}
 	</select>
 </div>

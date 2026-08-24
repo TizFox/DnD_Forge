@@ -1,4 +1,6 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import { Character } from "$lib/character.svelte";
 
 	import Container from "$lib/components/base/Container.svelte";
@@ -26,7 +28,7 @@
 	<AreaInput
 		bind:value={character.equipment.actions}
 		{wClass}
-		title="actions"
+		title={m.actions_title()}
 	/>
 
 	<div class="w-full flex flex-col gap-1">
@@ -35,7 +37,7 @@
 				bind:value={newAttackName}
 				wClass="flex-2"
 				rClass="rounded-l-lg"
-				placeholder="New Attack Name"
+				placeholder={m.actions_new_attack_placeholder()}
 			/>
 			<button
 				onclick={() => {
@@ -45,7 +47,7 @@
 				disabled={newAttackName === ""}
 				class="base-button flex-1 h-8 rounded-l-none"
 			>
-				ADD
+				{m.common_add()}
 			</button>
 		</div>
 
@@ -56,7 +58,7 @@
 		{#each attackNames as name}
 			<Attack {character} attackName={name} />
 		{:else}
-			<h3 class="main-text">NO ATTACKS</h3>
+			<h3 class="main-text">{m.actions_no_attacks()}</h3>
 		{/each}
 	</div>
 </Container>

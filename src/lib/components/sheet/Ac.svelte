@@ -1,4 +1,6 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import { Character } from "$lib/character.svelte";
 
 	import Container from "$lib/components/base/Container.svelte";
@@ -6,12 +8,12 @@
 	import Value from "$lib/components/base/Value.svelte";
 	import CheckboxInput from "$lib/components/base/CheckboxInput.svelte";
 
-	type CaPropsType = {
+	type AcPropsType = {
 		wClass?: string;
 		character: Character;
 	};
 
-	let { wClass = "w-full", character }: CaPropsType = $props();
+	let { wClass = "w-full", character }: AcPropsType = $props();
 </script>
 
 <!------------------------------------------>
@@ -23,7 +25,7 @@
 				bind:value={character.info.initiative}
 				wClass="flex-1"
 				rClass="rounded-l-lg"
-				title="initiative"
+				title={m.ac_initiative()}
 			/>
 
 			<Value
@@ -35,7 +37,7 @@
 						: 0)}
 				wClass="flex-1"
 				rClass=""
-				title="ca"
+				title={m.ac_ac()}
 			/>
 
 			<NumberInput
@@ -43,13 +45,13 @@
 				decimal={true}
 				wClass="flex-1"
 				rClass="rounded-r-lg"
-				title="speed"
+				title={m.ac_speed()}
 			/>
 		</div>
 		<div class="flex">
 			<div class="flex-1 flex flex-col">
 				<div class="flex justify-between">
-					<span class="main-text flex-2">ARMOR</span>
+					<span class="main-text flex-2">{m.ac_armor()}</span>
 					<CheckboxInput
 						bind:checked={character.info.armor.worn}
 						wClass="flex-1"
@@ -69,7 +71,7 @@
 						wClass="flex-1"
 						rClass="rounded-tr-lg"
 					/>
-					<span class="main-text flex-2">SHIELD</span>
+					<span class="main-text flex-2">{m.ac_shield()}</span>
 				</div>
 				<NumberInput
 					bind:value={character.info.shield.value}

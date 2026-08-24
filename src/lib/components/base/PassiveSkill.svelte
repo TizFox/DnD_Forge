@@ -1,6 +1,8 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import { Character } from "$lib/character.svelte";
-	import type { AbilitiesType, SkillsType } from "$lib/types";
+	import { AbilityEnum, type SkillsType } from "$lib/types";
 
 	import Container from "$lib/components/base/Container.svelte";
 	import Value from "$lib/components/base/Value.svelte";
@@ -8,8 +10,8 @@
 	type PassiveSkillPropsType = {
 		wClass?: string;
 		character: Character;
-		ability: AbilitiesType;
-		skill: SkillsType[AbilitiesType];
+		ability: AbilityEnum;
+		skill: SkillsType[AbilityEnum];
 	};
 
 	let {
@@ -25,7 +27,7 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} flex flex-col">
-	<h3 class="main-text">Passive<br />{skill.toUpperCase()}</h3>
+	<h3 class="main-text">{m.character_passive({ skill: m[skill]() })}</h3>
 	<Value value={passiveSkill} />
 </Container>
 

@@ -1,71 +1,120 @@
-export type Language = "en" | "it";
+export type Language = "it" | "en";
 export type Localized<T> = Record<Language, T>;
 
-export enum Morality {
-	Good = "good",
-	Neutral = "neutral",
-	Evil = "evil",
+export enum CoinEnum {
+	CP = "equipment_cp",
+	SP = "equipment_sp",
+	EP = "equipment_ep",
+	GP = "equipment_gp",
+	PP = "equipment_pp",
 }
-export enum Order {
-	Lawful = "lawful",
-	Neutral = "neutral",
-	Chaotic = "chaotic",
+
+export enum DeathTsEnum {
+	Success = "success",
+	Failure = "failure",
+}
+
+// Alignments
+export enum MoralityEnum {
+	Good = "morality_good",
+	Neutral = "morality_neutral",
+	Evil = "morality_evil",
+}
+export enum OrderEnum {
+	Lawful = "order_lawful",
+	Neutral = "order_neutral",
+	Chaotic = "order_chaotic",
 }
 export type Alignments = {
-	morality: Morality;
-	order: Order;
+	morality: MoralityEnum;
+	order: OrderEnum;
 };
-export enum Sizes {
-	Tiny = "Tiny",
-	Small = "Small",
-	Medium = "Medium",
-	Large = "Large",
-	Huge = "Huge",
-	Gargantuan = "Gargantuan",
-}
-export const SIZES_ELUSION: Record<Sizes, number> = {
-	Tiny: +4,
-	Small: +1,
-	Medium: 0,
-	Large: -1,
-	Huge: -2,
-	Gargantuan: -4,
-} as const;
-export type CoinsEnum = "cp" | "sp" | "ep" | "gp" | "pp";
 
-export const DEATH_TS_TYPES = ["success", "failure"] as const;
-export type DeathTS = (typeof DEATH_TS_TYPES)[number];
+// Classes
+export enum ClassEnum {
+	Artificer = "class_artificer",
+	Barbarian = "class_barbarian",
+	Bard = "class_bard",
+	Cleric = "class_cleric",
+	Druid = "class_druid",
+	Fighter = "class_fighter",
+	Monk = "class_monk",
+	Paladin = "class_paladin",
+	Ranger = "class_ranger",
+	Rogue = "class_rogue",
+	Sorcerer = "class_sorcerer",
+	Warlock = "class_warlock",
+	Wizard = "class_wizard",
+}
+
+// Sizes
+export enum SizeEnum {
+	Tiny = "size_tiny",
+	Small = "size_small",
+	Medium = "size_medium",
+	Large = "size_large",
+	Huge = "size_huge",
+	Gargantuan = "size_gargantuan",
+}
+export const SIZES_ELUSION: Record<SizeEnum, number> = {
+	[SizeEnum.Tiny]: +4,
+	[SizeEnum.Small]: +1,
+	[SizeEnum.Medium]: 0,
+	[SizeEnum.Large]: -1,
+	[SizeEnum.Huge]: -2,
+	[SizeEnum.Gargantuan]: -4,
+};
 
 // Abilities
-export const ALL_ABILITIES = [
-	"strength",
-	"dexterity",
-	"constitution",
-	"intelligence",
-	"wisdom",
-	"charisma",
-] as const;
-export type AbilitiesType = (typeof ALL_ABILITIES)[number];
+export enum AbilityEnum {
+	Strength = "ability_strength",
+	Dexterity = "ability_dexterity",
+	Constitution = "ability_constitution",
+	Intelligence = "ability_intelligence",
+	Wisdom = "ability_wisdom",
+	Charisma = "ability_charisma",
+}
 
 // Skills
-export const ALL_SKILLS: Record<AbilitiesType, string[]> = {
-	strength: ["athletics"],
-	dexterity: ["acrobatics", "sleight_of_hand", "stealth"],
-	constitution: [],
-	intelligence: ["arcana", "history", "investigation", "nature", "religion"],
-	wisdom: ["animal_handling", "insight", "medicine", "perception", "survival",],
-	charisma: ["deception", "intimidation", "performance", "persuasion"],
-} as const;
+export enum SkillEnum {
+	Athletics = "skill_athletics",
+	Acrobatics = "skill_acrobatics",
+	SleightOfHand = "skill_sleight_of_hand",
+	Stealth = "skill_stealth",
+	Arcana = "skill_arcana",
+	History = "skill_history",
+	Investigation = "skill_investigation",
+	Nature = "skill_nature",
+	Religion = "skill_religion",
+	AnimalHandling = "skill_animal_handling",
+	Insight = "skill_insight",
+	Medicine = "skill_medicine",
+	Perception = "skill_perception",
+	Survival = "skill_survival",
+	Deception = "skill_deception",
+	Intimidation = "skill_intimidation",
+	Performance = "skill_performance",
+	Persuasion = "skill_persuasion",
+}
+
+export const ABILITY_SKILLS: Record<AbilityEnum, SkillEnum[]> = {
+	[AbilityEnum.Strength]: [SkillEnum.Athletics],
+	[AbilityEnum.Dexterity]: [SkillEnum.Acrobatics, SkillEnum.SleightOfHand, SkillEnum.Stealth],
+	[AbilityEnum.Constitution]: [],
+	[AbilityEnum.Intelligence]: [SkillEnum.Arcana, SkillEnum.History, SkillEnum.Investigation, SkillEnum.Nature, SkillEnum.Religion],
+	[AbilityEnum.Wisdom]: [SkillEnum.AnimalHandling, SkillEnum.Insight, SkillEnum.Medicine, SkillEnum.Perception, SkillEnum.Survival],
+	[AbilityEnum.Charisma]: [SkillEnum.Deception, SkillEnum.Intimidation, SkillEnum.Performance, SkillEnum.Persuasion],
+};
 export type SkillsType = {
-	[Ab in AbilitiesType]: (typeof ALL_SKILLS)[Ab][number];
+	[Ab in AbilityEnum]: (typeof ABILITY_SKILLS)[Ab][number];
 };
 
-export type Ability<Ab extends AbilitiesType> = {
+export type Ability<Ab extends AbilityEnum> = {
 	value: number;
 	proficiency: boolean; // => +proficiencyBonus
 	skills: Record<SkillsType[Ab], Skill>;
 };
-type Skill = {
+export type Skill = {
 	proficiency: boolean; // => +proficiencyBonus
 	expertise: boolean; // => +proficiencyBonus (again)
 };
@@ -73,7 +122,7 @@ type Skill = {
 // Equipment
 export interface Attack {
 	name: string;
-	ability: AbilitiesType;
+	ability: AbilityEnum;
 	proficient: boolean;
 	bonusTpC: number;
 	damage: string;
@@ -82,7 +131,7 @@ export interface Attack {
 export const getEmptyAttack = (name: string): Attack => {
 	return {
 		name: name,
-		ability: "strength",
+		ability: AbilityEnum.Strength,
 		proficient: false,
 		bonusTpC: 0,
 		damage: "",
@@ -131,25 +180,4 @@ export const EMPTY_SPELL: Spell = {
 	duration: "",
 	description: "",
 	higherLevels: "",
-};
-
-// Classes
-enum Classes {
-	Artificer = "artificer",
-	Barbarian = "barbarian",
-	Bard = "bard",
-	Cleric = "cleric",
-	Druid = "druid",
-	Fighter = "fighter",
-	Monk = "monk",
-	Paladin = "paladin",
-	Ranger = "ranger",
-	Rogue = "rogue",
-	Sorcerer = "sorcerer",
-	Warlock = "warlock",
-	Wizard = "wizard",
-	Multiclass = "multiclass",
-}
-export const getClassNames = (): string[] => {
-	return Object.keys(Classes).sort();
 };

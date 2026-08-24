@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { CharacterType } from "$lib/character.svelte";
+	import * as m from "$lib/paraglide/messages";
+
 	import { Character } from "$lib/character.svelte";
 
 	import Container from "$lib/components/base/Container.svelte";
@@ -16,14 +17,24 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} flex flex-col gap-3">
-	{#each Object.keys(character.features) as key}
-		<AreaInput
-			bind:value={
-				character.features[key as keyof CharacterType["features"]]
-			}
-			title={key.split("_").join(" ")}
-		/>
-	{/each}
+	<AreaInput
+		bind:value={
+			character.features.class_traits
+		}
+		title={m.features_class_traits()}
+	/>
+	<AreaInput
+		bind:value={
+			character.features.subclass_traits
+		}
+		title={m.features_subclass_traits()}
+	/>
+	<AreaInput
+		bind:value={
+			character.features.race_and_background_traits
+		}
+		title={m.features_race_and_background_traits()}
+	/>
 </Container>
 
 <!------------------------------------------>

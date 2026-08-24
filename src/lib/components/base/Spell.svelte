@@ -22,7 +22,7 @@
 <div class="{wClass} spell-container">
 	<div class="spell-header">
 		<div class="spell-info">
-			<h3 class="main-text">{spell.name.toUpperCase()}</h3>
+			<h3 class="main-text">{spell.name.toUpperCase()}</h3> <!-- TODO -->
 			<div class="spell-subinfo">
 				<span
 					class="flex-1 base-border

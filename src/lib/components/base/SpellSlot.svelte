@@ -1,4 +1,6 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import type { Character } from "$lib/character.svelte";
 
 	import NumberInput from "$lib/components/base/NumberInput.svelte";
@@ -16,17 +18,17 @@
 
 <div class="{wClass} spell-slot-container">
 	<h3 class="main-text">
-		SLOT LV. {level}
+		{m.spellslot_level({ level })}
 	</h3>
 	<p class="spell-slot-input">
-		<span class="text-right">TOT:</span>
+		<span class="text-right">{m.spellslot_total()}:</span>
 		<NumberInput
 			bind:value={character.magic.spellSlots[level - 1].total}
 			wClass="col-span-2"
 		/>
 	</p>
 	<p class="spell-slot-input">
-		<span class="text-right">USED:</span>
+		<span class="text-right">{m.spellslot_used()}:</span>
 		<NumberInput
 			bind:value={character.magic.spellSlots[level - 1].used}
 			maxValue={character.magic.spellSlots[level - 1].total}
@@ -47,6 +49,6 @@
 	}
 
 	.spell-slot-input {
-		@apply flex-1 grid grid-cols-3;
+		@apply flex-1 grid grid-cols-3 gap-1;
 	}
 </style>

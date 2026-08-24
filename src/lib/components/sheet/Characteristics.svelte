@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { CharacterType } from "$lib/character.svelte";
+	import * as m from "$lib/paraglide/messages";
+
 	import { Character } from "$lib/character.svelte";
 
 	import Container from "$lib/components/base/Container.svelte";
@@ -16,20 +17,39 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} grid grid-cols-2 gap-3">
-	{#each Object.keys(character.info.characteristics) as key}
-		<AreaInput
-			bind:value={
-				character.info.characteristics[
-					key as keyof CharacterType["info"]["characteristics"]
-				]
-			}
-			wClass={key === "languages" || key === "backstory"
-				? "col-span-2"
-				: "col-span-1"}
-			title={key.split("_").join(" ")}
-		/>
-	{/each}
+	<AreaInput
+		bind:value={character.info.characteristics.languages}
+		wClass="col-span-2"
+		title={m.characteristics_laguages()}
+	/>
+	<AreaInput
+		bind:value={character.info.characteristics.personality}
+		wClass="col-span-1"
+		title={m.characteristics_personality()}
+	/>
+	<AreaInput
+		bind:value={character.info.characteristics.ideals}
+		wClass="col-span-1"
+		title={m.characteristics_ideals()}
+	/>
+	<AreaInput
+		bind:value={character.info.characteristics.bonds}
+		wClass="col-span-1"
+		title={m.characteristics_bonds()}
+	/>
+	<AreaInput
+		bind:value={character.info.characteristics.flaws}
+		wClass="col-span-1"
+		title={m.characteristics_flaws()}
+	/>
+	<AreaInput
+		bind:value={character.info.characteristics.backstory}
+		wClass="col-span-2"
+		title={m.characteristics_backstory()}
+	/>
 </Container>
+
+
 
 <!------------------------------------------>
 

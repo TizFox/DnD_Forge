@@ -1,6 +1,8 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import { Character } from "$lib/character.svelte";
-	import { Morality, Order } from "$lib/types";
+	import { MoralityEnum, OrderEnum } from "$lib/types";
 
     import { lockInput } from "$lib/global.svelte";
 
@@ -20,8 +22,8 @@
 		disabled={lockInput()}
 		class="morality-select"
 	>
-		{#each Object.values(Morality) as m}
-			<option value={m}>{m.toUpperCase()}</option>
+		{#each Object.values(MoralityEnum) as mor}
+			<option value={mor}>{m[mor]()}</option>
 		{/each}
 	</select>
 	<select
@@ -29,8 +31,8 @@
 		disabled={lockInput()}
 		class="order-select"
 	>
-		{#each Object.values(Order) as o}
-			<option value={o}>{o.toUpperCase()}</option>
+		{#each Object.values(OrderEnum) as ord}
+			<option value={ord}>{m[ord]()}</option>
 		{/each}
 	</select>
 </div>

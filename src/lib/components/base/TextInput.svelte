@@ -24,7 +24,7 @@
 
 <div class="{wClass} relative flex flex-col">
 	{#if title !== ""}
-		<span class="main-text">{title.toUpperCase()}</span>
+		<span class="main-text">{title}</span>
 	{/if}
 	<input
 		bind:value

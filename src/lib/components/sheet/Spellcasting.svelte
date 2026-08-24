@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { ALL_ABILITIES } from "$lib/types";
+	import * as m from "$lib/paraglide/messages";
+
+	import { AbilityEnum } from "$lib/types";
 	import { Character } from "$lib/character.svelte";
 	import { getSpellNames } from "$lib/spells";
 
@@ -33,25 +35,25 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} flex flex-col gap-3">
-	<h2 class="main-text">SPELLCASTING</h2>
+	<h2 class="main-text">{m.spellcasting_title()}</h2>
 	<div class="flex gap-2">
 		<div class="flex-2">
-			<h3 class="main-text">ABILITY</h3>
+			<h3 class="main-text">{m.spellcasting_ability()}</h3>
 			<div class="{wClass} flex">
 				<select
 					bind:value={character.magic.spellcastingAbility}
 					disabled={lockInput()}
 					class="spellcasting-ability-select"
 				>
-					{#each ALL_ABILITIES as a}
-						<option value={a}>{a.toUpperCase()}</option>
+					{#each Object.values(AbilityEnum) as abi}
+						<option value={abi}>{m[abi]()}</option>
 					{/each}
 				</select>
 			</div>
 		</div>
 
 		<div class="flex-1 flex flex-col">
-			<span class="main-text">SPELL BONUS</span>
+			<span class="main-text">{m.spellcasting_bonus()}</span>
 			<div class="flex">
 				<Value
 					value={spellBonus}
@@ -67,7 +69,7 @@
 		</div>
 
 		<div class="flex-1 flex flex-col">
-			<span class="main-text">SPELL DC</span>
+			<span class="main-text">{m.spellcasting_difficulty_class()}</span>
 			<div class="flex">
 				<Value value={spellDC} wClass="flex-1" rClass="rounded-l-lg" />
 				<NumberInput
@@ -86,7 +88,7 @@
 				suggestions={{ id: "spellList", options: getSpellNames() }}
 				wClass="flex-2"
 				rClass="rounded-l-lg"
-				placeholder="New Spell Name"
+				placeholder={m.spellcasting_new_spell_placeholder()}
 			/>
 			<button
 				onclick={() => {
@@ -97,7 +99,7 @@
 				disabled={newSpellName === ""}
 				class="base-button flex-1 h-8 rounded-l-none"
 			>
-				ADD
+				{m.common_add()}
 			</button>
 		</div>
 
@@ -117,7 +119,7 @@
 		{#each spells as spell}
 			<Spell {character} {spell} />
 		{:else}
-			<h3 class="main-text">NO SPELLS</h3>
+			<h3 class="main-text">{m.spellcasting_no_spells()}</h3>
 		{/each}
 	</div>
 </Container>

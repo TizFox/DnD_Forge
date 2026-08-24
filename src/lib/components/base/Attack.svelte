@@ -1,7 +1,9 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import { Trash2, Eye, EyeOff, BookOpenCheck } from "@lucide/svelte";
 
-	import { ALL_ABILITIES } from "$lib/types";
+	import { AbilityEnum } from "$lib/types";
 	import type { Character } from "$lib/character.svelte";
 
     import { lockInput } from "$lib/global.svelte";
@@ -57,14 +59,14 @@
 					{#if attack.damage !== ""}
 						{attack.damage}
 					{:else}
-						<span class="place-text">Damage</span>
+						<span class="place-text">{m.attack_damage()}</span>
 					{/if}
 				</span>
 				<span class="flex-1 base-border rounded-br-lg">
 					{#if attack.range !== ""}
 						{attack.range}
 					{:else}
-						<span class="place-text">Range</span>
+						<span class="place-text">{m.attack_range()}</span>
 					{/if}
 				</span>
 			</div>
@@ -83,8 +85,8 @@
 					disabled={lockInput()}
 					class="attack-ability-select"
 				>
-					{#each ALL_ABILITIES as a}
-						<option value={a}>{a.toUpperCase()}</option>
+					{#each Object.values(AbilityEnum) as abi}
+						<option value={abi}>{m[abi]()}</option>
 					{/each}
 				</select>
 				<NumberInput
@@ -97,12 +99,12 @@
 			<TextInput
 				bind:value={attack.damage}
 				rClass="rounded-none"
-				placeholder="Attack Damage"
+				placeholder={m.attack_damage_placeholder()}
 			/>
 			<TextInput
 				bind:value={attack.range}
 				rClass="rounded-bl-lg"
-				placeholder="Attack Range"
+				placeholder={m.attack_range_placeholder()}
 			/>
 
 			<button

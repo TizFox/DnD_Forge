@@ -2,7 +2,7 @@
 	import { Character } from "$lib/character.svelte";
 
 	import PassiveSkill from "$lib/components/base/PassiveSkill.svelte";
-	import type { AbilitiesType, SkillsType } from "$lib/types";
+	import { AbilityEnum, SkillEnum, type SkillsType } from "$lib/types";
 
 	type PassivePropsType = {
 		wClass?: string;
@@ -12,12 +12,12 @@
 	let { wClass = "w-full", character }: PassivePropsType = $props();
 
 	const chosenSkills: Array<
-		{ [Ab in AbilitiesType]: [Ab, SkillsType[Ab]] }[AbilitiesType]
+		{ [Ab in AbilityEnum]: [Ab, SkillsType[Ab]] }[AbilityEnum]
 	> = [
-		["dexterity", "stealth"],
-		["intelligence", "investigation"],
-		["wisdom", "perception"],
-		["wisdom", "insight"],
+		[AbilityEnum.Dexterity, SkillEnum.Stealth],
+		[AbilityEnum.Intelligence, SkillEnum.Investigation],
+		[AbilityEnum.Wisdom, SkillEnum.Perception],
+		[AbilityEnum.Wisdom, SkillEnum.Insight],
 	];
 </script>
 

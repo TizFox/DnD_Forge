@@ -1,6 +1,8 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import { Character } from "$lib/character.svelte";
-	import { getClassNames } from "$lib/types";
+	import { ClassEnum } from "$lib/types";
 
 	import Container from "$lib/components/base/Container.svelte";
 	import TextInput from "$lib/components/base/TextInput.svelte";
@@ -24,27 +26,27 @@
 <Container extraClasses="{wClass} grid grid-cols-2 items-center gap-2">
 	<div class="info-section">
 		<div class="info-subsection">
-			<h3>NAME</h3>
+			<h3>{m.character_name()}</h3>
 			<span>
 				<TextInput
 					bind:value={character.info.name}
-					placeholder="Character Name"
+					placeholder={m.character_name_placeholder()}
 				/>
 			</span>
 		</div>
 
 		<div class="info-subsection">
-			<h3>PLAYER</h3>
+			<h3>{m.character_player()}</h3>
 			<span>
 				<TextInput
 					bind:value={character.info.player}
-					placeholder="Player Name"
+					placeholder={m.character_player_placeholder()}
 				/>
 			</span>
 		</div>
 
 		<div class="info-subsection">
-			<h3>LEVEL</h3>
+			<h3>{m.character_level()}</h3>
 			<span>
 				<NumberInput
 					bind:value={character.info.level}
@@ -53,7 +55,7 @@
 			</span>
 		</div>
 		<div class="info-subsection">
-			<h3>P.BONUS</h3>
+			<h3>{m.character_proficiency_bonus()}</h3>
 			<span>
 				<Value value={proficiencyBonus} />
 			</span>
@@ -62,38 +64,41 @@
 
 	<div class="info-section">
 		<div class="info-subsection">
-			<h3>CAMPAIGN</h3>
+			<h3>{m.character_campain()}</h3>
 			<span>
 				<TextInput
 					bind:value={character.info.campaign}
-					placeholder="Campaign Name"
+					placeholder={m.character_campain_placeholder()}
 				/>
 			</span>
 		</div>
 		<div class="info-subsection">
-			<h3>ALIGNMENT</h3>
+			<h3>{m.character_alignment()}</h3>
 			<span>
 				<Alignment {character} />
 			</span>
 		</div>
 
 		<div class="info-subsection">
-			<h3>CLASS</h3>
+			<h3>{m.character_class()}</h3>
 			<span>
 				<TextInput
 					bind:value={character.info.class}
 					suggestions={{
 						id: "classesList",
-						options: getClassNames(),
+						options: Object.values(ClassEnum).map((cla: string) => m[cla]()),
 					}}
-					placeholder="Character Class"
+					placeholder={m.character_class_placeholder()}
 				/>
 			</span>
 		</div>
 		<div class="info-subsection">
 			<h3>RACE</h3>
 			<span>
-				<Race {character} />
+				<Race
+					{character}
+					placeholder={m.character_race_placeholder()}
+				/>
 			</span>
 		</div>
 	</div>

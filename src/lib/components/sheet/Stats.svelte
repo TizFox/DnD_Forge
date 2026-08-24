@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Character } from "$lib/character.svelte";
-	import { ALL_ABILITIES } from "$lib/types";
+	import { AbilityEnum } from "$lib/types";
 
 	import Ability from "$lib/components/base/Ability.svelte";
 
@@ -15,7 +15,7 @@
 <!------------------------------------------>
 
 <div class="{wClass} stats-container">
-	{#each ALL_ABILITIES as ability}
+	{#each Object.values(AbilityEnum) as ability}
 		<Ability {character} {ability} />
 	{/each}
 </div>

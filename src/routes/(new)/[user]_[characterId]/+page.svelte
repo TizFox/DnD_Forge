@@ -2,6 +2,8 @@
 	import { onMount, tick, untrack } from "svelte";
 	import type { PageProps } from "./$types";
 
+	import * as m from "$lib/paraglide/messages";
+
 	import { LoaderCircle, Save, Lock, LockOpen, Keyboard, KeyboardOff } from "@lucide/svelte";
 
 	import {
@@ -147,7 +149,7 @@
 <Header>
 	<div class="flex items-center gap-2">
 		{#if saved}
-			<span class="text-cta">Saved.</span>
+			<span class="text-cta">{m.header_saved()}.</span>
 		{:else}
 			<LoaderCircle size="2rem" class="text-cta animate-spin" />
 		{/if}
@@ -181,15 +183,17 @@
 		bind:value={newColor}
 		onChange={handleColor}
 	/>
+
+	<!-- TODO: Language Selector -->
 </Header>
 
 <Main>
 	{#if loading}
-		<Loading />
+		<Loading msg={m.loading_character()} />
 	{:else if character}
 		<CharacterSheet {character} />
 	{:else}
-		<Empty msg="CHARACTER NOT FOUND" />
+		<Empty msg={m.empty_character_not_found()} />
 	{/if}
 </Main>
 

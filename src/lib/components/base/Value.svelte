@@ -20,7 +20,7 @@
 
 <div class="{wClass} flex flex-col">
 	{#if title !== ""}
-		<span class="main-text">{title.toUpperCase()}</span>
+		<span class="main-text">{title}</span>
 	{/if}
 	<h3 class="w-full {rClass} {pClass} value">
 		{value}

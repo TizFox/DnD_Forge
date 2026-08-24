@@ -10,8 +10,8 @@ export const getPath = (user?: string, id?: string): string => {
 export const STORAGE_CHARACTER = "currentCharacter";
 export const BASE_COLOR = "#ef4444"; //"#f0abfc";
 
-export const formatText = (s: string): string => {
-	return s.toUpperCase();
+export const toCapitalizeCase = (s: string): string => {
+	return s[0].toUpperCase() + s.slice(1);
 };
 
 let keyboard = $state<boolean>(true);

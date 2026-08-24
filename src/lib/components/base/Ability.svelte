@@ -1,6 +1,8 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import { Character } from "$lib/character.svelte";
-	import { ALL_SKILLS, type AbilitiesType } from "$lib/types";
+	import { AbilityEnum, ABILITY_SKILLS } from "$lib/types";
 
 	import Container from "$lib/components/base/Container.svelte";
 	import NumberInput from "$lib/components/base/NumberInput.svelte";
@@ -9,7 +11,7 @@
 	type AbilityPropsType = {
 		wClass?: string;
 		character: Character;
-		ability: AbilitiesType;
+		ability: AbilityEnum;
 	};
 
 	let { wClass = "w-full", character, ability }: AbilityPropsType = $props();
@@ -21,7 +23,7 @@
 <!------------------------------------------>
 
 <Container extraClasses="{wClass} flex flex-col items-center gap-3">
-	<h2 class="main-text">{ability.toUpperCase()}</h2>
+	<h2 class="main-text">{m[ability]()}</h2>
 
 	<h1 class="ability-mod main-text">
 		{modifier > 0 ? "+" : ""}{modifier}
@@ -35,9 +37,9 @@
 
 	<Skill {character} {ability} isSaveThrow={true} />
 
-	{#if ALL_SKILLS[ability].length > 0}
+	{#if ABILITY_SKILLS[ability].length > 0}
 		<hr />
-		{#each ALL_SKILLS[ability] as skill}
+		{#each ABILITY_SKILLS[ability] as skill}
 			<Skill {character} {ability} {skill} />
 		{/each}
 	{/if}

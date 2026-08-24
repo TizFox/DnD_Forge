@@ -52,7 +52,7 @@
 
 <div class="{wClass} flex flex-col">
 	{#if title !== ""}
-		<h2 class="main-text">{title.toUpperCase()}</h2>
+		<h2 class="main-text">{title}</h2>
 	{/if}
 	<textarea
 		bind:this={textArea}

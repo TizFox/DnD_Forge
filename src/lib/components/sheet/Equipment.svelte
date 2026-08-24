@@ -1,5 +1,7 @@
 <script lang="ts">
-	import type { CharacterType } from "$lib/character.svelte";
+	import * as m from "$lib/paraglide/messages";
+
+	import { CoinEnum } from "$lib/types";
 	import { Character } from "$lib/character.svelte";
 
 	import Container from "$lib/components/base/Container.svelte";
@@ -12,12 +14,6 @@
 	};
 
 	let { wClass = "w-full", character }: EquipmentPropsType = $props();
-
-	const coinNames = $derived(
-		Object.keys(character.equipment.coins) as Array<
-			keyof CharacterType["equipment"]["coins"]
-		>,
-	);
 </script>
 
 <!------------------------------------------>
@@ -25,21 +21,21 @@
 <Container extraClasses="{wClass} flex flex-col gap-3">
 	<AreaInput
 		bind:value={character.equipment.inventory}
-		title="equipment"
+		title={m.equipment_inventory()}
 	/>
 
 	<div class="flex justify-between gap-1">
-		{#each coinNames as c}
+		{#each Object.values(CoinEnum) as coin}
 			<NumberInput
-				bind:value={character.equipment.coins[c]}
-				title={c}
+				bind:value={character.equipment.coins[coin]}
+				title={m[coin]()}
 			/>
 		{/each}
 	</div>
 
 	<AreaInput
 		bind:value={character.equipment.proficiencies}
-		title="proficiencies"
+		title={m.equipment_proficiencies()}
 	/>
 </Container>
 

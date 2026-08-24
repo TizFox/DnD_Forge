@@ -1,21 +1,23 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import { Character } from "$lib/character.svelte";
-	import type { AbilitiesType, SkillsType } from "$lib/types";
+	import { AbilityEnum, SkillEnum, type SkillsType } from "$lib/types";
 
 	import CheckboxInput from "$lib/components/base/CheckboxInput.svelte";
 	import Value from "$lib/components/base/Value.svelte";
 
 	type SkillPropsType = {
 		character: Character;
-		ability: AbilitiesType;
-		skill?: SkillsType[AbilitiesType];
+		ability: AbilityEnum;
+		skill?: SkillsType[AbilityEnum];
 		isSaveThrow?: boolean;
 	};
 
 	let {
 		character,
 		ability,
-		skill = "athletics",
+		skill = SkillEnum.Athletics,
 		isSaveThrow = false,
 	}: SkillPropsType = $props();
 
@@ -53,9 +55,11 @@
 	<Value wClass="flex-1" {value} />
 
 	<p class="skill-text">
-		{isSaveThrow
-			? "SAVING THROW"
-			: skill.toUpperCase().split("_").join(" ")}
+		{
+			isSaveThrow
+				? m.skill_saving_throw()
+				: m[skill]()
+		}
 	</p>
 </div>
 

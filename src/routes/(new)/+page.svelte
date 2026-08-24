@@ -2,6 +2,8 @@
 	import { onMount } from "svelte";
 	import { goto } from "$app/navigation";
 
+	import * as m from "$lib/paraglide/messages";
+
 	import { Upload, Plus } from "@lucide/svelte";
 
 	import {
@@ -9,6 +11,7 @@
 		getPath,
 		STORAGE_CHARACTER,
 		BASE_COLOR,
+        toCapitalizeCase,
 	} from "$lib/global.svelte";
 
 	import { save } from "$lib/fileHandler";
@@ -77,7 +80,7 @@
 		loading = false;
 	};
 
-	const uploadCharacter = async () => {};
+	const uploadCharacter = async () => {}; // TODO
 	const newCharacter = async () => {
 		let char = new Character();
 		let id = await createCharacter(user, char);
@@ -106,14 +109,12 @@
 		}
 	};
 	const removeCharacter = async (id: string) => {
-		const CONFIRM_TEXT = "i want to delete this character";
+		const confirmText = m.delete_character_text().toUpperCase();
+		let confirm = prompt(m.delete_character_prompt({ confirmText }));
 
-		let confirm = prompt(
-			`Are you sure?\nWrite: "${CONFIRM_TEXT.toUpperCase()}" to delete it.\n(Not case sensitive)`,
-		);
 		if (
 			confirm &&
-			confirm.trim().toLowerCase() === CONFIRM_TEXT.toLowerCase()
+			confirm.trim().toUpperCase() === confirmText
 		) {
 			let ok = await deleteCharacter(user, id);
 			if (ok) {
@@ -140,7 +141,7 @@
 <Main>
 	<div class="w-full flex flex-col items-center gap-5">
 		<form onsubmit={loadData} class="flex items-center">
-			<h3 class="main-text h-min">USER:</h3>
+			<h3 class="main-text h-min">{m.homepage_user()}:</h3>
 			<TextInput
 				bind:value={inputUser}
 				rClass="rounded-l-lg"
@@ -150,19 +151,19 @@
 				class="base-button h-8 bg-z2 rounded-l-none hover:bg-cta"
 				disabled={loading || inputUser === ""}
 			>
-				CONFIRM
+				{m.common_confirm()}
 			</button>
 		</form>
 
 		{#if user === ""}
-			<Empty msg="INSERT USER" />
+			<Empty msg={m.empty_insert_user()} />
 		{:else if loading}
-			<Loading />
+			<Loading msg={m.loading_characters()} />
 		{:else}
 			<div class="w-full md:w-1/2 flex flex-col gap-3">
 				<div class="flex justify-between items-center">
 					<h1 class="main-text h-min">
-						{user.toUpperCase()}'s CHARACTERS
+						{m.homepage_title({ user: toCapitalizeCase(user) })}
 					</h1>
 					<div class="flex">
 						<button
@@ -190,7 +191,7 @@
 						removeFun={removeCharacter}
 					/>
 				{:else}
-					<Empty msg="NO CHARACTERS" />
+					<Empty msg={m.empty_no_characters()} />
 				{/each}
 			</div>
 		{/if}

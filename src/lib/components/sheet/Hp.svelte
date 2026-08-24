@@ -1,10 +1,12 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import type { Component } from "svelte";
 	import type { IconProps } from "@lucide/svelte";
 	import { Heart, Skull } from "@lucide/svelte";
 
 	import { Character } from "$lib/character.svelte";
-	import { DEATH_TS_TYPES, type DeathTS } from "$lib/types";
+	import { DeathTsEnum } from "$lib/types";
 
 	import Container from "$lib/components/base/Container.svelte";
 	import Value from "$lib/components/base/Value.svelte";
@@ -18,9 +20,9 @@
 
 	let { wClass = "w-full", character }: HpPropsType = $props();
 
-	const iconMap: Record<DeathTS, Component<IconProps>> = {
-		success: Heart,
-		failure: Skull,
+	const iconMap: Record<DeathTsEnum, Component<IconProps>> = {
+		[DeathTsEnum.Success]: Heart,
+		[DeathTsEnum.Failure]: Skull,
 	} as const;
 	const roundedDeathTS: Array<string> = [
 		"rounded-l-lg",
@@ -36,24 +38,24 @@
 		<NumberInput
 			bind:value={character.hp.max}
 			minValue={1}
-			title="max hp"
+			title={m.hp_max()}
 		/>
 
 		<NumberInput
 			bind:value={character.hp.temp}
-			title="temp hp"
+			title={m.hp_temporary()}
 		/>
 	</div>
 
 	<NumberInput
 		bind:value={character.hp.current}
 		maxValue={character.hp.max}
-		title="current hp / damage taken"
+		title={m.hp_current()}
 	/>
 
 	<div class="hp-multi">
 		<div class="hp-item">
-			<span class="main-text">HIT DICE</span>
+			<span class="main-text">{m.hp_hit_dice()}</span>
 			<div class="hp-multi">
 				<Value value={character.info.level} pClass="p-0" />
 
@@ -70,9 +72,9 @@
 		</div>
 
 		<div class="hp-item">
-			<span class="main-text">DEATH TS</span>
+			<span class="main-text">{m.hp_death_throws()}</span>
 
-			{#each DEATH_TS_TYPES as type}
+			{#each Object.values(DeathTsEnum) as type}
 				{@const Icon = iconMap[type]}
 				<div class="w-full flex items-center">
 					<Icon class="text-cta mr-1" />

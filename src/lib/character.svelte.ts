@@ -1,17 +1,19 @@
 import {
+	CoinEnum,
+	DeathTsEnum,
 	type Alignments,
-	type DeathTS,
-	type AbilitiesType,
 	type SkillsType,
 	type Ability,
-	type CoinsEnum,
+	type Skill,
 	type Attack,
 	type Spell,
 	type SpellSlot,
-	Morality,
-	Order,
-	Sizes,
+	MoralityEnum,
+	OrderEnum,
+	SizeEnum,
 	SIZES_ELUSION,
+	AbilityEnum,
+	SkillEnum,
 	getEmptyAttack,
 } from "./types";
 
@@ -30,7 +32,7 @@ export class Character {
 
 		class: string;
 		race: string;
-		size: Sizes;
+		size: SizeEnum;
 		speed: number;
 		initiative: number;
 		level: number;
@@ -70,10 +72,10 @@ export class Character {
 			type: number;
 			spent: number;
 		};
-		deathTS: Record<DeathTS, [boolean, boolean, boolean]>;
+		deathTS: Record<DeathTsEnum, [boolean, boolean, boolean]>;
 	};
 
-	stats: { [Ab in AbilitiesType]: Ability<Ab> };
+	stats: { [Ab in AbilityEnum]: Ability<Ab> };
 
 	features: {
 		class_traits: string;
@@ -82,7 +84,7 @@ export class Character {
 	};
 
 	equipment: {
-		coins: { [key in CoinsEnum]: number };
+		coins: { [coin in CoinEnum]: number };
 		inventory: string;
 		proficiencies: string;
 		actions: string;
@@ -90,7 +92,7 @@ export class Character {
 	};
 
 	magic: {
-		spellcastingAbility: AbilitiesType;
+		spellcastingAbility: AbilityEnum;
 		bonusTpC: number;
 		bonusDC: number;
 		spells: Record<string, Spell>;
@@ -120,11 +122,11 @@ export class Character {
 			color: BASE_COLOR,
 			name: "New Character",
 			campaign: "",
-			alignment: { morality: Morality.Neutral, order: Order.Neutral },
+			alignment: { morality: MoralityEnum.Neutral, order: OrderEnum.Neutral },
 
 			class: "",
 			race: "",
-			size: Sizes.Medium,
+			size: SizeEnum.Medium,
 			speed: 0,
 			initiative: 0,
 			level: 1,
@@ -169,59 +171,59 @@ export class Character {
 			},
 		});
 		this.stats = $state({
-			strength: {
+			[AbilityEnum.Strength]: {
 				value: 8,
 				proficiency: false,
 				skills: {
-					athletics: { proficiency: false, expertise: false },
+					[SkillEnum.Athletics]: { proficiency: false, expertise: false },
 				},
-			},
-			dexterity: {
+			} as Ability<AbilityEnum.Strength>,
+			[AbilityEnum.Dexterity]: {
 				value: 8,
 				proficiency: false,
 				skills: {
-					acrobatics: { proficiency: false, expertise: false },
-					sleight_of_hand: { proficiency: false, expertise: false },
-					stealth: { proficiency: false, expertise: false },
+					[SkillEnum.Acrobatics]: { proficiency: false, expertise: false },
+					[SkillEnum.SleightOfHand]: { proficiency: false, expertise: false },
+					[SkillEnum.Stealth]: { proficiency: false, expertise: false },
 				},
-			},
-			constitution: {
+			} as Ability<AbilityEnum.Dexterity>,
+			[AbilityEnum.Constitution]: {
 				value: 8,
 				proficiency: false,
 				skills: {},
-			},
-			intelligence: {
+			} as Ability<AbilityEnum.Constitution>,
+			[AbilityEnum.Intelligence]: {
 				value: 8,
 				proficiency: false,
 				skills: {
-					arcana: { proficiency: false, expertise: false },
-					history: { proficiency: false, expertise: false },
-					investigation: { proficiency: false, expertise: false },
-					nature: { proficiency: false, expertise: false },
-					religion: { proficiency: false, expertise: false },
+					[SkillEnum.Arcana]: { proficiency: false, expertise: false },
+					[SkillEnum.History]: { proficiency: false, expertise: false },
+					[SkillEnum.Investigation]: { proficiency: false, expertise: false },
+					[SkillEnum.Nature]: { proficiency: false, expertise: false },
+					[SkillEnum.Religion]: { proficiency: false, expertise: false },
 				},
-			},
-			wisdom: {
+			} as Ability<AbilityEnum.Intelligence>,
+			[AbilityEnum.Wisdom]: {
 				value: 8,
 				proficiency: false,
 				skills: {
-					animal_handling: { proficiency: false, expertise: false },
-					insight: { proficiency: false, expertise: false },
-					medicine: { proficiency: false, expertise: false },
-					perception: { proficiency: false, expertise: false },
-					survival: { proficiency: false, expertise: false },
+					[SkillEnum.AnimalHandling]: { proficiency: false, expertise: false },
+					[SkillEnum.Insight]: { proficiency: false, expertise: false },
+					[SkillEnum.Medicine]: { proficiency: false, expertise: false },
+					[SkillEnum.Perception]: { proficiency: false, expertise: false },
+					[SkillEnum.Survival]: { proficiency: false, expertise: false },
 				},
-			},
-			charisma: {
+			} as Ability<AbilityEnum.Wisdom>,
+			[AbilityEnum.Charisma]: {
 				value: 8,
 				proficiency: false,
 				skills: {
-					deception: { proficiency: false, expertise: false },
-					intimidation: { proficiency: false, expertise: false },
-					performance: { proficiency: false, expertise: false },
-					persuasion: { proficiency: false, expertise: false },
+					[SkillEnum.Deception]: { proficiency: false, expertise: false } as Skill,
+					[SkillEnum.Intimidation]: { proficiency: false, expertise: false },
+					[SkillEnum.Performance]: { proficiency: false, expertise: false },
+					[SkillEnum.Persuasion]: { proficiency: false, expertise: false },
 				},
-			},
+			} as Ability<AbilityEnum.Charisma>,
 		});
 		this.features = $state({
 			class_traits: "",
@@ -230,11 +232,11 @@ export class Character {
 		});
 		this.equipment = $state({
 			coins: {
-				cp: 0,
-				sp: 0,
-				ep: 0,
-				gp: 0,
-				pp: 0,
+				[CoinEnum.CP]: 0,
+				[CoinEnum.SP]: 0,
+				[CoinEnum.EP]: 0,
+				[CoinEnum.GP]: 0,
+				[CoinEnum.PP]: 0,
 			},
 			inventory: "",
 			proficiencies: "",
@@ -242,7 +244,7 @@ export class Character {
 			attacks: {},
 		});
 		this.magic = $state({
-			spellcastingAbility: "strength",
+			spellcastingAbility: AbilityEnum.Strength,
 			bonusTpC: 0,
 			bonusDC: 0,
 			spells: {},
@@ -271,19 +273,19 @@ export class Character {
 	}
 
 	// Abilities
-	getAbilityProficiency(ab: AbilitiesType): boolean {
+	getAbilityProficiency(ab: AbilityEnum): boolean {
 		//console.log(`getAbilityProficiency("${ab}")`);
 		return this.stats[ab].proficiency;
 	}
-	getAbilityValue(ab: AbilitiesType): number {
+	getAbilityValue(ab: AbilityEnum): number {
 		//console.log(`getAbilityValue("${ab}")`);
 		return this.stats[ab].value;
 	}
-	getAbilityModifier(ab: AbilitiesType): number {
+	getAbilityModifier(ab: AbilityEnum): number {
 		//console.log(`getAbilityModifier("${ab}")`);
 		return Math.floor((this.getAbilityValue(ab) - 10) / 2);
 	}
-	getAbilitySaveThrow(ab: AbilitiesType): number {
+	getAbilitySaveThrow(ab: AbilityEnum): number {
 		//console.log(`getAbilitySaveThrow("${ab}")`);
 		return (
 			this.getAbilityModifier(ab) +
@@ -292,21 +294,21 @@ export class Character {
 	}
 
 	// Skills
-	getSkillProficiency<Ab extends AbilitiesType>(
+	getSkillProficiency<Ab extends AbilityEnum>(
 		ab: Ab,
 		sk: SkillsType[Ab],
 	): boolean {
 		//console.log(`getSkillProficiency("${ab}", "${sk}")`);
 		return this.stats[ab].skills[sk].proficiency ?? false;
 	}
-	getSkillExpertise<Ab extends AbilitiesType>(
+	getSkillExpertise<Ab extends AbilityEnum>(
 		ab: Ab,
 		sk: SkillsType[Ab],
 	): boolean {
 		//console.log(`getSkillExpertise("${ab}", "${sk}")`);
 		return this.stats[ab].skills[sk]?.expertise ?? false;
 	}
-	getSkillValue<Ab extends AbilitiesType>(
+	getSkillValue<Ab extends AbilityEnum>(
 		ab: Ab,
 		sk: SkillsType[Ab],
 	): number {
@@ -319,7 +321,7 @@ export class Character {
 			(this.getSkillExpertise(ab, sk) ? this.getProficiencyBonus() : 0)
 		);
 	}
-	getPassiveSkillValue<Ab extends AbilitiesType>(
+	getPassiveSkillValue<Ab extends AbilityEnum>(
 		ability: Ab,
 		skill: SkillsType[Ab],
 	): number {
@@ -329,7 +331,7 @@ export class Character {
 
 	// Attacks
 	getAttackModifier(attackName: string): number {
-		attackName = attackName.toUpperCase();
+		attackName = attackName.toUpperCase(); // TODO
 		const attack: Attack | null = this.equipment.attacks[attackName];
 		if (!attack) {
 			return -1;
@@ -343,13 +345,13 @@ export class Character {
 		);
 	}
 	addAttack(attackName: string): void {
-		attackName = attackName.toUpperCase();
+		attackName = attackName.toUpperCase(); // TODO
 		//console.log(`addAttack("${attackName}")`);
 
 		this.equipment.attacks[attackName] = getEmptyAttack(attackName);
 	}
 	removeAttack(attackName: string): void {
-		attackName = attackName.toUpperCase();
+		attackName = attackName.toUpperCase(); // TODO
 		//console.log(`removeWeapon("${attackName}")`);
 
 		delete this.equipment.attacks[attackName];
@@ -384,7 +386,7 @@ export class Character {
 		return spellList;
 	}
 	addSpell(spellName: string): boolean {
-		spellName = spellName.toUpperCase();
+		spellName = spellName.toUpperCase(); // TODO
 		//console.log(`addSpell("${spellName}")`);
 
 		let spell: Spell | null = getSpell(spellName);
@@ -397,7 +399,7 @@ export class Character {
 		return true;
 	}
 	removeSpell(spellName: string): void {
-		spellName = spellName.toUpperCase();
+		spellName = spellName.toUpperCase(); // TODO
 		//console.log(`removeSpell("${spellName}")`);
 
 		let spell: Spell | null = getSpell(spellName);

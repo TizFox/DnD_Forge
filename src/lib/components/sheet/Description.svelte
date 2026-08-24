@@ -1,4 +1,6 @@
 <script lang="ts">
+	import * as m from "$lib/paraglide/messages";
+
 	import { Character } from "$lib/character.svelte";
 
 	import Container from "$lib/components/base/Container.svelte";
@@ -19,32 +21,32 @@
 <Container extraClasses="{wClass} grid grid-cols-2 gap-3">
 	<NumberInput
 		bind:value={character.info.description.age}
-		title="age"
+		title={m.description_age()}
 	/>
 	<NumberInput
 		bind:value={character.info.description.height}
-		title="height (cm)"
+		title={m.description_height()}
 	/>
 	<NumberInput
 		bind:value={character.info.description.weight}
-		title="weight (kg)"
+		title={m.description_weight()}
 	/>
 	<TextInput
 		bind:value={character.info.description.eyeColor}
-		title="eye color"
+		title={m.description_eyes()}
 	/>
 	<TextInput
 		bind:value={character.info.description.skinColor}
-		title="skin color"
+		title={m.description_skin()}
 	/>
 	<TextInput
 		bind:value={character.info.description.hairColor}
-		title="hair color"
+		title={m.description_hair()}
 	/>
 	<AreaInput
 		bind:value={character.info.description.other}
 		wClass="col-span-2"
-		title="other"
+		title={m.description_other()}
 	/>
 </Container>
 

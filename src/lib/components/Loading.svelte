@@ -1,12 +1,18 @@
 <script lang="ts">
 	import { LoaderCircle } from "@lucide/svelte";
+
+	let {
+		msg,
+	}: {
+		msg: string;
+	} = $props();
 </script>
 
 <!------------------------------------------>
 
 <div class="loading-message">
 	<LoaderCircle size="100px" class="text-cta animate-spin" />
-	<h1 class="main-text base-p">Loading...</h1>
+	<h1 class="main-text base-p">{msg}...</h1>
 </div>
 
 <!------------------------------------------>

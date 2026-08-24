@@ -8,7 +8,7 @@
 	import Stats from "$lib/components/sheet/Stats.svelte";
 
 	// 2
-	import Ca from "$lib/components/sheet/Ca.svelte";
+	import Ac from "$lib/components/sheet/Ac.svelte";
 	import Hp from "$lib/components/sheet/Hp.svelte";
 	import Actions from "$lib/components/sheet/Actions.svelte";
 	import Passive from "$lib/components/sheet/Passive.svelte";
@@ -40,7 +40,7 @@
 	<Stats wClass="flex-1" {character} />
 	<div class="flex-2 grid grid-cols-2 gap-5">
 		<div class="flex flex-col gap-5">
-			<Ca {character} />
+			<Ac {character} />
 			<Hp {character} />
 			<Actions {character} />
 			<Description {character} />
