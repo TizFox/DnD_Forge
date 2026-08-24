@@ -93,7 +93,7 @@
 			</span>
 		</div>
 		<div class="info-subsection">
-			<h3>RACE</h3>
+			<h3>{m.character_race()}</h3>
 			<span>
 				<Race
 					{character}
