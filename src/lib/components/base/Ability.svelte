@@ -16,7 +16,6 @@
 
 	let { wClass = "w-full", character, ability }: AbilityPropsType = $props();
 
-	let value = $derived(character.getAbilityValue(ability));
 	let modifier = $derived(character.getAbilityModifier(ability));
 </script>
 

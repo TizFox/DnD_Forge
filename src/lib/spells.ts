@@ -1,7 +1,7 @@
 import type { Spell, SpellLevels, SpellSchools } from "./types";
 import { EMPTY_SPELL } from "./types";
 
-import ALL_SPELLS from "$lib/spells/spells.json";
+import ALL_SPELLS from "$lib/assets/spells/spells.json";
 
 export const getSpell = (name: string): Spell | null => {
 	let spell: Spell = EMPTY_SPELL;

@@ -1,11 +1,11 @@
 {
-	"morality_good": "Buono",
-	"morality_neutral": "Neutrale",
-	"morality_evil": "Malvagio",
+	"morality_good": "Good",
+	"morality_neutral": "Neutral",
+	"morality_evil": "Evil",
 
-	"order_lawful": "Legale",
-	"order_neutral": "Neutrale",
-	"order_chaotic": "Caotico",
+	"order_lawful": "Lawful",
+	"order_neutral": "Neutral",
+	"order_chaotic": "Chaotic",
 
 	"class_artificer": "Artificer",
 	"class_barbarian": "Barbarian",

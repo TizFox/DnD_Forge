@@ -9,6 +9,7 @@
 	import {
 		NAME,
 		getPath,
+		STORAGE_USER,
 		STORAGE_CHARACTER,
 		BASE_COLOR,
         toCapitalizeCase,
@@ -39,7 +40,7 @@
 
 	onMount(async () => {
 		// Get last user used
-		let lastUser = localStorage.getItem("lastUser");
+		let lastUser = localStorage.getItem(STORAGE_USER);
 		inputUser = lastUser ? lastUser : "";
 		await loadData();
 		sessionStorage.removeItem(STORAGE_CHARACTER);
@@ -61,7 +62,7 @@
 		loading = true;
 
 		user = inputUser;
-		localStorage.setItem("lastUser", user);
+		localStorage.setItem(STORAGE_USER, user);
 		data = [];
 
 		let rowData = await getCharacters(user);

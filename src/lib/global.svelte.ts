@@ -7,6 +7,7 @@ export const getPath = (user?: string, id?: string): string => {
 	return PATH;
 };
 
+export const STORAGE_USER = "lastUser";
 export const STORAGE_CHARACTER = "currentCharacter";
 export const BASE_COLOR = "#ef4444"; //"#f0abfc";
 
